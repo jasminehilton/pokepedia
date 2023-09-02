@@ -1,9 +1,9 @@
 import './App.css';
-// import useCollections from './hooks/useCollections';
+import useCollections from './hooks/useCollections';
 
 function App() {
-  // const collection = useCollections();
-  
+  const collection = useCollections();
+  console.log(collection);
   return (
     <div className="App">
     </div>
