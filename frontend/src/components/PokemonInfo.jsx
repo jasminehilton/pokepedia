@@ -26,11 +26,6 @@ function PokemonInfo() {
                   <li key={index}>{type.type.name}</li>
                 ))}
               </ul>
-              <p>Forms:</p>
-              <ul>  {pokemon.forms.map((form, index) => (
-                <li key={index}>{form.name}</li>
-              ))}
-              </ul>
               <p>Abilities:</p>
               <ul>
                 {pokemon.abilities.map((ability, index) => (
