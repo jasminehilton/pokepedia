@@ -1,0 +1,11 @@
+const db = require("../../configs/db.config");
+
+const getCollectionByUserId = (id) => {
+  return db
+    .query("SELECT * FROM collections WHERE user_id = 1;")
+    .then((data) => {
+      return data.rows;
+    });
+};
+
+module.exports = getCollectionByUserId;
