@@ -4,7 +4,6 @@ const getCollectionByUserId = (id) => {
   return db
     .query("SELECT * FROM collections WHERE user_id = 1;")
     .then((data) => {
-      console.log(data);
       return data.rows;
     });
 };
