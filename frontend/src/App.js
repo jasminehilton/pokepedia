@@ -11,8 +11,8 @@ function App() {
   // console.log(collection);
   return (
     <div className="App">
-      <PokemonInfo />
       <TypeButtonList></TypeButtonList>
+      <PokemonInfo />
     </div>
   );
 }
