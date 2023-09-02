@@ -1,4 +1,5 @@
 import './App.css';
+import TypeButtonList from './components/TypeButtonList';
 
 import PokemonInfo from './components/PokemonInfo';
 
@@ -11,6 +12,7 @@ function App() {
   return (
     <div className="App">
       <PokemonInfo />
+      <TypeButtonList></TypeButtonList>
     </div>
   );
 }
