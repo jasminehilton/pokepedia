@@ -8,8 +8,18 @@ const TypeButtonList = () => {
   const [selectedTypes, setSelectedTypes] = useState([]);
 
   const onTypeSelect = (typeName) => {
-    console.log('Selected type is:', typeName);
+    if (selectedTypes.includes(typeName)) {
+      setSelectedTypes(selectedTypes.filter((type) => type !== typeName)); //Filters out any existing types
+    } else {
+      console.log('Selected type:', typeName);
+      setSelectedTypes([...selectedTypes, typeName]);
+    }
   }
+
+  //This will show all the currently selected types
+  useEffect(() => {
+    console.log('Selected types:', selectedTypes);
+  }, [selectedTypes]);
 
   useEffect(() => {
     axios
