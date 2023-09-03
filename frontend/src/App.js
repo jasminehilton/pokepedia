@@ -1,16 +1,17 @@
-import './App.css';
+import "./App.css";
 
-import PokemonInfo from './components/PokemonInfo';
-
+import PokemonInfo from "./components/PokemonInfo";
+import usePokeDetails from "./hooks/usePokeDetails";
+import PokemonDetails from "./components/pokemonDetails";
 // import useCollections from './hooks/useCollections';
 
-
 function App() {
-  // const collection = useCollections();
-  // console.log(collection);
+  const { pokemonDetails, pokemonLocations, pokemonWeaknesses } = usePokeDetails(200);
+  // console.log(pokemonWeaknesses);
   return (
     <div className="App">
-      <PokemonInfo />
+      {/* <PokemonInfo /> */}
+      <PokemonDetails pokemon={pokemonDetails} locations={pokemonLocations} />
     </div>
   );
 }

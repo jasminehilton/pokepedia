@@ -3,7 +3,7 @@ import usePokemonApi from '../hooks/usePokemon';
 
 function PokemonInfo() {
   const { pokemonData, loading } = usePokemonApi();
-
+  
   return (
     <div>
       <h1>Pokemon Info</h1>
