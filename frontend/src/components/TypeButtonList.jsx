@@ -9,6 +9,7 @@ const TypeButtonList = () => {
 
   const onTypeSelect = (typeName) => {
     if (selectedTypes.includes(typeName)) {
+      console.log('Removed type:', typeName);
       setSelectedTypes(selectedTypes.filter((type) => type !== typeName)); //Filters out any existing types
     } else {
       console.log('Selected type:', typeName);
