@@ -5,6 +5,11 @@ import TypeButton from './TypeButton';
 const TypeButtonList = () => {
   
   const [types, setTypes] = useState([]);
+  const [selectedTypes, setSelectedTypes] = useState([]);
+
+  const onTypeSelect = (typeName) => {
+    console.log('Selected type is:', typeName);
+  }
 
   useEffect(() => {
     axios
@@ -24,7 +29,11 @@ const TypeButtonList = () => {
   return (
     <div>
       {types.map((type) => (
-        <TypeButton key={type.name} typeName={type.name} />
+        <TypeButton
+          key={type.name}
+          typeName={type.name}
+          onTypeSelect={onTypeSelect}
+        />
       ))}
     </div>
   );
