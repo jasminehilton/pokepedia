@@ -15,6 +15,8 @@ export const ACTIONS = {
   CLEAR_FILTERS: 'CLEAR_FILTERS',
   SELECT_PAGE: 'SELECT_PAGE',
   INITIATE_SEARCH: 'INITIATE_SEARCH',
+  FETCH_POKEMON_SUCCESS: 'FETCH_POKEMON_SUCCESS',
+  FETCH_POKEMON_FAILURE: 'FETCH_POKEMON_FAILURE',
 };
 
 
@@ -23,7 +25,7 @@ const reducer = (state, action) => {
     case ACTIONS.SELECT_POKEMON:
       return { ...state, };
     case ACTIONS.FETCH_POKEMON_LOCATIONS:
-      return { ...state, locations: [] };
+      return { ...state, locations: action.payload };
     case ACTIONS.FETCH_POKEMON_TYPE_INTERACTIONS:
       return {
         ...state, typeInteractions: {
@@ -31,8 +33,8 @@ const reducer = (state, action) => {
           typeInteractions: {
             takeTwoTimesDamage: action.payload.takeTwoTimesDamage,
             dealTwoTimesDamage: action.payload.dealTwoTimesDamage,
-            takeNormalDamage: action.payload.takeNormalDamage,
-            dealNormalDamage: action.payload.dealNormalDamage,
+            takeHalfDamage: action.payload.takeHalfDamage,
+            dealHalfDamage: action.payload.dealHalfDamage,
             takeNoDamage: action.payload.takeNoDamage,
             dealNoDamage: action.payload.dealNoDamage,
           }
@@ -58,6 +60,21 @@ const reducer = (state, action) => {
       return { ...state, };
     case ACTIONS.INITIATE_SEARCH:
       return { ...state, };
+    case 'FETCH_POKEMON_SUCCESS':
+      return {
+        ...state,
+        isLoading: false,
+        pokemonData: action.payload.results,
+        next: action.payload.next,
+        previous: action.payload.previous,
+        error: null
+      };
+    case 'FETCH_POKEMON_FAILURE':
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload
+      };
     default:
       return state;
   }
@@ -65,6 +82,12 @@ const reducer = (state, action) => {
 
 export default function usePokemonData() {
   const initialState = {
+    isLoading: true,
+    pokemonData: [],
+    error: null,
+    // pokemonDetails: {},
+    next: null,
+    previous: null,
     pokemonList: [],
     isModalVisiable: false,
     isButtonSelected: false,
@@ -79,8 +102,8 @@ export default function usePokemonData() {
     typeInteractions: {
       takeTwoTimesDamage: [],
       dealTwoTimesDamage: [],
-      takeNormalDamage: [],
-      dealNormalDamage: [],
+      takeHalfDamage: [],
+      dealHalfDamage: [],
       takeNoDamage: [],
       dealNoDamage: []
     }
@@ -100,7 +123,7 @@ export default function usePokemonData() {
     axios
       .get('https://pokeapi.co/api/v2/type')
       .then((response) => {
-        dispatch({ type: ACTIONS.FETCH_TYPES, typesData: response.data }); // Used to be a state dispatch, maybe setTypes can be a function where we dispatch it?
+        dispatch({ type: ACTIONS.FETCH_TYPES, typesData: response.data });
       })
       .catch((error) => {
         console.error('Error fetching Pokémon types data:', error);
@@ -119,7 +142,6 @@ export default function usePokemonData() {
     dispatch({ type: ACTIONS.CLOSE_POKEMON_DATA });
   };
 
-  // const [selectedTypes, setSelectedTypes] = useState([]); //Temporary 
   const setSelectedTypes = (typeName) => {
     const selectedTypes = state.filters.types;
     if (selectedTypes.includes(typeName)) {
@@ -130,7 +152,7 @@ export default function usePokemonData() {
       dispatch({ type: ACTIONS.FILTER_BY_TYPE, selectedTypes: selected });
     };
   };
-  
+
   return {
     state,
     fetchPokemonData,

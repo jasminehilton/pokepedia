@@ -1,8 +1,7 @@
 import './App.css';
 import TypeButtonList from './components/TypeButtonList';
 
-// import PokemonInfo from './components/PokemonInfo';
-import PokemonList from './components/PokemonList
+import PokemonInfo from './components/PokemonInfo';
 
 // import useCollections from './hooks/useCollections';
 
@@ -14,10 +13,8 @@ function App() {
   return (
     <div className="App">
       <TypeButtonList />
-      <PokemonList />
-      {/* <PokemonInfo /> */}
-      {/* You can remove the PokemonInfo Jackie */}
-       <Regions />
+      <PokemonInfo />
+       {/* <Regions /> */}
     </div>
   );
 }
