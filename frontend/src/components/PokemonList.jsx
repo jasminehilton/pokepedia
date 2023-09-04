@@ -1,9 +1,9 @@
 import React, { useEffect, useReducer } from "react";
-import { initialState, pokemonReducer } from "../hooks/pokemonReducer";
 import fetchPokemonData from "../helpers/fetchPokemonData";
+import { reducer, initialState } from "../hooks/reducer";
 
 const PokemonList = () => {
-  const [state, dispatch] = useReducer(pokemonReducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
     fetchPokemonData(dispatch);

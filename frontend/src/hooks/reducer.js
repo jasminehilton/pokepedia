@@ -60,7 +60,7 @@ const reducer = (state, action) => {
       return { ...state, };
     case ACTIONS.INITIATE_SEARCH:
       return { ...state, };
-    case 'FETCH_POKEMON_SUCCESS':
+    case ACTIONS.FETCH_POKEMON_SUCCESS:
       return {
         ...state,
         isLoading: false,
@@ -69,7 +69,7 @@ const reducer = (state, action) => {
         previous: action.payload.previous,
         error: null
       };
-    case 'FETCH_POKEMON_FAILURE':
+    case ACTIONS.FETCH_POKEMON_FAILURE:
       return {
         ...state,
         isLoading: false,
@@ -79,6 +79,15 @@ const reducer = (state, action) => {
       return state;
   }
 }
+
+const initialState = {
+  isLoading: true,
+  pokemonData: [],
+  error: null,
+  // pokemonDetails: {},
+  next: null,
+  previous: null,
+};
 
 export default function usePokemonData() {
   const initialState = {
@@ -130,7 +139,7 @@ export default function usePokemonData() {
       });
   }, []);
 
-  const fetchPokemonData = (data) => {
+  const fetchPokeData = (data) => {
     dispatch({ type: ACTIONS.SELECT_POKEMON, selectPokemon: data })
   };
 
@@ -155,9 +164,12 @@ export default function usePokemonData() {
 
   return {
     state,
-    fetchPokemonData,
+    initialState,
+    // fetchPokemonData,
     setSelectedTypes,
     onDisplayPokemonModal,
     onClosePokemonModal
   };
 };
+
+export { reducer, initialState };
