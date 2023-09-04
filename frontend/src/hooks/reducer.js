@@ -7,6 +7,7 @@ export const ACTIONS = {
   FETCH_POKEMON_TYPE_INTERACTIONS: 'FETCH_POKEMON_TYPE_INTERACTIONS',
   DISPLAY_POKEMON_DATA: 'DISPLAY_POKEMON_DATA',
   CLOSE_POKEMON_DATA: 'CLOSE_POKEMON_DATA',
+  FETCH_TYPES: 'FETCH_TYPES',
   FILTER_BY_TYPE: 'FILTER_BY_TYPE',
   FILTER_BY_REGION: 'FILTER_BY_REGION',
   CLEAR_TYPE_FILTER: 'CLEAR_TYPE_FILTER',
@@ -20,43 +21,47 @@ export const ACTIONS = {
 const reducer = (state, action) => {
   switch (action.type) {
     case ACTIONS.SELECT_POKEMON:
-      return {...state, };
+      return { ...state, };
     case ACTIONS.FETCH_POKEMON_LOCATIONS:
-      return {...state, locations: []};
+      return { ...state, locations: [] };
     case ACTIONS.FETCH_POKEMON_TYPE_INTERACTIONS:
-      return {...state, typeInteractions: {
-        ...state,
-      typeInteractions: {
-        takeTwoTimesDamage: action.payload.takeTwoTimesDamage,
-        dealTwoTimesDamage: action.payload.dealTwoTimesDamage,
-        takeNormalDamage: action.payload.takeNormalDamage,
-        dealNormalDamage: action.payload.dealNormalDamage,
-        takeNoDamage: action.payload.takeNoDamage,
-        dealNoDamage: action.payload.dealNoDamage,
-      }}};
+      return {
+        ...state, typeInteractions: {
+          ...state,
+          typeInteractions: {
+            takeTwoTimesDamage: action.payload.takeTwoTimesDamage,
+            dealTwoTimesDamage: action.payload.dealTwoTimesDamage,
+            takeNormalDamage: action.payload.takeNormalDamage,
+            dealNormalDamage: action.payload.dealNormalDamage,
+            takeNoDamage: action.payload.takeNoDamage,
+            dealNoDamage: action.payload.dealNoDamage,
+          }
+        }
+      };
     case ACTIONS.DISPLAY_POKEMON_DATA:
-      return {...state, isModalVisible: true };  
+      return { ...state, isModalVisible: true };
     case ACTIONS.CLOSE_POKEMON_DATA:
-      return {...state, isModalVisible: false };
+      return { ...state, isModalVisible: false };
+    case ACTIONS.FETCH_TYPES:
+      return { ...state, typesdata: action.typesData };
     case ACTIONS.FILTER_BY_TYPE:
-      return {...state, filters: {...state.filters, types: action.selectedTypes}};   
+      return { ...state, filters: { ...state.filters, types: action.selectedTypes } };
     case ACTIONS.FILTER_BY_REGION:
-      return {...state, filters: {...state.filters, regions: action.selectedRegions}};  
+      return { ...state, filters: { ...state.filters, regions: action.selectedRegions } };
     case ACTIONS.CLEAR_TYPE_FILTER:
-      return {...state, filters: {...state.filters, types: action.selectedTypes }};  
+      return { ...state, filters: { ...state.filters, types: action.selectedTypes } };
     case ACTIONS.CLEAR_REGION_FILTER:
-      return {...state, filters: {...state.filters, regions: action.selectedRegions}};
+      return { ...state, filters: { ...state.filters, regions: action.selectedRegions } };
     case ACTIONS.CLEAR_FILTERS:
-      return {...state, filters: {regions: [], types: []}};      
+      return { ...state, filters: { regions: [], types: [] } };
     case ACTIONS.SELECT_PAGE:
-      return {...state, }; 
+      return { ...state, };
     case ACTIONS.INITIATE_SEARCH:
-      return {...state, };           
+      return { ...state, };
     default:
       return state;
   }
 }
-
 
 export default function usePokemonData() {
   const initialState = {
@@ -82,9 +87,9 @@ export default function usePokemonData() {
     //isLoggedIn: true, demo purposes
     //isShiny: null,
     //isCaught: [],
-  };  
-  
-  
+  };
+
+
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
@@ -95,7 +100,7 @@ export default function usePokemonData() {
     axios
       .get('https://pokeapi.co/api/v2/type')
       .then((response) => {
-        setTypes(response.data.results); // maybe setTypes can be a function where we dispatch it?
+        dispatch({ type: ACTIONS.FETCH_TYPES, typesData: response.data }); // Used to be a state dispatch, maybe setTypes can be a function where we dispatch it?
       })
       .catch((error) => {
         console.error('Error fetching Pokémon types data:', error);
@@ -104,43 +109,33 @@ export default function usePokemonData() {
 
   const fetchPokemonData = (data) => {
     dispatch({ type: ACTIONS.SELECT_POKEMON, selectPokemon: data })
-  }
+  };
 
   const onDisplayPokemonModal = () => {
     dispatch({ type: ACTIONS.DISPLAY_POKEMON_DATA });
-  }
+  };
 
   const onClosePokemonModal = () => {
     dispatch({ type: ACTIONS.CLOSE_POKEMON_DATA });
-  }
-
-  // const [selectedTypes, setSelectedTypes] = useState([]); //Temporary 
-  const setSelectedTypes = (selectedTypes, typeName) => {
-    if (selectedTypes.includes(typeName)) {
-      const selected = selectedTypes.filter((type) => type !== typeName);
-      dispatch({ type: ACTIONS.CLEAR_TYPE_FILTER, selectedTypes: selected});
-  } else {
-      const selected = [...selectedTypes, typeName];
-      dispatch({ type: ACTIONS.FILTER_BY_TYPE, selectedTypes: selected});
   };
 
-  // const onTypeSelect = (typeName) => {
-  //   let selectedTypes = state.filters.types;
-  //   if (selectedTypes.includes(typeName)) {
-  //     console.log('Unselected type:', typeName);
-      
-  //   } else {
-  //     console.log('Selected type:', typeName);
-  //     setSelectedTypes([...selectedTypes, typeName]);
-  //   }
-  // }
-
+  // const [selectedTypes, setSelectedTypes] = useState([]); //Temporary 
+  const setSelectedTypes = (typeName) => {
+    const selectedTypes = state.filters.types;
+    if (selectedTypes.includes(typeName)) {
+      const selected = selectedTypes.filter((type) => type !== typeName);
+      dispatch({ type: ACTIONS.CLEAR_TYPE_FILTER, selectedTypes: selected });
+    } else {
+      const selected = [...selectedTypes, typeName];
+      dispatch({ type: ACTIONS.FILTER_BY_TYPE, selectedTypes: selected });
+    };
+  };
+  
   return {
     state,
     fetchPokemonData,
-    onTypeSelect,
+    setSelectedTypes,
     onDisplayPokemonModal,
     onClosePokemonModal
-  }
-}
-}
+  };
+};
