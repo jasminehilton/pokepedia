@@ -13,8 +13,8 @@ function App() {
   return (
     <div className="App">
       <TypeButtonList />
+      <Regions />
       <PokemonInfo />
-       {/* <Regions /> */}
     </div>
   );
 }
