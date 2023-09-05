@@ -9,8 +9,8 @@ const TypeButtonList = () => {
   const dispatch = usePokemonDataDispatchContext(); //imports dispatch
 
   useEffect(() => {
-    console.log('Selected types:', state.filters.types.name);
-  }, [state.filters.types.name]);
+    console.log('Selected types:', state.filters.types);
+  }, [state.filters.types]);
 
   useEffect(() => {
     axios
