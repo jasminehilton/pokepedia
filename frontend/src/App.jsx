@@ -1,22 +1,23 @@
-import './App.css';
+import "./App.css";
+import { PokemonDataProvider } from "./providers/pokeProvider.js";
 // import TypeButtonList from './components/TypeButtonList';
 
 // import PokemonInfo from './components/PokemonInfo';
-import PokemonList from './components/PokemonList';
+import PokemonList from "./components/PokemonList";
 // import useCollections from './hooks/useCollections';
 
-import Regions from './components/Regions';
+import Regions from "./components/Regions";
 
 function App() {
   // const collection = useCollections();
   // console.log(collection);
   return (
-    <div className="App">
+    <PokemonDataProvider>
       <PokemonList />
       {/* <TypeButtonList /> */}
       {/* <PokemonInfo /> */}
-       {/* <Regions /> */}
-    </div>
+      {/* <Regions /> */}
+    </PokemonDataProvider>
   );
 }
 

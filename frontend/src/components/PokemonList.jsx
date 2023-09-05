@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import fetchPokemonData from "../helpers/fetchPokemonData";
-import usePokemonData from "../hooks/reducer";
+import { usePokemonDataContext, usePokemonDataDispatchContext } from "../providers/pokeProvider";
 
 const PokemonList = () => {
-  const { state, dispatch } = usePokemonData();
+  const state = usePokemonDataContext();
+  const dispatch = usePokemonDataDispatchContext();
 
   useEffect(() => {
     fetchPokemonData(dispatch);
@@ -41,7 +42,7 @@ const PokemonList = () => {
                   <img
                     src={pokemon.sprites.front_default}
                     alt={pokemon.name}
-                    style={{ width: '100px', height: '100px' }}
+                    style={{ width: "100px", height: "100px" }}
                   />
                 </ul>
                 <h2>{pokemon.name}</h2>
@@ -50,7 +51,6 @@ const PokemonList = () => {
           </ul>
         </div>
       )}
-
     </div>
   );
 };
