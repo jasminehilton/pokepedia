@@ -80,14 +80,6 @@ const reducer = (state, action) => {
   }
 }
 
-const initialState = {
-  isLoading: true,
-  pokemonData: [],
-  error: null,
-  // pokemonDetails: {},
-  next: null,
-  previous: null,
-};
 
 export default function usePokemonData() {
   const initialState = {
@@ -164,12 +156,12 @@ export default function usePokemonData() {
 
   return {
     state,
-    initialState,
     // fetchPokemonData,
     setSelectedTypes,
     onDisplayPokemonModal,
-    onClosePokemonModal
+    onClosePokemonModal,
+    dispatch
   };
 };
 
-export { reducer, initialState };
+ 
