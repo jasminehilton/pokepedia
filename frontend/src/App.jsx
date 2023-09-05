@@ -1,26 +1,18 @@
 import "./App.css";
-import { PokemonDataProvider } from "./providers/pokeProvider.js";
-// import TypeButtonList from './components/TypeButtonList';
+import { PokemonDataProvider, usePokemonDataContext, usePokemonDataDispatchContext } from "./providers/pokeProvider.js";
+import HomeRoute from "./routes/HomeRoute";
 
-// import PokemonInfo from './components/PokemonInfo';
-import PokemonList from "./components/PokemonList";
-// import useCollections from './hooks/useCollections';
-import usePokemonData from "./hooks/reducer";
-import Regions from "./components/Regions";
+import PokemonModal from "./routes/PokemonModal";
 
 function App() {
-  const { onDisplayPokemonModal,
-    onClosePokemonModal } = usePokemonData();
+  const state = usePokemonDataContext();
+
+
   return (
-    <PokemonDataProvider>
-      <PokemonList
-        isOpen={onDisplayPokemonModal}
-        onClose={onClosePokemonModal}
-      />
-      {/* <TypeButtonList /> */}
-      {/* <PokemonInfo /> */}
-      {/* <Regions /> */}
-    </PokemonDataProvider>
+    <div>
+      <HomeRoute />
+      {state.isModalVisible && <PokemonModal />}
+    </div>
   );
 }
 

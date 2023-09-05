@@ -147,13 +147,7 @@ export default function usePokemonData() {
     dispatch({ type: ACTIONS.SELECT_POKEMON, selectPokemon: data })
   };
 
-  const onDisplayPokemonModal = () => {
-    dispatch({ type: ACTIONS.DISPLAY_POKEMON_DATA });
-  };
-
-  const onClosePokemonModal = () => {
-    dispatch({ type: ACTIONS.CLOSE_POKEMON_DATA });
-  };
+  
 
   const setSelectedTypes = (typeName) => {
     const selectedTypes = state.filters.types;
@@ -170,8 +164,6 @@ export default function usePokemonData() {
     state,
     // fetchPokemonData,
     setSelectedTypes,
-    onDisplayPokemonModal,
-    onClosePokemonModal,
     dispatch
   };
 };

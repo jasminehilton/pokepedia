@@ -1,14 +1,15 @@
 import React, { useEffect } from "react";
 import fetchPokemonData from "../helpers/fetchPokemonData";
 import { usePokemonDataContext, usePokemonDataDispatchContext } from "../providers/pokeProvider";
-import PokemonModal from "./PokemonModal";
-import usePokemonData from "../hooks/reducer";
+import PokemonModal from "../routes/PokemonModal";
 
 const PokemonList = ({ isOpen, onClose }) => {
   const state = usePokemonDataContext();
   const dispatch = usePokemonDataDispatchContext();
 
-  const { onDisplayPokemonModal, onClosePokemonModal } = usePokemonData();
+  const onDisplayPokemonModal = () => {
+    dispatch({ type: 'DISPLAY_POKEMON_DATA' });
+  };
 
   useEffect(() => {
     fetchPokemonData(dispatch);
@@ -58,8 +59,7 @@ const PokemonList = ({ isOpen, onClose }) => {
       )}
       {state.isModalVisible && (
         <PokemonModal
-          pokemon={state.selectPokemonData}
-          onClose={onClosePokemonModal}
+          pokemon={state.pokemonData}
         />
       )}
     </div>
