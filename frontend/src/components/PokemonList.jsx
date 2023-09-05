@@ -35,8 +35,8 @@ const PokemonList = () => {
           <button onClick={loadNextPage}>Next</button>
           <ul>
             {state.pokemonData.map((pokemon, index) => (
-              <li key={index}>
-                <ul>ID: {pokemon.id}</ul>
+              <ul key={index}>
+                <h5>ID: {pokemon.id}</h5>
                 <ul>
                   <img
                     src={pokemon.sprites.front_default}
@@ -44,9 +44,8 @@ const PokemonList = () => {
                     style={{ width: '100px', height: '100px' }}
                   />
                 </ul>
-                <ul>{pokemon.name}</ul>
-                <hr />
-              </li>
+                <h2>{pokemon.name}</h2>
+              </ul>
             ))}
           </ul>
         </div>
