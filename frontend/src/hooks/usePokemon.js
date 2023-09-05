@@ -10,7 +10,7 @@ const usePokemonApi = () => {
     const fetchAllPokemonData = async () => {
       try {
         const allPokemonData = [];
-        const totalPokemonCount = 20; // Total number of Pokémon as of my knowledge cutoff date
+        const totalPokemonCount = 20;
 
         for (let id = 1; id <= totalPokemonCount; id++) {
           const response = await P.getPokemonByName(id);
