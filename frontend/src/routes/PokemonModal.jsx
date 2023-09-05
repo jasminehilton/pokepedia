@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { usePokemonDataContext, usePokemonDataDispatchContext } from "../providers/pokeProvider";
+import fetchPokemonLocations from '../helpers/fetchPokemonLocations';
 
 const PokemonModal = () => {
   const dispatch = usePokemonDataDispatchContext();
@@ -8,6 +9,7 @@ const PokemonModal = () => {
     dispatch({ type: 'CLOSE_POKEMON_DATA' });
   }
 
+  fetchPokemonLocations(dispatch, state.selectPokemonData.id);
   return (
     <div className="pokemon-modal">
       <div className="pokemon-modal-content">
@@ -18,10 +20,31 @@ const PokemonModal = () => {
         <p>ID: {state.selectPokemonData.id}</p>
         <img
           src={state.selectPokemonData.sprites.front_default}
-          alt={state.selectPokemonData.name} />
+          alt={state.selectPokemonData.name}
+        />
+        <p>Height: {state.selectPokemonData.height}</p>
+        <p>Weight: {state.selectPokemonData.weight}</p>
+        <p>Types: {state.selectPokemonData.types.map((type) => type.type.name).join(', ')}</p>
+        <p>Abilities: {state.selectPokemonData.abilities.map((ability) => ability.ability.name).join(', ')}</p>
+
+        <ul>
+          Locations:
+          {state.locations.map((location, index) => (
+            <li key={index}>
+              {location.location_area.name}
+              <ul>
+                {location.version_details.map((version, vIndex) => (
+                  <li key={vIndex}>{version.version.name}</li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
+
+
 };
 
 export default PokemonModal;

@@ -1,0 +1,8 @@
+.pokemon-modal {
+  background-color: rgb(235, 149, 183);
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  height: 50%;
+  width: 80%;
+}
