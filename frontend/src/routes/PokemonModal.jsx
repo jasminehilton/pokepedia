@@ -1,8 +1,9 @@
 import React from "react";
-import { usePokemonDataDispatchContext } from "../providers/pokeProvider";
+import { usePokemonDataContext, usePokemonDataDispatchContext } from "../providers/pokeProvider";
 
-const PokemonModal = ({ pokemon }) => {
+const PokemonModal = () => {
   const dispatch = usePokemonDataDispatchContext();
+  const state = usePokemonDataContext();
   const onClosePokemonModal = () => {
     dispatch({ type: 'CLOSE_POKEMON_DATA' });
   }
@@ -13,12 +14,11 @@ const PokemonModal = ({ pokemon }) => {
         <span className="close" onClick={onClosePokemonModal}>
           &times;
         </span>
-        <span>HELLO</span>
-        {/* <h2>{pokemon.name}</h2>
-        <p>ID: {pokemon.id}</p>
+        <h2>{state.selectPokemonData.name}</h2>
+        <p>ID: {state.selectPokemonData.id}</p>
         <img
-          src={pokemon.sprites.front_default}
-          alt={pokemon.name} /> */}
+          src={state.selectPokemonData.sprites.front_default}
+          alt={state.selectPokemonData.name} />
       </div>
     </div>
   );

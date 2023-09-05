@@ -7,8 +7,8 @@ const PokemonList = ({ isOpen, onClose }) => {
   const state = usePokemonDataContext();
   const dispatch = usePokemonDataDispatchContext();
 
-  const onDisplayPokemonModal = () => {
-    dispatch({ type: 'DISPLAY_POKEMON_DATA' });
+  const onDisplayPokemonModal = (pokemon) => {
+    dispatch({ type: 'DISPLAY_POKEMON_DATA', payload: pokemon });
   };
 
   useEffect(() => {
@@ -58,9 +58,7 @@ const PokemonList = ({ isOpen, onClose }) => {
         </div>
       )}
       {state.isModalVisible && (
-        <PokemonModal
-          pokemon={state.pokemonData}
-        />
+        <PokemonModal />
       )}
     </div>
   );

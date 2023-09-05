@@ -11,7 +11,7 @@ function App() {
   return (
     <div>
       <HomeRoute />
-      {state.isModalVisible && <PokemonModal />}
+      {/* {state.isModalVisible && <PokemonModal />} */}
     </div>
   );
 }
