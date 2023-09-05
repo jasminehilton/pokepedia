@@ -79,7 +79,7 @@ const reducer = (state, action) => {
     case ACTIONS.CLOSE_POKEMON_DATA:
       return { ...state, isModalVisible: false };
     case ACTIONS.FETCH_TYPES:
-      return { ...state, typesdata: action.typesData };
+      return { ...state, typesData: action.typesData };
     case ACTIONS.FILTER_BY_TYPE:
       return { ...state, filters: { ...state.filters, types: action.selectedTypes } };
     case ACTIONS.FILTER_BY_REGION:
@@ -114,27 +114,9 @@ const reducer = (state, action) => {
   }
 }
 
-
 export default function usePokemonData() {
-  
-
 
   const [state, dispatch] = useReducer(reducer, initialState);
-
-  useEffect(() => {
-    console.log('Selected types:', state.filters.types);
-  }, [state.filters.types]);
-
-  useEffect(() => {
-    axios
-      .get('https://pokeapi.co/api/v2/type')
-      .then((response) => {
-        dispatch({ type: ACTIONS.FETCH_TYPES, typesData: response.data });
-      })
-      .catch((error) => {
-        console.error('Error fetching Pokémon types data:', error);
-      });
-  }, []);
 
   const fetchPokeData = (data) => {
     dispatch({ type: ACTIONS.SELECT_POKEMON, selectPokemon: data })
@@ -148,23 +130,10 @@ export default function usePokemonData() {
     dispatch({ type: ACTIONS.CLOSE_POKEMON_DATA });
   };
 
-  const setSelectedTypes = (typeName) => {
-    const selectedTypes = state.filters.types;
-    if (selectedTypes.includes(typeName)) {
-      const selected = selectedTypes.filter((type) => type !== typeName);
-      dispatch({ type: ACTIONS.CLEAR_TYPE_FILTER, selectedTypes: selected });
-    } else {
-      const selected = [...selectedTypes, typeName];
-      dispatch({ type: ACTIONS.FILTER_BY_TYPE, selectedTypes: selected });
-    };
-  };
+
 
   return {
     state,
-    // fetchPokemonData,
-    setSelectedTypes,
-    onDisplayPokemonModal,
-    onClosePokemonModal,
     dispatch
   };
 };

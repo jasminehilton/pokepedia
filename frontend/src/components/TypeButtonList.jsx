@@ -1,24 +1,50 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
-// import TypeButton from './TypeButton';
+import { usePokemonDataContext, usePokemonDataDispatchContext } from "../providers/pokeProvider";
+import TypeButton from './TypeButton';
 
-const TypeButtonList = (types, onTypeSelect) => {
+const TypeButtonList = () => {
 
-  // if (typesData.length === 0) {
-  //   return <div>Loading...</div>;
-  // }
+  const state = usePokemonDataContext(); //imports the state
+  const dispatch = usePokemonDataDispatchContext(); //imports dispatch
 
-  return 
-    // <div>
-    //   {typesData.map((type) => (
-    //     <TypeButton
-    //       key={type.name}
-    //       typeName={type.name}
-    //       onTypeSelect={onTypeSelect}
-    //     />
-    //   ))}
-    // </div>
-  
+  useEffect(() => {
+    console.log('Selected types:', state.filters.types.name);
+  }, [state.filters.types.name]);
+
+  useEffect(() => {
+    axios
+      .get('https://pokeapi.co/api/v2/type')
+      .then((response) => {
+        dispatch({ type: "FETCH_TYPES", typesData: response.data.results });
+      })
+      .catch((error) => {
+        console.error('Error fetching Pokemon types data:', error);
+      });
+  }, []);
+
+  const onTypeSelect = (typeName) => {
+    const selectedTypes = state.filters.types;
+    if (selectedTypes.includes(typeName)) {
+      const selected = selectedTypes.filter((type) => type !== typeName);
+      dispatch({ type: "CLEAR_TYPE_FILTER", selectedTypes: selected });
+    } else {
+      const selected = [...selectedTypes, typeName];
+      dispatch({ type: "FILTER_BY_TYPE", selectedTypes: selected });
+    };
+  };
+
+  return (
+    <div>
+      {state.typesData.map((type) => (
+        <TypeButton
+          key={type.name}
+          typeName={type.name}
+          onTypeSelect={() => onTypeSelect(type)}
+        />
+      ))}
+    </div>
+  )
 };
 
 export default TypeButtonList;

@@ -6,6 +6,7 @@ import RegionListItem from "./RegionListItem";
 const P = new Pokedex();
 
 function RegionList() {
+
 	const [regions, setRegions] = useState([]);
 
   const [selectedRegion , setSelectedRegion] = useState({})
