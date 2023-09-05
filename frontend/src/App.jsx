@@ -5,15 +5,18 @@ import { PokemonDataProvider } from "./providers/pokeProvider.js";
 // import PokemonInfo from './components/PokemonInfo';
 import PokemonList from "./components/PokemonList";
 // import useCollections from './hooks/useCollections';
-
+import usePokemonData from "./hooks/reducer";
 import Regions from "./components/Regions";
 
 function App() {
-  // const collection = useCollections();
-  // console.log(collection);
+  const { onDisplayPokemonModal,
+    onClosePokemonModal } = usePokemonData();
   return (
     <PokemonDataProvider>
-      <PokemonList />
+      <PokemonList
+        isOpen={onDisplayPokemonModal}
+        onClose={onClosePokemonModal}
+      />
       {/* <TypeButtonList /> */}
       {/* <PokemonInfo /> */}
       {/* <Regions /> */}

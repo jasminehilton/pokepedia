@@ -37,8 +37,8 @@ const initialState = {
     regions: []
   },
   isButtonSelected: false, // useState
-  isModalVisiable: false, // useState
-  selectPokemonData: {}, 
+  isModalVisible: false, // useState
+  selectPokemonData: null, 
   locations: [],
   typeInteractions: {
     takeTwoTimesDamage: [],
@@ -75,9 +75,16 @@ const reducer = (state, action) => {
         }
       };
     case ACTIONS.DISPLAY_POKEMON_DATA:
-      return { ...state, isModalVisible: true };
+      return { 
+        ...state,
+        isModalVisible: true,
+        selectPokemonData: action.payload
+      };
     case ACTIONS.CLOSE_POKEMON_DATA:
-      return { ...state, isModalVisible: false };
+      return { ...state,
+        selectPokemonData: {},
+        isModalVisible: false
+       };
     case ACTIONS.FETCH_TYPES:
       return { ...state, typesdata: action.typesData };
     case ACTIONS.FILTER_BY_TYPE:
