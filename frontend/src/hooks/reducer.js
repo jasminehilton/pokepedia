@@ -30,10 +30,14 @@ const initialState = {
   previous: null,
   pokemonList: [],
   search: "",
-
-  isModalVisiable: false, // useState
+  regionsData: [],
+  typesData: [], 
+  filters: {
+    types: [],
+    regions: []
+  },
   isButtonSelected: false, // useState
-  
+  isModalVisiable: false, // useState
   selectPokemonData: {}, 
   locations: [],
   typeInteractions: {
@@ -44,15 +48,6 @@ const initialState = {
     takeNoDamage: [],
     dealNoDamage: []
   },
-
-  
-  regionsData: [],
-  typesData: [], 
-  filters: {
-    types: [],
-    regions: []
-  },
-  
   //isLoggedIn: true, demo purposes
   //isShiny: null,
   //isCaught: [],
