@@ -1,6 +1,8 @@
 import { useReducer, useEffect } from "react"
 import axios from 'axios';
 
+// jotai - state management
+
 export const ACTIONS = {
   SELECT_POKEMON: 'SELECT_POKEMON',
   FETCH_POKEMON_LOCATIONS: 'FETCH_POKEMON_LOCATIONS',
@@ -17,6 +19,43 @@ export const ACTIONS = {
   INITIATE_SEARCH: 'INITIATE_SEARCH',
   FETCH_POKEMON_SUCCESS: 'FETCH_POKEMON_SUCCESS',
   FETCH_POKEMON_FAILURE: 'FETCH_POKEMON_FAILURE',
+};
+
+const initialState = {
+  isLoading: true,
+  pokemonData: [],
+  error: null,
+  // pokemonDetails: {},
+  next: null,
+  previous: null,
+  pokemonList: [],
+  search: "",
+
+  isModalVisiable: false, // useState
+  isButtonSelected: false, // useState
+  
+  selectPokemonData: {}, 
+  locations: [],
+  typeInteractions: {
+    takeTwoTimesDamage: [],
+    dealTwoTimesDamage: [],
+    takeHalfDamage: [],
+    dealHalfDamage: [],
+    takeNoDamage: [],
+    dealNoDamage: []
+  },
+
+  
+  regionsData: [],
+  typesData: [], 
+  filters: {
+    types: [],
+    regions: []
+  },
+  
+  //isLoggedIn: true, demo purposes
+  //isShiny: null,
+  //isCaught: [],
 };
 
 
@@ -82,36 +121,7 @@ const reducer = (state, action) => {
 
 
 export default function usePokemonData() {
-  const initialState = {
-    isLoading: true,
-    pokemonData: [],
-    error: null,
-    // pokemonDetails: {},
-    next: null,
-    previous: null,
-    pokemonList: [],
-    isModalVisiable: false,
-    isButtonSelected: false,
-    selectPokemonData: {},
-    search: "",
-    typesData: [],
-    filters: {
-      types: [],
-      regions: []
-    },
-    locations: [],
-    typeInteractions: {
-      takeTwoTimesDamage: [],
-      dealTwoTimesDamage: [],
-      takeHalfDamage: [],
-      dealHalfDamage: [],
-      takeNoDamage: [],
-      dealNoDamage: []
-    }
-    //isLoggedIn: true, demo purposes
-    //isShiny: null,
-    //isCaught: [],
-  };
+  
 
 
   const [state, dispatch] = useReducer(reducer, initialState);

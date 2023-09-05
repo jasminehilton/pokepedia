@@ -4,6 +4,8 @@ import usePokemonData from "../hooks/reducer.js";
 const PokemonDataContext = createContext();
 const PokemonDispatchContext = createContext();
 
+
+
 function usePokemonDataContext () {
   return useContext(PokemonDataContext);
 };
@@ -16,11 +18,11 @@ function PokemonDataProvider (props) {
   const { state, dispatch } = usePokemonData();
 
   return (
-    <PokemonDataContext value={state}>
+    <PokemonDataContext.Provider value={state}>
       <PokemonDispatchContext.Provider value={dispatch}>
         {props.children}
       </PokemonDispatchContext.Provider>
-    </PokemonDataContext>
+    </PokemonDataContext.Provider>
   );
 };
 
