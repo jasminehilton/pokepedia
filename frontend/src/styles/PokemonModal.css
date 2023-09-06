@@ -1,0 +1,31 @@
+.pokemon-modal {
+  background-color: rgb(235, 149, 183);
+  position: fixed;
+  height: 50%;
+  width: 60%;
+  box-shadow: 0 0 0 100vmax rgba(0,0,0,.5);
+  top: 20%;
+  left: 20%;
+
+  overflow-y: scroll;
+  border-radius: 12px;
+  scrollbar-width: none;
+  -ms-overflow-style: none; 
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 248, 248, 0.1);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 3px; /* Rounded corners for the thumb */
+  }
+}
+
+.close {
+  margin-left: 10px;
+}
