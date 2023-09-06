@@ -10,6 +10,7 @@ const PokemonModal = () => {
   }
 
   fetchPokemonLocations(dispatch, state.selectPokemonData.id);
+  
   return (
     <div className="pokemon-modal">
       <div className="pokemon-modal-content">
