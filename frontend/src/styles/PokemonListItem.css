@@ -1,13 +1,8 @@
 .pokemon-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 10px;
   margin: 200px 
-}
-
-.pokemon-display {
-  display: flex;
-  
 }
 
 .pokemon-list__item {
@@ -18,12 +13,22 @@
   border-style: solid;
   border-radius: 8px;
   width: 220px;
+  height: 300px;
   padding-bottom: -0em;
+
+  display: flex;
+  flex-direction: column;
 }
 
 .pokemon-list__image {
   border-radius: 10px 10px 0px 0px;
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   background-color: rgb(240, 235, 235);
+}
+
+.pokemon-list__image-name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
