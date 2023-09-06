@@ -3,8 +3,13 @@ import Pokedex from "pokedex-promise-v2";
 import axios from "axios";
 import RegionListItem from "./RegionListItem";
 
-const P = new Pokedex();
+import { ACTIONS } from "../hooks/reducer";
+import { usePokemonDataContext, usePokemonDataDispatchContext } from "../providers/pokeProvider";
 
+
+
+const P = new Pokedex();
+ 
 function RegionList() {
 
 	const [regions, setRegions] = useState([]);
@@ -18,13 +23,16 @@ function RegionList() {
     setShowRegions((prevState) => !prevState);
   };
 
+  const state = usePokemonDataContext(); //imports the state
+  const dispatch = usePokemonDataDispatchContext(); //imports dispatch
+
   // gets the list of regions 
 	const getRegions = () => {
     // used a function from the promise api
 		P.getRegionsList() 
 			.then((response) => {
 				console.log(response.results);
-				setRegions(response.results);
+        dispatch({ type: ACTIONS.SET_REGIONS, regionsData: response.results });
 			})
 			.catch((error) => {
 				console.log("There was an ERROR: ", error);
@@ -75,18 +83,19 @@ function RegionList() {
       {showRegions && (
         <div>
           {/* 3. Selected Region - {regions.length} */}
-          {regions.map((region, index) => (
+          {state.regionsData.map((region, index) => (
             <div key={index}>
               <button onClick={() => setSelectedRegion(region)}>
                 {region.name}
               </button>
-              {selectedRegion === region && (
-                <RegionListItem pokemonByRegion={pokemonByRegion} />
-              )}
+         
             </div>
           ))}
         </div>
       )}
+           {pokemonByRegion.length > 0 && (
+                <RegionListItem pokemonByRegion={pokemonByRegion} />
+              )}
     </div>
 	);
 }
