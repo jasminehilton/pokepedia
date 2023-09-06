@@ -1,13 +1,25 @@
 import "./App.css";
-import './styles/pokemonModal.css';
-import HomeRoute from "./routes/HomeRoute";
+
+import { PokemonDataProvider } from "./providers/pokeProvider.js";
+import TypeButtonList from './components/TypeButtonList';
+
+// import PokemonInfo from './components/PokemonInfo';
+import PokemonList from "./components/PokemonList";
+// import useCollections from './hooks/useCollections';
+
+// import RegionList from "./components/RegionList";
 
 function App() {
 
   return (
-    <div>
-      <HomeRoute />
-    </div>
+
+    <PokemonDataProvider>
+      {/* <RegionList /> */}
+      <TypeButtonList />
+      <PokemonList />
+      {/* <PokemonInfo /> */}
+      {/* <Regions /> */}
+    </PokemonDataProvider>
   );
 }
 

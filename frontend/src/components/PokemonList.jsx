@@ -49,6 +49,23 @@ const PokemonList = ({ isOpen, onClose }) => {
               />
             ))}
           </div>
+          {state.filters.types.length > 0 &&
+            <ul>
+              {state.filteredPokemonData.map((pokemon, index) => (
+                <li key={index}>
+                  <ul>ID: {pokemon.id}</ul>
+                  <ul>
+                    <img
+                      src={pokemon.sprites.front_default}
+                      alt={pokemon.name}
+                      style={{ width: "100px", height: "100px" }}
+                    />
+                  </ul>
+                  <ul>{pokemon.name}</ul>
+                  <hr />
+                </li>
+              ))}
+            </ul>}
         </div>
       )}
       {state.isModalVisible && (
