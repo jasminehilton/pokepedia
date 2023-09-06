@@ -15,12 +15,11 @@ function RegionList() {
 
   const [pokemonByRegion, setPokemonByRegion] = useState([])
 
-  const [showRegions, setShowRegions] = useState(false);
+  const [showRegions, setShowRegions] = useState(false); //possibly change with pokemonList?
   const toggleRegions = () => {
     setShowRegions((prevState) => !prevState);
   };
   
-
   const state = usePokemonDataContext(); //imports the state
   const dispatch = usePokemonDataDispatchContext(); //imports dispatch
 
@@ -74,17 +73,13 @@ function RegionList() {
 	return (
 
 <div className="App">
-      1. Region List
       
       <button onClick={toggleRegions}>Regions</button>
-      {/* <button onClick={() => dispatch(clearRegionsFilter())} >X</button> */}
-      {/* <div>2. Selected region is - {selectedRegion?.name}</div> */}
 
       <button onClick={() => {console.log("Clear Regions button clicked"); dispatch({ type: ACTIONS.CLEAR_REGION_FILTER }); setPokemonByRegion([]); }}>Clear Pokemon By Regions</button>
 
       {showRegions && (
         <div>
-          {/* 3. Selected Region - {regions.length} */}
           {state.regionsData.map((regions, index) => (
             <div key={index}>
               <button onClick={() => dispatch({ type: ACTIONS.SET_SELECTED_REGION, selectedRegion: regions })}>
@@ -95,10 +90,7 @@ function RegionList() {
           ))}
         </div>
       )}
-           {/* {pokemonByRegion.length > 0 && (
-                <RegionListItem pokemonByRegion={pokemonByRegion} />
-              )} */}
-              {pokemonByRegion.length > 0 && (
+           {pokemonByRegion.length > 0 && (
                 <RegionListItem pokemonByRegion={pokemonByRegion} />
               )}
     </div>
