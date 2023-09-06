@@ -1,10 +1,17 @@
 import React, { useEffect } from "react";
 import fetchPokemonData from "../helpers/fetchPokemonData";
 import { usePokemonDataContext, usePokemonDataDispatchContext } from "../providers/pokeProvider";
+import PokemonModal from "../routes/PokemonModal";
+import PokemonListItem from "./PokemonListItem";
+import Pagination from "./Pagination";
 
-const PokemonList = () => {
+const PokemonList = ({ isOpen, onClose }) => {
   const state = usePokemonDataContext();
   const dispatch = usePokemonDataDispatchContext();
+
+  const onDisplayPokemonModal = (pokemon) => {
+    dispatch({ type: 'DISPLAY_POKEMON_DATA', payload: pokemon });
+  };
 
   useEffect(() => {
     fetchPokemonData(dispatch);
@@ -32,42 +39,30 @@ const PokemonList = () => {
         <p>Error: {state.error}</p>
       ) : (
         <div>
-          <button onClick={loadPreviousPage}>Previous</button>
-          <button onClick={loadNextPage}>Next</button>
-          <ul>
+          <Pagination next={loadNextPage} prev={loadPreviousPage} />
+          <div className="pokemon-container">
             {state.pokemonData.map((pokemon, index) => (
-              <ul key={index}>
-                <h5>ID: {pokemon.id}</h5>
-                <ul>
-                  <img
-                    src={pokemon.sprites.front_default}
-                    alt={pokemon.name}
-                    style={{ width: "100px", height: "100px" }}
-                  />
-                </ul>
-                <ul>{pokemon.name}</ul>
-                <hr />
-              </ul>
+              <PokemonListItem
+                key={index}
+                pokemon={pokemon}
+                onDisplayPokemonModal={onDisplayPokemonModal}
+              />
             ))}
-          </ul>
+          </div>
           {state.filters.types.length > 0 &&
-            <ul>
+            <div>
               {state.filteredPokemonData.map((pokemon, index) => (
-                <li key={index}>
-                  <ul>ID: {pokemon.id}</ul>
-                  <ul>
-                    <img
-                      src={pokemon.sprites.front_default}
-                      alt={pokemon.name}
-                      style={{ width: "100px", height: "100px" }}
-                    />
-                  </ul>
-                  <ul>{pokemon.name}</ul>
-                  <hr />
-                </li>
+                <PokemonListItem
+                  key={index}
+                  pokemon={pokemon}
+                  onDisplayPokemonModal={onDisplayPokemonModal}
+                />
               ))}
-            </ul>}
+            </div>}
         </div>
+      )}
+      {state.isModalVisible && (
+        <PokemonModal />
       )}
     </div>
   );

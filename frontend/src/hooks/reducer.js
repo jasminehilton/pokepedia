@@ -32,14 +32,14 @@ const initialState = {
   previous: null,
   search: "",
   regionsData: [],
-  typesData: [], 
+  typesData: [],
   filters: {
     types: [],
     regions: []
   },
   isButtonSelected: false, // useState
-  isModalVisiable: false, // useState
-  selectPokemonData: {}, 
+  isModalVisible: false, // useState
+  selectPokemonData: null,
   locations: [],
   typeInteractions: {
     takeTwoTimesDamage: [],
@@ -53,7 +53,6 @@ const initialState = {
   //isShiny: null,
   //isCaught: [],
 };
-
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -76,15 +75,23 @@ const reducer = (state, action) => {
         }
       };
     case ACTIONS.DISPLAY_POKEMON_DATA:
-      return { ...state, isModalVisible: true };
+      return {
+        ...state,
+        isModalVisible: true,
+        selectPokemonData: action.payload
+      };
     case ACTIONS.CLOSE_POKEMON_DATA:
-      return { ...state, isModalVisible: false };
+      return {
+        ...state,
+        selectPokemonData: {},
+        isModalVisible: false
+      };
     case ACTIONS.FETCH_TYPES:
       return { ...state, typesData: action.typesData };
     case ACTIONS.ADD_TYPE_FILTER:
       return { ...state, filters: { ...state.filters, types: action.selectedTypes } };
     case ACTIONS.FILTER_BY_TYPE:
-      return { ...state, filteredPokemonData: action.payload };  
+      return { ...state, filteredPokemonData: action.payload };
     case ACTIONS.FILTER_BY_REGION:
       return { ...state, filters: { ...state.filters, regions: action.selectedRegions } };
     case ACTIONS.CLEAR_TYPE_FILTER:
@@ -125,20 +132,9 @@ export default function usePokemonData() {
     dispatch({ type: ACTIONS.SELECT_POKEMON, selectPokemon: data })
   };
 
-  const onDisplayPokemonModal = () => {
-    dispatch({ type: ACTIONS.DISPLAY_POKEMON_DATA });
-  };
-
-  const onClosePokemonModal = () => {
-    dispatch({ type: ACTIONS.CLOSE_POKEMON_DATA });
-  };
-
-
-
   return {
     state,
     dispatch
   };
 };
 
- 

@@ -1,4 +1,5 @@
 import "./App.css";
+
 import { PokemonDataProvider } from "./providers/pokeProvider.js";
 import TypeButtonList from './components/TypeButtonList';
 
@@ -9,9 +10,9 @@ import PokemonList from "./components/PokemonList";
 // import RegionList from "./components/RegionList";
 
 function App() {
-  // const collection = useCollections();
-  // console.log(collection);
+
   return (
+
     <PokemonDataProvider>
       {/* <RegionList /> */}
       <TypeButtonList />
