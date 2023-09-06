@@ -27,7 +27,7 @@ const PokemonModal = () => {
         <span className="close" onClick={onClosePokemonModal}>
           &times;
         </span>
-        <h2>{state.selectPokemonData.name}</h2>
+        <h1>{state.selectPokemonData.name}</h1>
         <p>ID: {state.selectPokemonData.id}</p>
         <img
           src={state.selectPokemonData.sprites.front_default}
