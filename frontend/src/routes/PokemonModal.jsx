@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { usePokemonDataContext, usePokemonDataDispatchContext } from "../providers/pokeProvider";
 import fetchPokemonLocations from '../helpers/fetchPokemonLocations';
+import fetchTypeInteractions from '../helpers/fetchTypeInteractions';
 
 const PokemonModal = () => {
   const dispatch = usePokemonDataDispatchContext();
@@ -9,8 +10,12 @@ const PokemonModal = () => {
     dispatch({ type: 'CLOSE_POKEMON_DATA' });
   }
 
-  fetchPokemonLocations(dispatch, state.selectPokemonData.id);
-  
+  useEffect(() => {
+    fetchPokemonLocations(dispatch, state.selectPokemonData.id);
+    console.log("selectedPokemon", state.selectedPokemonData);
+    fetchTypeInteractions(dispatch, 'grass');
+  }, [state.selectPokemonData])
+
   return (
     <div className="pokemon-modal">
       <div className="pokemon-modal-content">
@@ -41,6 +46,15 @@ const PokemonModal = () => {
             </li>
           ))}
         </ul>
+
+        {/* <ul>
+          Weaknesses:
+          {state.TypeInteractions.takeTwoTimesDamage.map((weakness, index) => (
+            <li key={index}>
+              {weakness}
+            </li>
+          ))}
+        </ul>  */}
       </div>
     </div>
   );

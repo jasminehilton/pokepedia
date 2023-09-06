@@ -4,6 +4,7 @@ const fetchTypeInteractions = async (dispatch, pokemon_type) => {
       `https://pokeapi.co/api/v2/type/${pokemon_type}`
     );
     const data = await response.json();
+    console.log(data.damage_relations.double_damage_from)
     dispatch({
       type: "FETCH_TYPE_INTERACTIONS",
       payload: {
