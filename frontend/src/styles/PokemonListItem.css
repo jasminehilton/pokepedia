@@ -2,7 +2,11 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
-  margin: 200px
+  margin: 200px 
+}
+
+.pokemon-display {
+  display: flex;
   
 }
 

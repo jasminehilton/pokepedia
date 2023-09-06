@@ -50,7 +50,7 @@ const PokemonList = ({ isOpen, onClose }) => {
             ))}
           </div>
           {state.filters.types.length > 0 &&
-            <div>
+            <div className="pokemon-container">
               {state.filteredPokemonData.map((pokemon, index) => (
                 <PokemonListItem
                   key={index}

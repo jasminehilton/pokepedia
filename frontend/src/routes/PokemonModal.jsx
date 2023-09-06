@@ -3,6 +3,7 @@ import { usePokemonDataContext, usePokemonDataDispatchContext } from "../provide
 import fetchPokemonLocations from '../helpers/fetchPokemonLocations';
 import { fetchEvolutionData } from '../helpers/fetchEvolutionData'; 
 import PokemonEvolutions from '../components/PokemonEvolutions';
+import "../styles/PokemonModal.css"
 
 const PokemonModal = () => {
   const dispatch = usePokemonDataDispatchContext();
