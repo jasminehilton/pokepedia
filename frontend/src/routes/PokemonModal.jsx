@@ -1,6 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { usePokemonDataContext, usePokemonDataDispatchContext } from "../providers/pokeProvider";
 import fetchPokemonLocations from '../helpers/fetchPokemonLocations';
+import { fetchEvolutionData } from '../helpers/fetchEvolutionData'; 
+import PokemonEvolutions from '../components/PokemonEvolutions';
 
 const PokemonModal = () => {
   const dispatch = usePokemonDataDispatchContext();
@@ -8,8 +10,17 @@ const PokemonModal = () => {
   const onClosePokemonModal = () => {
     dispatch({ type: 'CLOSE_POKEMON_DATA' });
   }
+  const [evolutionDetails, setEvolutionDetails] = useState({});
 
   fetchPokemonLocations(dispatch, state.selectPokemonData.id);
+
+  useEffect(() => {
+    // Fetch evolution data for each Pokémon in the list
+    state.pokemonData.forEach((pokemon) => {
+      fetchEvolutionData(pokemon, setEvolutionDetails);
+    });
+  }, [state.pokemonData]);
+
   return (
     <div className="pokemon-modal">
       <div className="pokemon-modal-content">
@@ -40,11 +51,15 @@ const PokemonModal = () => {
             </li>
           ))}
         </ul>
+        <h5>Evolution Chain:</h5>
+        {evolutionDetails[state.selectPokemonData.name] && (
+          <p>
+            {PokemonEvolutions(evolutionDetails[state.selectPokemonData.name].chain)}
+          </p>
+        )}
       </div>
     </div>
   );
-
-
 };
 
 export default PokemonModal;
