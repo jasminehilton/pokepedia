@@ -31,8 +31,6 @@ const fetchPokemonData = (dispatch, url = 'https://pokeapi.co/api/v2/pokemon?off
             type: ACTIONS.FETCH_POKEMON_SUCCESS,
             payload: {
               results: pokemonDetails, // Update payload with the extracted details
-              next: data.next,
-              previous: data.previous,
             },
           });
         })
