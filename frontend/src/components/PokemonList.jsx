@@ -34,7 +34,7 @@ const PokemonList = () => {
         <div>
           <button onClick={loadPreviousPage}>Previous</button>
           <button onClick={loadNextPage}>Next</button>
-          {/* <ul>
+          <ul>
             {state.pokemonData.map((pokemon, index) => (
               <li key={index}>
                 <ul>ID: {pokemon.id}</ul>
@@ -48,8 +48,8 @@ const PokemonList = () => {
                 <ul>{pokemon.name}</ul>
                 <hr />
               </li>
-            ))} */}
-          {/* </ul> */}
+            ))} 
+           </ul>
           {state.filters.types.length > 0 && 
             <ul>
             {state.filteredPokemonData.map((pokemon, index) => (

@@ -4,7 +4,7 @@ const filterPokemon = (dispatch, selectedTypes, pokemonData) => {
     console.log("Pokemon Types:", pokemon.types);
     return pokemon.types.some((type) => {
       console.log(type);
-      return selectedTypes.includes(type.type.name)});
+      return selectedTypes.includes(type)});
   });
   console.log("filtered", filteredPokemon);
   dispatch({ type: "FILTER_BY_TYPE", payload: filteredPokemon });
