@@ -25,3 +25,7 @@
     border-radius: 3px; /* Rounded corners for the thumb */
   }
 }
+
+.close {
+  margin-left: 10px;
+}
