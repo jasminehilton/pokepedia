@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import fetchPokemonData from "../helpers/fetchPokemonData";
 import { usePokemonDataContext, usePokemonDataDispatchContext } from "../providers/pokeProvider";
 import PokemonModal from "../routes/PokemonModal";
@@ -6,6 +6,15 @@ import PokemonModal from "../routes/PokemonModal";
 const PokemonList = ({ isOpen, onClose }) => {
   const state = usePokemonDataContext();
   const dispatch = usePokemonDataDispatchContext();
+
+  const [selectedType, setSelectedType] = useState(null);
+  const [filteredPokemonData, setFilteredPokemonData] = useState(state.pokemonData);
+
+
+
+  const handleTypeChange = (e) => {
+    setSelectedType(e.target.value);
+  };
 
   const onDisplayPokemonModal = (pokemon) => {
     dispatch({ type: 'DISPLAY_POKEMON_DATA', payload: pokemon });
@@ -37,6 +46,18 @@ const PokemonList = ({ isOpen, onClose }) => {
         <p>Error: {state.error}</p>
       ) : (
         <div>
+
+          {/* Display the dropdown with all types */}
+          <label>Filter by Type:</label>
+          <select onChange={handleTypeChange} value={selectedType}>
+            <option value="">All Types</option>
+            {state.typesdata.results.map((type) => ( // Use state.typesdata.results
+              <option key={type.name} value={type.name}>
+                {type.name}
+              </option>
+            ))}
+          </select>
+
           <button onClick={loadPreviousPage}>Previous</button>
           <button onClick={loadNextPage}>Next</button>
           <ul>
