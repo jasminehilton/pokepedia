@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import fetchPokemonData from "../helpers/fetchPokemonData";
 import { usePokemonDataContext, usePokemonDataDispatchContext } from "../providers/pokeProvider";
 import PokemonModal from "../routes/PokemonModal";
+import PokemonListItem from "./PokemonListItem";
 
 const PokemonList = ({ isOpen, onClose }) => {
   const state = usePokemonDataContext();
@@ -41,18 +42,11 @@ const PokemonList = ({ isOpen, onClose }) => {
           <button onClick={loadNextPage}>Next</button>
           <ul>
             {state.pokemonData.map((pokemon, index) => (
-              <ul key={index}>
-                <h5>ID: {pokemon.id}</h5>
-                <ul>
-                  <img
-                    src={pokemon.sprites.front_default}
-                    alt={pokemon.name}
-                    style={{ width: "100px", height: "100px" }}
-                    onClick={() => onDisplayPokemonModal(pokemon)}
-                  />
-                </ul>
-                <h2>{pokemon.name}</h2>
-              </ul>
+              <PokemonListItem
+                key={index}
+                pokemon={pokemon}
+                onDisplayPokemonModal={onDisplayPokemonModal}
+              />
             ))}
           </ul>
         </div>
