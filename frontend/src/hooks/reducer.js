@@ -11,6 +11,7 @@ export const ACTIONS = {
   CLOSE_POKEMON_DATA: 'CLOSE_POKEMON_DATA',
   FETCH_TYPES: 'FETCH_TYPES',
   FILTER_BY_TYPE: 'FILTER_BY_TYPE',
+  ADD_TYPE_FILTER: 'ADD_TYPE_FILTER',
   FILTER_BY_REGION: 'FILTER_BY_REGION',
   CLEAR_TYPE_FILTER: 'CLEAR_TYPE_FILTER',
   CLEAR_REGION_FILTER: 'CLEAR_REGION_FILTER',
@@ -24,11 +25,11 @@ export const ACTIONS = {
 const initialState = {
   isLoading: true,
   pokemonData: [],
+  filteredPokemonData: [],
   error: null,
   // pokemonDetails: {},
   next: null,
   previous: null,
-  pokemonList: [],
   search: "",
   regionsData: [],
   typesData: [], 
@@ -80,8 +81,10 @@ const reducer = (state, action) => {
       return { ...state, isModalVisible: false };
     case ACTIONS.FETCH_TYPES:
       return { ...state, typesData: action.typesData };
-    case ACTIONS.FILTER_BY_TYPE:
+    case ACTIONS.ADD_TYPE_FILTER:
       return { ...state, filters: { ...state.filters, types: action.selectedTypes } };
+    case ACTIONS.FILTER_BY_TYPE:
+      return { ...state, filteredPokemonData: action.payload };  
     case ACTIONS.FILTER_BY_REGION:
       return { ...state, filters: { ...state.filters, regions: action.selectedRegions } };
     case ACTIONS.CLEAR_TYPE_FILTER:
