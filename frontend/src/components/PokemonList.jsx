@@ -3,6 +3,7 @@ import fetchPokemonData from "../helpers/fetchPokemonData";
 import { usePokemonDataContext, usePokemonDataDispatchContext } from "../providers/pokeProvider";
 import PokemonModal from "../routes/PokemonModal";
 import PokemonListItem from "./PokemonListItem";
+import Pagination from "./Pagination";
 
 const PokemonList = ({ isOpen, onClose }) => {
   const state = usePokemonDataContext();
@@ -38,8 +39,7 @@ const PokemonList = ({ isOpen, onClose }) => {
         <p>Error: {state.error}</p>
       ) : (
         <div>
-          <button onClick={loadPreviousPage}>Previous</button>
-          <button onClick={loadNextPage}>Next</button>
+          <Pagination next={loadNextPage} prev={loadPreviousPage} />
           <div className="pokemon-container">
             {state.pokemonData.map((pokemon, index) => (
               <PokemonListItem

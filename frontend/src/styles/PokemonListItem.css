@@ -1,6 +1,9 @@
 .pokemon-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin: 200px
+  
 }
 
 .pokemon-list__item {
@@ -10,7 +13,7 @@
   border-color: rgb(221, 215, 215);
   border-style: solid;
   border-radius: 8px;
-  width: 200px;
+  width: 220px;
   padding-bottom: -0em;
 }
 
