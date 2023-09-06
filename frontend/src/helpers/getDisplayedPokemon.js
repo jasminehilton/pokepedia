@@ -2,7 +2,13 @@ const getDisplayedPokemon = (pokemonData, filteredPokemonData, currentPage, item
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   
-  return pokemonData.slice(startIndex, endIndex);
+  
+
+  if (filteredPokemonData.length > 0) {
+    return filteredPokemonData.slice(startIndex, endIndex);
+  } else {
+    return pokemonData.slice(startIndex, endIndex);
+  }
 };
 
 export default getDisplayedPokemon;

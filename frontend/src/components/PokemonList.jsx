@@ -20,7 +20,12 @@ const PokemonList = ({ isOpen, onClose }) => {
     fetchPokemonData(dispatch);
   }, []);
 
-  const displayedPokemon = getDisplayedPokemon(state.pokemonData, state.filteredPokemonData, state.currentPage, state.itemsPerPage);
+
+
+  let displayedPokemon = getDisplayedPokemon(state.pokemonData, state.filteredPokemonData, state.currentPage, state.itemsPerPage);
+
+  
+  
 
   return (
     <div>
@@ -30,7 +35,7 @@ const PokemonList = ({ isOpen, onClose }) => {
         <p>Error: {state.error}</p>
       ) : (
         <div>
-          <Pagination next={() => handlePageChange(dispatch, state.currentPage + 1)} prev={() => handlePageChange(dispatch, state.currentPage - 1)} />
+          <Pagination next={() => handlePageChange(dispatch, state.currentPage + 1, state.itemsPerPage, state.pokemonData.length)} prev={() => handlePageChange(dispatch, state.currentPage - 1, state.itemsPerPage, state.pokemonData.length)} />
           <div className="pokemon-container">
             {displayedPokemon.map((pokemon, index) => (
               <PokemonListItem
