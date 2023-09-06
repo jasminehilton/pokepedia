@@ -11,12 +11,11 @@ const PokemonEvolutions = (chain) => {
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${chain.species.url.split('/').slice(-2, -1)}.png`}
           alt={chain.species.name}
         />
-        {/* {chain.evolution_details.map((evolutionDetail, evolutionDetailIndex) => (
-          <ul key={evolutionDetailIndex}> */}
-            {/* <p>Item: {evolutionDetail.item && evolutionDetail.item.name}</p> */}
-            {/* <p>Trigger: {evolutionDetail.trigger.name}</p> */}
-          {/* </ul> */}
-        {/* // ))} */}
+        {chain.evolution_details.map((evolutionDetail, evolutionDetailIndex) => (
+          <ul key={evolutionDetailIndex}>
+            <p>Level {evolutionDetail.min_level}</p>
+          </ul>
+        ))}
       </h3>
     );
 
