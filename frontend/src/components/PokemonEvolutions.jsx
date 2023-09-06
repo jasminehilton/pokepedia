@@ -5,19 +5,19 @@ const PokemonEvolutions = (chain) => {
 
   const renderChain = (chain) => {
     evolutions.push(
-      <h4 key={chain.species.name}>
+      <h3 key={chain.species.name}>
         {chain.species.name}
         <img
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${chain.species.url.split('/').slice(-2, -1)}.png`}
           alt={chain.species.name}
         />
-        {chain.evolution_details.map((evolutionDetail, evolutionDetailIndex) => (
-          <ul key={evolutionDetailIndex}>
+        {/* {chain.evolution_details.map((evolutionDetail, evolutionDetailIndex) => (
+          <ul key={evolutionDetailIndex}> */}
             {/* <p>Item: {evolutionDetail.item && evolutionDetail.item.name}</p> */}
             {/* <p>Trigger: {evolutionDetail.trigger.name}</p> */}
-          </ul>
-        ))}
-      </h4>
+          {/* </ul> */}
+        {/* // ))} */}
+      </h3>
     );
 
     if (chain.evolves_to.length > 0) {

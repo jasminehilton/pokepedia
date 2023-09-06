@@ -51,7 +51,7 @@ const PokemonModal = () => {
             </li>
           ))}
         </ul>
-        <h5>Evolution Chain:</h5>
+        <h4>Evolution Chain:</h4>
         {evolutionDetails[state.selectPokemonData.name] && (
           <p>
             {PokemonEvolutions(evolutionDetails[state.selectPokemonData.name].chain)}
