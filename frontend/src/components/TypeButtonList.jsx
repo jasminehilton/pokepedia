@@ -2,11 +2,14 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import { usePokemonDataContext, usePokemonDataDispatchContext } from "../providers/pokeProvider";
 import TypeButton from './TypeButton';
+import filterPokemon from '../helpers/filter';
 
 const TypeButtonList = () => {
 
   const state = usePokemonDataContext(); //imports the state
   const dispatch = usePokemonDataDispatchContext(); //imports dispatch
+
+
 
   useEffect(() => {
     console.log('Selected types:', state.filters.types);
@@ -23,6 +26,8 @@ const TypeButtonList = () => {
       });
   }, []);
 
+  console.log("Pokemon data:", state.pokemonData)
+
   const onTypeSelect = (typeName) => {
     const selectedTypes = state.filters.types;
     if (selectedTypes.includes(typeName)) {
@@ -30,7 +35,8 @@ const TypeButtonList = () => {
       dispatch({ type: "CLEAR_TYPE_FILTER", selectedTypes: selected });
     } else {
       const selected = [...selectedTypes, typeName];
-      dispatch({ type: "FILTER_BY_TYPE", selectedTypes: selected });
+      filterPokemon(dispatch, state.filters.types, state.pokemonData);
+      dispatch({ type: "ADD_TYPE_FILTER", selectedTypes: selected });
     };
   };
 
