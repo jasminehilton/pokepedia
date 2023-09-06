@@ -9,7 +9,6 @@ const PokemonListItem = ({ pokemon, onDisplayPokemonModal }) => {
         <img
           src={pokemon.sprites.front_default}
           alt={pokemon.name}
-          style={{ width: "100px", height: "100px", cursor: "pointer" }}
           onClick={() => onDisplayPokemonModal(pokemon)}
         />
       </div>
