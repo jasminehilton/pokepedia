@@ -13,7 +13,7 @@
   border-style: solid;
   border-radius: 8px;
   width: 220px;
-  height: 300px;
+  height: 290px;
   padding-bottom: -0em;
 
   display: flex;
@@ -24,7 +24,7 @@
   border-radius: 10px 10px 0px 0px;
   width: 150px;
   height: 150px;
-  background-color: rgb(240, 235, 235);
+  background-color: rgb(245, 236, 236);
 }
 
 .pokemon-list__image-name {
