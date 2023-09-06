@@ -15,16 +15,15 @@ const PokemonList = ({ isOpen, onClose }) => {
   const onDisplayPokemonModal = (pokemon) => {
     dispatch({ type: 'DISPLAY_POKEMON_DATA', payload: pokemon });
   };
-
+ 
   useEffect(() => {
     fetchPokemonData(dispatch);
   }, []);
 
-
-
-  let displayedPokemon = getDisplayedPokemon(state.pokemonData, state.filteredPokemonData, state.currentPage, state.itemsPerPage);
-
-  
+  // getDisplayedPokemon(state.pokemonData, state.filteredPokemonData, state.currentPage, state.itemsPerPage, dispatch);
+  useEffect(() => {
+    getDisplayedPokemon(state.pokemonData, state.filteredPokemonData, state.currentPage, state.itemsPerPage, dispatch);
+  }, [state.filteredPokemonData, state.pokemonData])
   
 
   return (
@@ -37,7 +36,7 @@ const PokemonList = ({ isOpen, onClose }) => {
         <div>
           <Pagination next={() => handlePageChange(dispatch, state.currentPage + 1, state.itemsPerPage, state.pokemonData.length)} prev={() => handlePageChange(dispatch, state.currentPage - 1, state.itemsPerPage, state.pokemonData.length)} />
           <div className="pokemon-container">
-            {displayedPokemon.map((pokemon, index) => (
+            {state.displayedPokemon.map((pokemon, index) => (
               <PokemonListItem
                 key={index}
                 pokemon={pokemon}

@@ -21,6 +21,7 @@ export const ACTIONS = {
   FETCH_POKEMON_SUCCESS: "FETCH_POKEMON_SUCCESS",
   FETCH_POKEMON_FAILURE: "FETCH_POKEMON_FAILURE",
   SET_CURRENT_PAGE: "SET_CURRENT_PAGE",
+  SET_DISPLAYED_POKEMON: "SET_DISPLAYED_POKEMON",
 };
 
 const initialState = {
@@ -30,6 +31,7 @@ const initialState = {
   error: null,
   currentPage: 1,
   itemsPerPage: 30,
+  displayedPokemon: [],
   next: null,
   previous: null,
   search: "",
@@ -138,6 +140,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         currentPage: action.payload,
+      };
+    case ACTIONS.SET_DISPLAYED_POKEMON:
+      return {
+        ...state,
+        displayedPokemon: action.payload,
       };
     default:
       return state;

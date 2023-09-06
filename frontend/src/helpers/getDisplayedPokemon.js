@@ -1,13 +1,15 @@
-const getDisplayedPokemon = (pokemonData, filteredPokemonData, currentPage, itemsPerPage) => {
+const getDisplayedPokemon = (pokemonData, filteredPokemonData, currentPage, itemsPerPage, dispatch) => {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   
   
 
   if (filteredPokemonData.length > 0) {
-    return filteredPokemonData.slice(startIndex, endIndex);
+    const displayedPokemon = filteredPokemonData.slice(startIndex, endIndex);
+    dispatch({type: 'SET_DISPLAYED_POKEMON', payload: displayedPokemon})
   } else {
-    return pokemonData.slice(startIndex, endIndex);
+    const displayedPokemon = pokemonData.slice(startIndex, endIndex);
+    dispatch({type: 'SET_DISPLAYED_POKEMON', payload: displayedPokemon})
   }
 };
 
