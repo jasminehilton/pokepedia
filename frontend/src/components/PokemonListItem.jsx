@@ -6,7 +6,7 @@ const PokemonListItem = ({ pokemon, onDisplayPokemonModal }) => {
   return (
     <div className="pokemon-display">
       <div className="pokemon-list__item">
-        <h5>ID: {pokemon.id}</h5>
+        <p className="pokemon-id">ID: {pokemon.id}</p>
         <div className="pokemon-list__image-name">
           <img
             className="pokemon-list__image"
@@ -14,7 +14,7 @@ const PokemonListItem = ({ pokemon, onDisplayPokemonModal }) => {
             alt={pokemon.name}
             onClick={() => onDisplayPokemonModal(pokemon)}
           />
-          <h3>{pokemon.name}</h3>
+          <p className="pokemon-name">{pokemon.name}</p>
         </div>
       </div>
     </div>
