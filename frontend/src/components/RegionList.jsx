@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from "react";
 import Pokedex from "pokedex-promise-v2";
 import axios from "axios";
+import RegionListItem from "./RegionListItem";
 
 const P = new Pokedex();
 
-function Regions() {
+function RegionList() {
+
 	const [regions, setRegions] = useState([]);
 
   const [selectedRegion , setSelectedRegion] = useState({})
 
   const [pokemonByRegion, setPokemonByRegion] = useState([])
+
+  const [showRegions, setShowRegions] = useState(false);
+  const toggleRegions = () => {
+    setShowRegions((prevState) => !prevState);
+  };
 
   // gets the list of regions 
 	const getRegions = () => {
@@ -59,24 +66,29 @@ function Regions() {
   }, [selectedRegion])
 
 	return (
-		<div className="App">
-			{regions.map((region, index) => (
-				<button key={index} onClick={() => setSelectedRegion(region)} >{region.name}</button>
-			))}
 
-      <div>
-        selected region is - {selectedRegion?.name}
-      </div>
+<div className="App">
+      1. Region List
+      <button onClick={toggleRegions}>Regions</button>
+      {/* <div>2. Selected region is - {selectedRegion?.name}</div> */}
 
-     <div>
-      Selected Region Pokemons  - {pokemonByRegion.length}
-
-      {pokemonByRegion.map((pokemon, index) => (
-				<div key={index} >{pokemon.name}</div>
-			))}
-     </div>
-		</div>
+      {showRegions && (
+        <div>
+          {/* 3. Selected Region - {regions.length} */}
+          {regions.map((region, index) => (
+            <div key={index}>
+              <button onClick={() => setSelectedRegion(region)}>
+                {region.name}
+              </button>
+              {selectedRegion === region && (
+                <RegionListItem pokemonByRegion={pokemonByRegion} />
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
 	);
 }
 
-export default Regions;
+export default RegionList;

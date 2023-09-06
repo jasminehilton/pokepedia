@@ -1,17 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { usePokemonDataContext } from "../providers/pokeProvider";
 
 const TypeButton = ({ typeName, onTypeSelect }) => {
-  const [selected, setSelected] = useState(false); //Temporary state, will be moved to reducer
 
-  const handleClick = () => {
-    setSelected(!selected);
-    onTypeSelect(typeName); //Uses the onTypeSelect prop, to callback with typeName parameter
-  };
+  const state = usePokemonDataContext(); //imports the state
   
-  const buttonClassName = selected ? 'type-button selected' : 'type-button'; //Will change the button className depending on selected state
+  const buttonClassName = state.filters.types.includes(typeName) ? 'type-button selected' : 'type-button';
 
   return (
-    <button className={buttonClassName} onClick={handleClick}>
+    <button className={buttonClassName} onClick={ onTypeSelect }>
       {typeName}
     </button>
   );

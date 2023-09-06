@@ -11,6 +11,7 @@ export const ACTIONS = {
   CLOSE_POKEMON_DATA: 'CLOSE_POKEMON_DATA',
   FETCH_TYPES: 'FETCH_TYPES',
   FILTER_BY_TYPE: 'FILTER_BY_TYPE',
+  ADD_TYPE_FILTER: 'ADD_TYPE_FILTER',
   FILTER_BY_REGION: 'FILTER_BY_REGION',
   CLEAR_TYPE_FILTER: 'CLEAR_TYPE_FILTER',
   CLEAR_REGION_FILTER: 'CLEAR_REGION_FILTER',
@@ -24,11 +25,11 @@ export const ACTIONS = {
 const initialState = {
   isLoading: true,
   pokemonData: [],
+  filteredPokemonData: [],
   error: null,
   // pokemonDetails: {},
   next: null,
   previous: null,
-  pokemonList: [],
   search: "",
   regionsData: [],
   typesData: [], 
@@ -79,9 +80,11 @@ const reducer = (state, action) => {
     case ACTIONS.CLOSE_POKEMON_DATA:
       return { ...state, isModalVisible: false };
     case ACTIONS.FETCH_TYPES:
-      return { ...state, typesdata: action.typesData };
-    case ACTIONS.FILTER_BY_TYPE:
+      return { ...state, typesData: action.typesData };
+    case ACTIONS.ADD_TYPE_FILTER:
       return { ...state, filters: { ...state.filters, types: action.selectedTypes } };
+    case ACTIONS.FILTER_BY_TYPE:
+      return { ...state, filteredPokemonData: action.payload };  
     case ACTIONS.FILTER_BY_REGION:
       return { ...state, filters: { ...state.filters, regions: action.selectedRegions } };
     case ACTIONS.CLEAR_TYPE_FILTER:
@@ -114,27 +117,9 @@ const reducer = (state, action) => {
   }
 }
 
-
 export default function usePokemonData() {
-  
-
 
   const [state, dispatch] = useReducer(reducer, initialState);
-
-  useEffect(() => {
-    console.log('Selected types:', state.filters.types);
-  }, [state.filters.types]);
-
-  useEffect(() => {
-    axios
-      .get('https://pokeapi.co/api/v2/type')
-      .then((response) => {
-        dispatch({ type: ACTIONS.FETCH_TYPES, typesData: response.data });
-      })
-      .catch((error) => {
-        console.error('Error fetching Pokémon types data:', error);
-      });
-  }, []);
 
   const fetchPokeData = (data) => {
     dispatch({ type: ACTIONS.SELECT_POKEMON, selectPokemon: data })
@@ -148,23 +133,10 @@ export default function usePokemonData() {
     dispatch({ type: ACTIONS.CLOSE_POKEMON_DATA });
   };
 
-  const setSelectedTypes = (typeName) => {
-    const selectedTypes = state.filters.types;
-    if (selectedTypes.includes(typeName)) {
-      const selected = selectedTypes.filter((type) => type !== typeName);
-      dispatch({ type: ACTIONS.CLEAR_TYPE_FILTER, selectedTypes: selected });
-    } else {
-      const selected = [...selectedTypes, typeName];
-      dispatch({ type: ACTIONS.FILTER_BY_TYPE, selectedTypes: selected });
-    };
-  };
+
 
   return {
     state,
-    // fetchPokemonData,
-    setSelectedTypes,
-    onDisplayPokemonModal,
-    onClosePokemonModal,
     dispatch
   };
 };
