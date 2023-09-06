@@ -18,6 +18,8 @@
 
   display: flex;
   flex-direction: column;
+  transition: box-shadow 1s ease;
+  animation: shake 0.5s;
 }
 
 .pokemon-id {
@@ -43,4 +45,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.pokemon-list__item:hover {
+  box-shadow: 10px 10px 10px rgba(1, 1, 1, 0.1);
+  transform: rotate(3deg); /* Apply a small rotation on hover */
+  animation: shake 0.3s ease-in-out 1; 
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(5px);
+  }
 }
