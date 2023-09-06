@@ -9,7 +9,7 @@
   margin: 20px auto;
   padding: 10px;
   border-width: 1px;
-  border-color: rgb(222, 210, 210);
+  border-color: rgb(216, 206, 206);
   border-style: solid;
   border-radius: 8px;
   width: 220px;
@@ -28,7 +28,7 @@
 .pokemon-name {
   font-family: 'VT323', monospace;
   font-size: 30px;
-  color: rgb(96, 85, 85);
+  color: rgb(107, 97, 97);
 }
 
 .pokemon-list__image {
@@ -36,6 +36,7 @@
   width: 150px;
   height: 150px;
   background-color: rgb(245, 236, 236);
+  border: 2px solid #ded9d9;
 }
 
 .pokemon-list__image-name {
