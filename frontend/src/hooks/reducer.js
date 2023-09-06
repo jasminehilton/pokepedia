@@ -83,6 +83,8 @@ const reducer = (state, action) => {
       return { ...state, isModalVisible: false };
     case ACTIONS.FETCH_TYPES:
       return { ...state, typesData: action.typesData };
+    case ACTIONS.ADD_TYPE_FILTER:
+      return { ...state, filters: { ...state.filters, types: action.selectedTypes } };
     case ACTIONS.SET_REGION:
       return { ...state, regionsData: action.regionsData };
     case ACTIONS.SET_SELECTED_REGION:
