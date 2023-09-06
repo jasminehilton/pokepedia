@@ -40,7 +40,7 @@ const PokemonList = ({ isOpen, onClose }) => {
         <div>
           <button onClick={loadPreviousPage}>Previous</button>
           <button onClick={loadNextPage}>Next</button>
-          <ul>
+          <div className="pokemon-container">
             {state.pokemonData.map((pokemon, index) => (
               <PokemonListItem
                 key={index}
@@ -48,7 +48,7 @@ const PokemonList = ({ isOpen, onClose }) => {
                 onDisplayPokemonModal={onDisplayPokemonModal}
               />
             ))}
-          </ul>
+          </div>
         </div>
       )}
       {state.isModalVisible && (
