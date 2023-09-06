@@ -1,6 +1,6 @@
 import { ACTIONS } from "../hooks/reducer";
 
-const fetchPokemonData = (dispatch, url = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=30') => {
+const fetchPokemonData = (dispatch, url = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=1281') => {
   fetch(url)
     .then((response) => {
       if (!response.ok) {
