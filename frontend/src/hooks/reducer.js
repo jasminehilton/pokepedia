@@ -10,10 +10,12 @@ export const ACTIONS = {
   DISPLAY_POKEMON_DATA: 'DISPLAY_POKEMON_DATA',
   CLOSE_POKEMON_DATA: 'CLOSE_POKEMON_DATA',
   FETCH_TYPES: 'FETCH_TYPES',
+  SET_REGION: 'SET_REGION', 
+  SET_SELECTED_REGION: 'SET_SELECTED_REGION',
   FILTER_BY_TYPE: 'FILTER_BY_TYPE',
   FILTER_BY_REGION: 'FILTER_BY_REGION',
   CLEAR_TYPE_FILTER: 'CLEAR_TYPE_FILTER',
-  CLEAR_REGION_FILTER: 'CLEAR_REGION_FILTER',
+  CLEAR_REGION_FILTER: 'CLEAR_REGION_FILTER', 
   CLEAR_FILTERS: 'CLEAR_FILTERS',
   SELECT_PAGE: 'SELECT_PAGE',
   INITIATE_SEARCH: 'INITIATE_SEARCH',
@@ -34,7 +36,7 @@ const initialState = {
   typesData: [], 
   filters: {
     types: [],
-    regions: []
+    regions: {}
   },
   isButtonSelected: false, // useState
   isModalVisiable: false, // useState
@@ -80,6 +82,10 @@ const reducer = (state, action) => {
       return { ...state, isModalVisible: false };
     case ACTIONS.FETCH_TYPES:
       return { ...state, typesData: action.typesData };
+    case ACTIONS.SET_REGION:
+      return { ...state, regionsData: action.regionsData };
+    case ACTIONS.SET_SELECTED_REGION:
+      return { ...state, filters : {...state.filters, regions: action.selectedRegion } };
     case ACTIONS.FILTER_BY_TYPE:
       return { ...state, filters: { ...state.filters, types: action.selectedTypes } };
     case ACTIONS.FILTER_BY_REGION:
@@ -87,9 +93,9 @@ const reducer = (state, action) => {
     case ACTIONS.CLEAR_TYPE_FILTER:
       return { ...state, filters: { ...state.filters, types: action.selectedTypes } };
     case ACTIONS.CLEAR_REGION_FILTER:
-      return { ...state, filters: { ...state.filters, regions: action.selectedRegions } };
+      return { ...state, filters: { ...state.filters, regions: {} } };
     case ACTIONS.CLEAR_FILTERS:
-      return { ...state, filters: { regions: [], types: [] } };
+      return { ...state, filters: { regions: {}, types: [] } };
     case ACTIONS.SELECT_PAGE:
       return { ...state, };
     case ACTIONS.INITIATE_SEARCH:

@@ -3,18 +3,15 @@ import Pokedex from "pokedex-promise-v2";
 import axios from "axios";
 import RegionListItem from "./RegionListItem";
 
-import { ACTIONS } from "../hooks/reducer";
+import { ACTIONS     } from "../hooks/reducer";
 import { usePokemonDataContext, usePokemonDataDispatchContext } from "../providers/pokeProvider";
-
-
 
 const P = new Pokedex();
  
 function RegionList() {
+	// const [regions, setRegions] = useState([]);
 
-	const [regions, setRegions] = useState([]);
-
-  const [selectedRegion , setSelectedRegion] = useState({})
+  // const [selectedRegion , setSelectedRegion] = useState({})
 
   const [pokemonByRegion, setPokemonByRegion] = useState([])
 
@@ -22,6 +19,7 @@ function RegionList() {
   const toggleRegions = () => {
     setShowRegions((prevState) => !prevState);
   };
+  
 
   const state = usePokemonDataContext(); //imports the state
   const dispatch = usePokemonDataDispatchContext(); //imports dispatch
@@ -32,7 +30,7 @@ function RegionList() {
 		P.getRegionsList() 
 			.then((response) => {
 				console.log(response.results);
-        dispatch({ type: ACTIONS.SET_REGIONS, regionsData: response.results });
+        dispatch({ type: ACTIONS.SET_REGION, regionsData: response.results });
 			})
 			.catch((error) => {
 				console.log("There was an ERROR: ", error);
@@ -42,9 +40,9 @@ function RegionList() {
   // gets the pokemon associated with the selected region
   const getPokemonsByRegion = () => { 
     let allPokemons = []
-    axios.get(selectedRegion.url)
+    console.log("state.filtes.regions.url", state.filters.regions.url)
+    axios.get(state.filters.regions.url)
     .then((response) => {
-      console.log('response ', response.data)
       let pokedexes = response.data.pokedexes
       // iterates through the list of pokedexes in the region object
       for(let pokedex of pokedexes) {
@@ -53,7 +51,7 @@ function RegionList() {
           let pokemons = pokedexResponse.data.pokemon_entries.map((pokemonEntry) => {
             return pokemonEntry.pokemon_species
           })
-          setPokemonByRegion(allPokemons.concat(pokemons))
+          setPokemonByRegion(allPokemons.concat(pokemons)) //set to main list of pokemons to show
         })
       }
     }).catch((error) => {
@@ -68,32 +66,39 @@ function RegionList() {
 	}, []);
 
   useEffect(() => {
-    if(selectedRegion) {
+    if(state.filters.regions) {
       getPokemonsByRegion()
     }
-  }, [selectedRegion])
+  }, [state.filters.regions])
 
 	return (
 
 <div className="App">
       1. Region List
+      
       <button onClick={toggleRegions}>Regions</button>
+      {/* <button onClick={() => dispatch(clearRegionsFilter())} >X</button> */}
       {/* <div>2. Selected region is - {selectedRegion?.name}</div> */}
+
+      <button onClick={() => {console.log("Clear Regions button clicked"); dispatch({ type: ACTIONS.CLEAR_REGION_FILTER }); setPokemonByRegion([]); }}>Clear Pokemon By Regions</button>
 
       {showRegions && (
         <div>
           {/* 3. Selected Region - {regions.length} */}
-          {state.regionsData.map((region, index) => (
+          {state.regionsData.map((regions, index) => (
             <div key={index}>
-              <button onClick={() => setSelectedRegion(region)}>
-                {region.name}
+              <button onClick={() => dispatch({ type: ACTIONS.SET_SELECTED_REGION, selectedRegion: regions })}>
+                {regions.name}
               </button>
          
             </div>
           ))}
         </div>
       )}
-           {pokemonByRegion.length > 0 && (
+           {/* {pokemonByRegion.length > 0 && (
+                <RegionListItem pokemonByRegion={pokemonByRegion} />
+              )} */}
+              {pokemonByRegion.length > 0 && (
                 <RegionListItem pokemonByRegion={pokemonByRegion} />
               )}
     </div>
