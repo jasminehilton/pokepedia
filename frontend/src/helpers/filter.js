@@ -1,7 +1,7 @@
 const filterPokemon = (dispatch, selectedTypes, pokemonData) => {
   const filteredPokemon = pokemonData.filter((pokemon) => {
-    return selectedTypes.every((selectedType) =>
-      pokemon.types.some((type) => selectedType === type.type.name)
+    return selectedTypes.every((selectedType) => //Will filter so it must include every type
+      pokemon.types.some((type) => selectedType === type.type.name) //Checks condition to be true
     );
   });
   console.log("filtered", filteredPokemon);
