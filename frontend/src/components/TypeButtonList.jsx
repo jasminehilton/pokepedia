@@ -3,6 +3,8 @@ import axios from 'axios';
 import { usePokemonDataContext, usePokemonDataDispatchContext } from "../providers/pokeProvider";
 import TypeButton from './TypeButton';
 import filterPokemon from '../helpers/filter';
+import "../styles/TypeList.css"
+
 
 const TypeButtonList = () => {
 
@@ -41,9 +43,14 @@ const TypeButtonList = () => {
     };
   };
 
+  const removedExtraTypesData = state.typesData.filter(
+    (type) => type !== "shadow" && type !== "unknown"
+  );
+
   return (
-    <div>
-      {state.typesData.map((type) => (
+    <div className='typesList'>
+      <button className="typesButton">Types</button>
+      {removedExtraTypesData.map((type) => (
         <TypeButton
           key={type}
           typeName={type}
@@ -51,7 +58,7 @@ const TypeButtonList = () => {
         />
       ))}
     </div>
-  )
+  );
 };
 
 export default TypeButtonList;
