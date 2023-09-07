@@ -9,6 +9,10 @@ import PokemonListItem from "./PokemonListItem";
 import Pagination from "./Pagination";
 import handlePageChange from "../helpers/handlePageChange";
 import PokemonLogo from "./PokemonLogo";
+import { MetroSpinner } from "react-spinners-kit";
+import "../styles/PokemonSpinner.css";
+import PokemonFooter from "./PokemonFooter";
+import "../styles/PokemonFooter.css";
 
 const PokemonList = ({ isOpen, onClose }) => {
   const state = usePokemonDataContext();
@@ -25,7 +29,11 @@ const PokemonList = ({ isOpen, onClose }) => {
   return (
     <div>
       {state.isLoading ? (
-        <p>Loading...</p>
+        <div className="spinnerContainer">
+          <div className="spinner"><MetroSpinner size={40} color="white" />
+            <p>Loading...</p>
+          </div>
+        </div>
       ) : state.error ? (
         <p>Error: {state.error}</p>
       ) : (
@@ -58,6 +66,7 @@ const PokemonList = ({ isOpen, onClose }) => {
               />
             ))}
           </div>
+          <PokemonFooter />
         </div>
       )}
       {state.isModalVisible && <PokemonModal />}
