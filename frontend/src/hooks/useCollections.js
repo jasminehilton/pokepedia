@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 
+
 const useCollections = () => {
   const [collection, setCollection] = useState();
 
@@ -8,6 +9,7 @@ const useCollections = () => {
       res.json().then((data) => setCollection([...data]))
     );
   }, []);
+
 
   return {
     collection,

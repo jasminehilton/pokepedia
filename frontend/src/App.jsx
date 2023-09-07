@@ -11,6 +11,7 @@ import filterPokemon from "./helpers/filter";
 import getDisplayedPokemon from "./helpers/getDisplayedPokemon";
 import RegionList from "./components/RegionList";
 import HomeRoute from "./routes/HomeRoute";
+import axios from "axios";
 
 function App() {
   const state = usePokemonDataContext(); //imports the state
@@ -39,6 +40,19 @@ function App() {
     state.currentPage,
     state.filters.regions,
   ]);
+
+  const collectionObj = { caught_normal: true, caught_shiney: false };
+  const dataObj = {
+    collectionObj,
+    pokemon_id: 5,
+  };
+  useEffect(() => {
+    axios
+      .post("http://localhost:8080/collection/1/create", dataObj)
+      .then((res) => {
+        console.log("Response:", res);
+      });
+  }, []);
 
   return (
     <div className="App">
