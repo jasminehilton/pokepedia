@@ -6,79 +6,160 @@
   border-color: white;
   border-style: solid;
   font-size: 20px;
+  font-weight: bold;
   color: white;
   margin: 10px;
-  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.6);
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+.type-button.selected {
+  transform: translateY(2px);
+  color: rgb(185, 185, 185);
+  border-color: rgb(185, 185, 185);
+  box-shadow: none;
 }
 
 .type-button.normal {
   background-color: #A8A878;
 }
 
+.type-button.normal.selected {
+  background-color: #363614;
+}
+
 .type-button.fighting {
   background-color: #C03028;
+}
+
+.type-button.fighting.selected {
+  background-color: #491611;
 }
 
 .type-button.flying {
   background-color: #A890F0;
 }
 
+.type-button.flying.selected {
+  background-color: #3A3970;
+}
+
 .type-button.poison {
   background-color: #A040A0;
+}
+
+.type-button.poison.selected {
+  background-color: #3B2E57;
 }
 
 .type-button.ground {
   background-color: #E0C068;
 }
 
+.type-button.ground.selected {
+  background-color: #8A7F3E;
+}
+
 .type-button.rock {
   background-color: #B8A038;
+}
+
+.type-button.rock.selected {
+  background-color: #584F26;
 }
 
 .type-button.bug {
   background-color: #A8B820;
 }
 
+.type-button.bug.selected {
+  background-color: #3E3D14;
+}
+
 .type-button.ghost {
   background-color: #705898;
+}
+
+.type-button.ghost.selected {
+  background-color: #2B2650;
 }
 
 .type-button.steel {
   background-color: #B8B8D0;
 }
 
+.type-button.steel.selected {
+  background-color: #57576C;
+}
+
 .type-button.fire {
   background-color: #F08030;
+}
+
+.type-button.fire.selected {
+  background-color: #7C4217;
 }
 
 .type-button.water {
   background-color: #6890F0;
 }
 
+.type-button.water.selected {
+  background-color: #3E5A94;
+}
+
 .type-button.grass {
   background-color: #78C850;
+}
+
+.type-button.grass.selected {
+  background-color: #4A8F3F;
 }
 
 .type-button.electric {
   background-color: #F8D030;
 }
 
+.type-button.electric.selected {
+  background-color: #A59D1E;
+}
+
 .type-button.psychic {
   background-color: #F85888;
+}
+
+.type-button.psychic.selected {
+  background-color: #A14E64;
 }
 
 .type-button.ice {
   background-color: #98D8D8;
 }
 
+.type-button.ice.selected {
+  background-color: #4E9D9D;
+}
+
 .type-button.dragon {
   background-color: #7038F8;
+}
+
+.type-button.dragon.selected {
+  background-color: #2B1B86;
 }
 
 .type-button.dark {
   background-color: #705848;
 }
 
+.type-button.dark.selected {
+  background-color: #3E3528;
+}
+
 .type-button.fairy {
   background-color: #EE99AC;
+}
+
+.type-button.fairy.selected {
+  background-color: #B76680;
 }

@@ -1,0 +1,51 @@
+.typesList {
+  background-color: rgb(214, 22, 0);
+  border-radius: 0 0 20px 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding: 15px;
+  border-bottom: 5px solid darkred;
+  border-left: 5px solid darkred;
+  border-right: 5px solid darkred;
+  display: flex;
+  align-items: center;
+}
+
+.regionList {
+  background-color: rgb(214, 22, 0);
+  border-radius:20px 20px 0 0;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 15px;
+  border-top: 5px solid darkred;
+  border-left: 5px solid darkred;
+  border-right: 5px solid darkred;
+  display: flex;
+  align-items: center;
+}
+
+.bigButton {
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+  background-color: rgb(0, 208, 255);
+  border-style: solid;
+  font-size: 22px;
+  border-width: 10px;
+  border-color: rgb(255, 255, 255);
+  color: white;
+  font-weight: bold;
+  box-shadow: 
+  0px 0px 5px 2px rgba(0, 0, 0, 0.8),
+  0 0 2px 1px black inset;
+}
+
+.typesButtonsList {
+  width: 80%;
+}
+
+.regionsButtonsList {
+  width: 80%;
+}

@@ -24,7 +24,10 @@
   width: 220px;
   height: 290px;
   padding-bottom: -0em;
+  flex-direction: column;
   background-color: rgb(194, 255, 255);
+  transition: box-shadow 1s ease;
+  animation: shake 0.5s;
 }
 
 .pokemon-tile {

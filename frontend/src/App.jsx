@@ -12,6 +12,7 @@ import PokemonFooter from "./components/PokemonFooter";
 import filterPokemon from "./helpers/filter";
 import getDisplayedPokemon from "./helpers/getDisplayedPokemon";
 import RegionList from "./components/RegionList";
+import "./styles/Navbar.css"
 
 function App() {
   const state = usePokemonDataContext(); //imports the state

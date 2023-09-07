@@ -7,7 +7,7 @@ import {
 import getRegions from "../helpers/fetchRegions";
 import setSelectedRegion from "../helpers/setSelectedRegion";
 import getPokemonsByRegion from "../helpers/fetchPokemonByRegion";
-import "../styles/RegionList.css"
+import "../styles/Navbar.css"
 import "../styles/RegionButton.css";
 import capitalizeFirstLetter from "../helpers/capitalizeFirstLetter";
 
@@ -30,24 +30,29 @@ function RegionList() {
 
   return (
 		<div className="regionList">
-			<button className="regionsButton">Regions</button>
-        {state.regionsData.map((region, index) => (
-					<React.Fragment key={index}>
-            <button className="region-button"
-              onClick={() =>
-                setSelectedRegion(
-                  region,
-                  dispatch,
-                  state.filters.regions
-                )
-              }
-            >
-              {capitalizeFirstLetter(region.name)}
-            </button>
-						</React.Fragment>
-        ))}
-			</div>
+      <div>
+      <button className="bigButton">Regions</button>
+      </div>
+        <div className="regionsButtonsList">
+          {state.regionsData.map((region, index) => (
+            <React.Fragment key={index}>
+              <button className="region-button"
+                onClick={() =>
+                  setSelectedRegion(
+                    region,
+                    dispatch,
+                    state.filters.regions
+                  )
+                }
+              >
+                {capitalizeFirstLetter(region.name)}
+              </button>
+              </React.Fragment>
+          ))}
+        </div>
+      </div>
   );
 }
 
 export default RegionList;
+
