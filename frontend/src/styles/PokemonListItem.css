@@ -10,7 +10,8 @@
   background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
   border: solid 3px  rgb(214, 218, 198);;
   border-radius: 10px;
-  background-attachment: fixed; /* Fix the background image in place */
+  background-attachment: fixed;
+  padding: 1em;
 }
 
 .pokemon-list__item {
