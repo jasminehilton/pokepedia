@@ -4,9 +4,13 @@ import { usePokemonDataContext, usePokemonDataDispatchContext } from "../provide
 import PokemonModal from "../routes/PokemonModal";
 import PokemonListItem from "./PokemonListItem";
 import Pagination from "./Pagination";
-import getDisplayedPokemon from "../helpers/getDisplayedPokemon";
 import handlePageChange from "../helpers/handlePageChange";
+<<<<<<< HEAD
 import PokemonLogo from "./PokemonLogo"
+=======
+import getDisplayedPokemon from "../helpers/getDisplayedPokemon";
+
+>>>>>>> feature/filtering-pokemon-data-by-region-integration
 
 const PokemonList = ({ isOpen, onClose }) => {
   const state = usePokemonDataContext();
@@ -19,6 +23,7 @@ const PokemonList = ({ isOpen, onClose }) => {
   useEffect(() => {
     fetchPokemonData(dispatch);
   }, []);
+<<<<<<< HEAD
 
   // getDisplayedPokemon(state.pokemonData, state.filteredPokemonData, state.currentPage, state.itemsPerPage, dispatch);
   useEffect(() => {
@@ -26,6 +31,9 @@ const PokemonList = ({ isOpen, onClose }) => {
   }, [state.filteredPokemonData, state.pokemonData])
 
 
+=======
+ 
+>>>>>>> feature/filtering-pokemon-data-by-region-integration
   return (
     <div>
       {state.isLoading ? (

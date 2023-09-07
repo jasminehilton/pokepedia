@@ -1,5 +1,5 @@
-import { useReducer, useEffect } from "react";
-import axios from "axios";
+import { useReducer } from "react";
+
 
 // jotai - state management
 
@@ -10,8 +10,10 @@ export const ACTIONS = {
   DISPLAY_POKEMON_DATA: "DISPLAY_POKEMON_DATA",
   CLOSE_POKEMON_DATA: "CLOSE_POKEMON_DATA",
   FETCH_TYPES: "FETCH_TYPES",
+  FETCH_REGIONS: "FETCH_REGIONS",
   FILTER_BY_TYPE: "FILTER_BY_TYPE",
   ADD_TYPE_FILTER: "ADD_TYPE_FILTER",
+  ADD_REGION_FILTER: "ADD_REGION_FILTER",
   FILTER_BY_REGION: "FILTER_BY_REGION",
   CLEAR_TYPE_FILTER: "CLEAR_TYPE_FILTER",
   CLEAR_REGION_FILTER: "CLEAR_REGION_FILTER",
@@ -22,6 +24,7 @@ export const ACTIONS = {
   FETCH_POKEMON_FAILURE: "FETCH_POKEMON_FAILURE",
   SET_CURRENT_PAGE: "SET_CURRENT_PAGE",
   SET_DISPLAYED_POKEMON: "SET_DISPLAYED_POKEMON",
+  SET_POKEMON_BY_REGION: "SET_POKEMON_BY_REGION"
 };
 
 const initialState = {
@@ -35,11 +38,12 @@ const initialState = {
   next: null,
   previous: null,
   search: "",
+  pokemonByRegion: [],
   regionsData: [],
   typesData: [],
   filters: {
     types: [],
-    regions: [],
+    regions: {},
   },
   isButtonSelected: false, // useState
   isModalVisible: false, // useState
@@ -93,17 +97,24 @@ const reducer = (state, action) => {
       };
     case ACTIONS.FETCH_TYPES:
       return { ...state, typesData: action.typesData };
+    case ACTIONS.FETCH_REGIONS:
+      return { ...state, regionsData: action.payload };
     case ACTIONS.ADD_TYPE_FILTER:
       return {
         ...state,
         filters: { ...state.filters, types: action.selectedTypes },
+      };
+    case ACTIONS.ADD_REGION_FILTER:
+      return {
+        ...state,
+        filters: { ...state.filters, regions: action.payload },
       };
     case ACTIONS.FILTER_BY_TYPE:
       return { ...state, filteredPokemonData: action.payload };
     case ACTIONS.FILTER_BY_REGION:
       return {
         ...state,
-        filters: { ...state.filters, regions: action.selectedRegions },
+        filteredPokemonData: action.payload,
       };
     case ACTIONS.CLEAR_TYPE_FILTER:
       return {
@@ -146,6 +157,11 @@ const reducer = (state, action) => {
         ...state,
         displayedPokemon: action.payload,
       };
+    case ACTIONS.SET_POKEMON_BY_REGION:
+      return {
+        ...state,
+        pokemonByRegion: action.payload
+      }
     default:
       return state;
   }
