@@ -1,5 +1,5 @@
-import { useReducer, useEffect } from "react";
-import axios from "axios";
+import { useReducer } from "react";
+
 
 // jotai - state management
 
@@ -43,7 +43,7 @@ const initialState = {
   typesData: [],
   filters: {
     types: [],
-    regions: '',
+    regions: {},
   },
   isButtonSelected: false, // useState
   isModalVisible: false, // useState

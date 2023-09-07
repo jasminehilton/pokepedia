@@ -4,8 +4,8 @@ import { usePokemonDataContext, usePokemonDataDispatchContext } from "../provide
 import PokemonModal from "../routes/PokemonModal";
 import PokemonListItem from "./PokemonListItem";
 import Pagination from "./Pagination";
-import getDisplayedPokemon from "../helpers/getDisplayedPokemon";
 import handlePageChange from "../helpers/handlePageChange";
+import getDisplayedPokemon from "../helpers/getDisplayedPokemon";
 
 
 const PokemonList = ({ isOpen, onClose }) => {
@@ -19,13 +19,7 @@ const PokemonList = ({ isOpen, onClose }) => {
   useEffect(() => {
     fetchPokemonData(dispatch);
   }, []);
-
-  // getDisplayedPokemon(state.pokemonData, state.filteredPokemonData, state.currentPage, state.itemsPerPage, dispatch);
-  useEffect(() => {
-    getDisplayedPokemon(state.pokemonData, state.filteredPokemonData, state.currentPage, state.itemsPerPage, dispatch);
-  }, [state.filteredPokemonData, state.pokemonData])
-  
-
+ 
   return (
     <div>
       {state.isLoading ? (
