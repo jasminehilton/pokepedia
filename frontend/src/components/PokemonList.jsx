@@ -9,8 +9,6 @@ import PokemonListItem from "./PokemonListItem";
 import Pagination from "./Pagination";
 import handlePageChange from "../helpers/handlePageChange";
 import PokemonLogo from "./PokemonLogo";
-import PokemonFooter from "./PokemonFooter";
-import "../styles/PokemonFooter.css";
 import Spinner from "./Spinner";
 
 const PokemonList = ({ isOpen, onClose }) => {
@@ -51,7 +49,6 @@ const PokemonList = ({ isOpen, onClose }) => {
               )
             }
           />
-          <PokemonLogo />
           <div className="pokemon-container">
             {state.displayedPokemon.map((pokemon, index) => (
               <PokemonListItem
@@ -61,7 +58,6 @@ const PokemonList = ({ isOpen, onClose }) => {
               />
             ))}
           </div>
-          <PokemonFooter />
         </div>
       )}
       {state.isModalVisible && <PokemonModal />}

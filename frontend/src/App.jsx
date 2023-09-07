@@ -6,12 +6,11 @@ import {
   usePokemonDataDispatchContext,
 } from "./providers/pokeProvider";
 // import PokemonInfo from './components/PokemonInfo';
-import PokemonList from "./components/PokemonList";
-// import PokemonFooter from "./components/PokemonFooter";
 // import useCollections from './hooks/useCollections';
 import filterPokemon from "./helpers/filter";
 import getDisplayedPokemon from "./helpers/getDisplayedPokemon";
 import RegionList from "./components/RegionList";
+import HomeRoute from "./routes/HomeRoute";
 
 function App() {
   const state = usePokemonDataContext(); //imports the state
@@ -45,7 +44,7 @@ function App() {
     <div className="App">
       <RegionList />
       <TypeButtonList />
-      <PokemonList />
+      <HomeRoute />
       {/* <PokemonInfo /> */}
       {/* <Regions /> */}
       {/* <PokemonFooter /> */}
