@@ -1,30 +1,26 @@
 import React, { useEffect } from "react";
 import fetchPokemonData from "../helpers/fetchPokemonData";
-import { usePokemonDataContext, usePokemonDataDispatchContext } from "../providers/pokeProvider";
+import {
+  usePokemonDataContext,
+  usePokemonDataDispatchContext,
+} from "../providers/pokeProvider";
 import PokemonModal from "../routes/PokemonModal";
 import PokemonListItem from "./PokemonListItem";
 import Pagination from "./Pagination";
-import getDisplayedPokemon from "../helpers/getDisplayedPokemon";
 import handlePageChange from "../helpers/handlePageChange";
-
+import PokemonLogo from "./PokemonLogo";
 
 const PokemonList = ({ isOpen, onClose }) => {
   const state = usePokemonDataContext();
   const dispatch = usePokemonDataDispatchContext();
 
   const onDisplayPokemonModal = (pokemon) => {
-    dispatch({ type: 'DISPLAY_POKEMON_DATA', payload: pokemon });
+    dispatch({ type: "DISPLAY_POKEMON_DATA", payload: pokemon });
   };
- 
+
   useEffect(() => {
     fetchPokemonData(dispatch);
   }, []);
-
-  // getDisplayedPokemon(state.pokemonData, state.filteredPokemonData, state.currentPage, state.itemsPerPage, dispatch);
-  useEffect(() => {
-    getDisplayedPokemon(state.pokemonData, state.filteredPokemonData, state.currentPage, state.itemsPerPage, dispatch);
-  }, [state.filteredPokemonData, state.pokemonData])
-  
 
   return (
     <div>
@@ -34,7 +30,25 @@ const PokemonList = ({ isOpen, onClose }) => {
         <p>Error: {state.error}</p>
       ) : (
         <div>
-          <Pagination next={() => handlePageChange(dispatch, state.currentPage + 1, state.itemsPerPage, state.pokemonData.length)} prev={() => handlePageChange(dispatch, state.currentPage - 1, state.itemsPerPage, state.pokemonData.length)} />
+          <Pagination
+            next={() =>
+              handlePageChange(
+                dispatch,
+                state.currentPage + 1,
+                state.itemsPerPage,
+                state.pokemonData.length
+              )
+            }
+            prev={() =>
+              handlePageChange(
+                dispatch,
+                state.currentPage - 1,
+                state.itemsPerPage,
+                state.pokemonData.length
+              )
+            }
+          />
+          <PokemonLogo />
           <div className="pokemon-container">
             {state.displayedPokemon.map((pokemon, index) => (
               <PokemonListItem
@@ -46,9 +60,7 @@ const PokemonList = ({ isOpen, onClose }) => {
           </div>
         </div>
       )}
-      {state.isModalVisible && (
-        <PokemonModal />
-      )}
+      {state.isModalVisible && <PokemonModal />}
     </div>
   );
 };

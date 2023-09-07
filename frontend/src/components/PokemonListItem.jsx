@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/PokemonListItem.css"
+import capitalizeFirstLetter from "../helpers/capitalizeFirstLetter";
 
 const PokemonListItem = ({ pokemon, onDisplayPokemonModal }) => {
 
@@ -18,6 +19,7 @@ const PokemonListItem = ({ pokemon, onDisplayPokemonModal }) => {
             alt={pokemon.name}
             onClick={() => onDisplayPokemonModal(pokemon)}
           />
+          <p className="pokemon-name">{capitalizeFirstLetter(pokemon.name)}</p>
         </div>
         <h3 className="pokemon-name">{capitalizeFirstLetter(pokemon.name)}</h3>
       </div>

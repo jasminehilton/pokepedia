@@ -34,11 +34,9 @@ const TypeButtonList = () => {
     const selectedTypes = state.filters.types;
     if (selectedTypes.includes(typeName)) {
       const selected = selectedTypes.filter((type) => type !== typeName);
-      filterPokemon(dispatch, selected, state.pokemonData);
       dispatch({ type: "CLEAR_TYPE_FILTER", selectedTypes: selected });
     } else {
       const selected = [...selectedTypes, typeName];
-      filterPokemon(dispatch, selected, state.pokemonData);
       dispatch({ type: "ADD_TYPE_FILTER", selectedTypes: selected });
     };
   };
