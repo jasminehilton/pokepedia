@@ -10,7 +10,15 @@
   color: white;
   margin: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.6);
-  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s, filter 0.2s; /* Added filter transition */
+}
+
+.type-button:hover {
+  filter: brightness(1.12); /* Adjust the brightness factor as desired (1.2 makes it 20% brighter) */
+}
+
+.type-button:hover > span {
+  filter: brightness(1); /* Reset the brightness for the text */
 }
 
 .type-button.selected {
