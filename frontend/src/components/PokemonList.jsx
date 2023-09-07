@@ -33,7 +33,7 @@ const PokemonList = ({ isOpen, onClose }) => {
       ) : state.error ? (
         <p>Error: {state.error}</p>
       ) : (
-        <div>
+        <div className="homepage-container">
           <Pagination next={() => handlePageChange(dispatch, state.currentPage + 1, state.itemsPerPage, state.pokemonData.length)} prev={() => handlePageChange(dispatch, state.currentPage - 1, state.itemsPerPage, state.pokemonData.length)} />
           <PokemonLogo />
           <div className="pokemon-container">
