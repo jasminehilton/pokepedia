@@ -36,7 +36,7 @@
   color: rgb(125, 120, 120);
 }
 
-.pokemon-name {
+.pokemon-name, .spinner {
   font-family: 'VT323', monospace;
   font-size: 30px;
   color: rgb(107, 97, 97);
