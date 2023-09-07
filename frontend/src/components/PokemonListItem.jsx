@@ -4,10 +4,6 @@ import capitalizeFirstLetter from "../helpers/capitalizeFirstLetter";
 
 const PokemonListItem = ({ pokemon, onDisplayPokemonModal }) => {
 
-  const capitalizeFirstLetter = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-  }
-
   return (
     <div className="pokemon-display">
       <div className="pokemon-list__item">
@@ -21,7 +17,6 @@ const PokemonListItem = ({ pokemon, onDisplayPokemonModal }) => {
           />
           <p className="pokemon-name">{capitalizeFirstLetter(pokemon.name)}</p>
         </div>
-        <h3 className="pokemon-name">{capitalizeFirstLetter(pokemon.name)}</h3>
       </div>
     </div>
   );

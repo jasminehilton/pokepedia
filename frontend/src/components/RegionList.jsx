@@ -1,7 +1,13 @@
 import React, { useEffect } from "react";
 import Pokedex from "pokedex-promise-v2";
-import axios from "axios";
-import RegionListItem from "./RegionListItem";
+import {
+  usePokemonDataContext,
+  usePokemonDataDispatchContext,
+} from "../providers/pokeProvider";
+import getRegions from "../helpers/fetchRegions";
+import setSelectedRegion from "../helpers/setSelectedRegion";
+import getPokemonsByRegion from "../helpers/fetchPokemonByRegion";
+import "../styles/RegionList.css"
 
 const P = new Pokedex();
 
@@ -21,13 +27,10 @@ function RegionList() {
   }, [state.filters.regions]);
 
   return (
-    <div className="App">
-      1. Region List
-      {/* <div>2. Selected region is - {selectedRegion?.name}</div> */}
-      <div>
-        {/* 3. Selected Region - {regions.length} */}
+		<div className="regionList">
+			<button className="regionsButton">Regions</button>
         {state.regionsData.map((region, index) => (
-          <div key={index}>
+					<React.Fragment key={index}>
             <button
               onClick={() =>
                 setSelectedRegion(
@@ -39,10 +42,9 @@ function RegionList() {
             >
               {region.name}
             </button>
-          </div>
+						</React.Fragment>
         ))}
-      </div>
-    </div>
+			</div>
   );
 }
 

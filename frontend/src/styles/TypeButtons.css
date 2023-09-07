@@ -8,76 +8,77 @@
   font-size: 20px;
   color: white;
   margin: 10px;
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.4);
 }
 
 .type-button.normal {
-  background-color: #A8A878; /* Normal type color */
+  background-color: #A8A878;
 }
 
 .type-button.fighting {
-  background-color: #C03028; /* Fighting type color */
+  background-color: #C03028;
 }
 
 .type-button.flying {
-  background-color: #A890F0; /* Flying type color */
+  background-color: #A890F0;
 }
 
 .type-button.poison {
-  background-color: #A040A0; /* Poison type color */
+  background-color: #A040A0;
 }
 
 .type-button.ground {
-  background-color: #E0C068; /* Ground type color */
+  background-color: #E0C068;
 }
 
 .type-button.rock {
-  background-color: #B8A038; /* Rock type color */
+  background-color: #B8A038;
 }
 
 .type-button.bug {
-  background-color: #A8B820; /* Bug type color */
+  background-color: #A8B820;
 }
 
 .type-button.ghost {
-  background-color: #705898; /* Ghost type color */
+  background-color: #705898;
 }
 
 .type-button.steel {
-  background-color: #B8B8D0; /* Steel type color */
+  background-color: #B8B8D0;
 }
 
 .type-button.fire {
-  background-color: #F08030; /* Fire type color */
+  background-color: #F08030;
 }
 
 .type-button.water {
-  background-color: #6890F0; /* Water type color */
+  background-color: #6890F0;
 }
 
 .type-button.grass {
-  background-color: #78C850; /* Grass type color */
+  background-color: #78C850;
 }
 
 .type-button.electric {
-  background-color: #F8D030; /* Electric type color */
+  background-color: #F8D030;
 }
 
 .type-button.psychic {
-  background-color: #F85888; /* Psychic type color */
+  background-color: #F85888;
 }
 
 .type-button.ice {
-  background-color: #98D8D8; /* Ice type color */
+  background-color: #98D8D8;
 }
 
 .type-button.dragon {
-  background-color: #7038F8; /* Dragon type color */
+  background-color: #7038F8;
 }
 
 .type-button.dark {
-  background-color: #705848; /* Dark type color */
+  background-color: #705848;
 }
 
 .type-button.fairy {
-  background-color: #EE99AC; /* Fairy type color */
+  background-color: #EE99AC;
 }
