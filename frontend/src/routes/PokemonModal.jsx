@@ -28,36 +28,57 @@ const PokemonModal = () => {
         <span className="close" onClick={onClosePokemonModal}>
           &times;
         </span>
-        <h1>{state.selectPokemonData.name}</h1>
-        <p>ID: {state.selectPokemonData.id}</p>
-        <img
-          src={state.selectPokemonData.sprites.front_default}
-          alt={state.selectPokemonData.name}
-        />
-        <p>Height: {state.selectPokemonData.height}</p>
-        <p>Weight: {state.selectPokemonData.weight}</p>
-        <p>Types: {state.selectPokemonData.types.map((type) => type.type.name).join(', ')}</p>
-        <p>Abilities: {state.selectPokemonData.abilities.map((ability) => ability.ability.name).join(', ')}</p>
+        <div className=" modal-container" >
+          <h1 className="child modal-name" >{state.selectPokemonData.name}</h1>
+          <p className="child modal-number" >ID: {state.selectPokemonData.id}</p>
+          <img
+            className="child modal-picture"
+            src={state.selectPokemonData.sprites.front_default}
+            alt={state.selectPokemonData.name}
+          />
+          <p className="child modal-form" >Forms: </p>
+          <p className="child modal-description" >Description: </p>
 
-        <ul>
-          Locations:
-          {state.locations.map((location, index) => (
-            <li key={index}>
-              {location.location_area.name}
-              <ul>
-                {location.version_details.map((version, vIndex) => (
-                  <li key={vIndex}>{version.version.name}</li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul>
-        <h4>Evolution Chain:</h4>
-        {evolutionDetails[state.selectPokemonData.name] && (
-          <p>
-            {PokemonEvolutions(evolutionDetails[state.selectPokemonData.name].chain)}
-          </p>
-        )}
+          <div className="child modal-stats" >
+            <p className="child modal-gender" >Gender: </p>
+            <p className="child modal-height" >Height: {state.selectPokemonData.height}</p>
+            <p className="child modal-weight" >Weight: {state.selectPokemonData.weight}</p>
+            <p className="child modal-category" >Category: </p>
+            <p className="child modal-ability" >Abilities: {state.selectPokemonData.abilities.map((ability) => ability.ability.name).join(', ')}</p>
+          </div>
+
+          <div className="child modal-type-weak" >
+            <p className="child modal-type" >Types: {state.selectPokemonData.types.map((type) => type.type.name).join(', ')}</p>
+            <p className="child modal-weakness" >Weaknesses: </p>
+          </div>
+
+          <div className="child modal-star-ball" >
+            <p className="child modal-star" >star</p>
+            <p className="child modal-ball">pokeball</p>
+          </div>
+
+          <ul className="child modal-location" >
+            Locations:
+            {state.locations.map((location, index) => (
+              <li key={index}>
+                {location.location_area.name}
+                <ul>
+                  {location.version_details.map((version, vIndex) => (
+                    <li key={vIndex}>{version.version.name}</li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+          <div className="child modal-evol-chain">
+            <h4 >Evolution Chain:</h4>
+            {evolutionDetails[state.selectPokemonData.name] && (
+              <p>
+                {PokemonEvolutions(evolutionDetails[state.selectPokemonData.name].chain)}
+              </p>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );

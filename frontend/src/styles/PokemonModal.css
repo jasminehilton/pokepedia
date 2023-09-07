@@ -1,11 +1,16 @@
 .pokemon-modal {
   background-color: rgb(235, 149, 183);
   position: fixed;
-  height: 50%;
-  width: 60%;
+  /* height: 50%; */
+  height: 80%;
+  /* width: 60%; */
+  width: 80%;
   box-shadow: 0 0 0 100vmax rgba(0,0,0,.5);
-  top: 20%;
-  left: 20%;
+  /* top: 20%;
+  left: 20%; */
+  top: 10%;
+  left: 10%;
+
 
   overflow-y: scroll;
   border-radius: 12px;
@@ -28,4 +33,122 @@
 
 .close {
   margin-left: 10px;
+}
+
+.modal-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  /* grid-template-columns: 1fr; */
+  grid-template-rows: 1fr;
+  /* grid-template-columns: repeat(2, 1fr); */
+  gap: 5px;
+  
+}
+
+.child {
+  border: 2px dotted purple;
+  border-radius: 5px;
+  background-color: palevioletred;
+  /* width:auto; */
+  margin:10px;
+  /* width:200px; */
+}
+
+.modal-star-ball {
+  grid-row: 1 / span 1;
+  grid-column: 1 / span 1;
+  display:grid;
+}
+
+  .modal-star {
+    grid-row: 1 / span 1;
+    grid-column: 2 / span 1;
+  }
+
+  .modal-ball {
+
+  }
+
+.modal-type-weak {
+  grid-row: 8 / span 2;
+  grid-column: 1 / span 3;
+}
+
+  .modal-type {
+    grid-row:1 / span 1;
+    grid-column: 1 / span 1;
+  }
+
+  .modal-weakness {
+    grid-row:1 / span 1;
+    grid-column: 2 / span 1;
+  }
+
+.modal-number {
+  grid-row: 1 / span 1;
+  grid-column: 2 / span 1;
+}
+
+.modal-name {
+  grid-row:2;
+  grid-column: 1 / span 2;
+
+}
+
+.modal-picture {
+  grid-row:1 / span 2;
+  grid-column: 3 / span 2;
+  height:150px;
+}
+
+.modal-description {
+  grid-row:4 / span 4;
+  grid-column: 3 / span 1;
+}
+
+.modal-form {
+  grid-row: 3 / span 5;
+  grid-column: 1 / span 2;
+}
+
+.modal-stats {
+  grid-row:1 / span 6;
+  grid-column: 4 / span 2;
+  display:grid;
+}
+
+  .modal-height {
+    grid-row: 1 / span 1;
+    grid-column: 2 / span 1;
+  }
+
+  .modal-weight {
+    grid-row: 2 / span 1;
+    grid-column: 2 / span 1;
+  }
+
+  .modal-ability {
+    grid-row: 4 / span 1;
+    grid-column: 1 / span 2;
+  }
+
+  .modal-gender {
+    grid-row: 1 / span 2;
+    grid-column: 1 / span 1;
+
+  }
+
+  .modal-category {
+    grid-row: 3 / span 1;
+    grid-column: 1 / span 2;
+  }
+
+.modal-location {
+  grid-row: 7 / span 3;
+  grid-column: 4 / span 2;
+}
+
+.modal-evol-chain {
+  grid-row: 10 / span 2;
+  grid-column: 1 / span 5;
 }
