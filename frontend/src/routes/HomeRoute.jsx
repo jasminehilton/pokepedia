@@ -28,24 +28,26 @@ const HomeRoute = () => {
         <p>Error: {state.error}</p>
       ) : (
         <div>
-          <Pagination
-            next={() =>
-              handlePageChange(
-                dispatch,
-                state.currentPage + 1,
-                state.itemsPerPage,
-                state.pokemonData.length
-              )
-            }
-            prev={() =>
-              handlePageChange(
-                dispatch,
-                state.currentPage - 1,
-                state.itemsPerPage,
-                state.pokemonData.length
-              )
-            }
-          />
+          <div>
+            <Pagination
+              next={() =>
+                handlePageChange(
+                  dispatch,
+                  state.currentPage + 1,
+                  state.itemsPerPage,
+                  state.pokemonData.length
+                )
+              }
+              prev={() =>
+                handlePageChange(
+                  dispatch,
+                  state.currentPage - 1,
+                  state.itemsPerPage,
+                  state.pokemonData.length
+                )
+              }
+            />
+          </div>
           <PokemonLogo />
           <PokemonList />
           <PokemonFooter />
