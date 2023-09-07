@@ -4,6 +4,7 @@ import axios from "axios";
 import RegionListItem from "./RegionListItem";
 import { usePokemonDataContext, usePokemonDataDispatchContext} from '../providers/pokeProvider';
 import getRegions from '../helpers/fetchRegions';
+import setSelectedRegion from "../helpers/setSelectedRegion";
 
 const P = new Pokedex();
 
@@ -11,9 +12,7 @@ function RegionList() {
 	const state = usePokemonDataContext(); //imports the state
   const dispatch = usePokemonDataDispatchContext(); //imports dispatch
 
-  const [selectedRegion , setSelectedRegion] = useState({})
-
-  const [pokemonByRegion, setPokemonByRegion] = useState([])
+  
 
   // gets the list of regions 
 	
@@ -61,11 +60,11 @@ function RegionList() {
           {/* 3. Selected Region - {regions.length} */}
           {state.regionsData.map((region, index) => (
             <div key={index}>
-              <button onClick={() => setSelectedRegion(region)}>
+              <button onClick={() => setSelectedRegion(region, dispatch, state.filters.regions)}>
                 {region.name}
               </button>
-              {selectedRegion === region && (
-                <RegionListItem pokemonByRegion={pokemonByRegion} />
+              {state.filters.regions === region && (
+                <RegionListItem pokemonByRegion={'beans'} />
               )}
             </div>
           ))}

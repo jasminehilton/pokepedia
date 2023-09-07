@@ -1,7 +1,5 @@
 import "./App.css";
-
-import { PokemonDataProvider } from "./providers/pokeProvider.js";
-import TypeButtonList from './components/TypeButtonList';
+import TypeButtonList from "./components/TypeButtonList";
 
 // import PokemonInfo from './components/PokemonInfo';
 import PokemonList from "./components/PokemonList";
@@ -10,16 +8,14 @@ import PokemonList from "./components/PokemonList";
 import RegionList from "./components/RegionList";
 
 function App() {
-
   return (
-
-    <PokemonDataProvider>
+    <div>
       <RegionList />
       <TypeButtonList />
       <PokemonList />
       {/* <PokemonInfo /> */}
       {/* <Regions /> */}
-    </PokemonDataProvider>
+    </div>
   );
 }
 

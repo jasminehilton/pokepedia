@@ -24,6 +24,7 @@ export const ACTIONS = {
   FETCH_POKEMON_FAILURE: "FETCH_POKEMON_FAILURE",
   SET_CURRENT_PAGE: "SET_CURRENT_PAGE",
   SET_DISPLAYED_POKEMON: "SET_DISPLAYED_POKEMON",
+  SET_POKEMON_BY_REGION: "SET_POKEMON_BY_REGION"
 };
 
 const initialState = {
@@ -37,11 +38,12 @@ const initialState = {
   next: null,
   previous: null,
   search: "",
+  pokemonByRegion: [],
   regionsData: [],
   typesData: [],
   filters: {
     types: [],
-    regions: [],
+    regions: '',
   },
   isButtonSelected: false, // useState
   isModalVisible: false, // useState
@@ -155,6 +157,11 @@ const reducer = (state, action) => {
         ...state,
         displayedPokemon: action.payload,
       };
+    case ACTIONS.SET_POKEMON_BY_REGION:
+      return {
+        ...state,
+        pokemonByRegion: action.payload
+      }
     default:
       return state;
   }
