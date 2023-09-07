@@ -1,28 +1,27 @@
 .spinnerContainer {
-  position: fixed; /* Use fixed positioning to cover the entire viewport */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for overlay effect */
+  background-color: rgba(16, 13, 13, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
-	/* flex-direction: row; */
+	flex-direction: column;
 	border-radius: 10px;
 	flex-wrap: wrap;
 	box-shadow: 0px 8px 8px rgba(23, 22, 22, 0.296);
 }
 
 .spinner {
-	margin: -30%;
-	padding: 60px;
-	border: 0px solid rgb(55, 53, 53);
+	/* padding: 10px; */
+	/* border: 0px solid rgb(55, 53, 53); */
 }
 
-.tag {
-	text-align: center;
-	font-size: 2rem;
-	color: green;
+.spinner-loading-label {
+  font-family: 'VT323', monospace;
+  font-size: 70px;
+  color: rgb(107, 97, 97);
 }
