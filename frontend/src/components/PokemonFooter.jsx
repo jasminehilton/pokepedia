@@ -1,4 +1,5 @@
-// create a footer
+import "../styles/PokemonFooter.css"
+
 const PokemonFooter = () => {
   return (
     <footer className="pokemon-footer">

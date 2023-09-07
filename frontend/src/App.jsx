@@ -5,6 +5,7 @@ import TypeButtonList from './components/TypeButtonList';
 
 // import PokemonInfo from './components/PokemonInfo';
 import PokemonList from "./components/PokemonList";
+import PokemonFooter from "./components/PokemonFooter";
 // import useCollections from './hooks/useCollections';
 
 // import RegionList from "./components/RegionList";
@@ -20,6 +21,7 @@ function App() {
         {/* <PokemonInfo /> */}
         {/* <Regions /> */}
       </PokemonDataProvider>
+      <PokemonFooter />
     </div>
   );
 }
