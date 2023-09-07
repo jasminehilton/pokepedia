@@ -56,8 +56,10 @@
 }
 
 .pokemon-list__image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 10px 10px 0px 0px;
   width: 100px;
   height: 100px;
-  background-color: rgb(240, 235, 235);
 }

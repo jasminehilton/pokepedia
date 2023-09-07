@@ -8,6 +8,8 @@ import getRegions from "../helpers/fetchRegions";
 import setSelectedRegion from "../helpers/setSelectedRegion";
 import getPokemonsByRegion from "../helpers/fetchPokemonByRegion";
 import "../styles/RegionList.css"
+import "../styles/RegionButton.css";
+import capitalizeFirstLetter from "../helpers/capitalizeFirstLetter";
 
 const P = new Pokedex();
 
@@ -31,7 +33,7 @@ function RegionList() {
 			<button className="regionsButton">Regions</button>
         {state.regionsData.map((region, index) => (
 					<React.Fragment key={index}>
-            <button
+            <button className="region-button"
               onClick={() =>
                 setSelectedRegion(
                   region,
@@ -40,7 +42,7 @@ function RegionList() {
                 )
               }
             >
-              {region.name}
+              {capitalizeFirstLetter(region.name)}
             </button>
 						</React.Fragment>
         ))}
