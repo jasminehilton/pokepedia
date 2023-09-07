@@ -15,7 +15,7 @@ function RegionList() {
   const dispatch = usePokemonDataDispatchContext(); //imports dispatch
 
   useEffect(() => {
-    console.log("load the pokemon regions now");
+    // console.log("load the pokemon regions now");
     getRegions(P, dispatch);
   }, []);
 
