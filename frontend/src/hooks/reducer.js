@@ -10,8 +10,10 @@ export const ACTIONS = {
   DISPLAY_POKEMON_DATA: "DISPLAY_POKEMON_DATA",
   CLOSE_POKEMON_DATA: "CLOSE_POKEMON_DATA",
   FETCH_TYPES: "FETCH_TYPES",
+  FETCH_REGIONS: "FETCH_REGIONS",
   FILTER_BY_TYPE: "FILTER_BY_TYPE",
   ADD_TYPE_FILTER: "ADD_TYPE_FILTER",
+  ADD_REGION_FILTER: "ADD_REGION_FILTER",
   FILTER_BY_REGION: "FILTER_BY_REGION",
   CLEAR_TYPE_FILTER: "CLEAR_TYPE_FILTER",
   CLEAR_REGION_FILTER: "CLEAR_REGION_FILTER",
@@ -93,17 +95,24 @@ const reducer = (state, action) => {
       };
     case ACTIONS.FETCH_TYPES:
       return { ...state, typesData: action.typesData };
+    case ACTIONS.FETCH_REGIONS:
+      return { ...state, regionsData: action.payload };
     case ACTIONS.ADD_TYPE_FILTER:
       return {
         ...state,
         filters: { ...state.filters, types: action.selectedTypes },
+      };
+    case ACTIONS.ADD_REGION_FILTER:
+      return {
+        ...state,
+        filters: { ...state.filters, regions: action.payload },
       };
     case ACTIONS.FILTER_BY_TYPE:
       return { ...state, filteredPokemonData: action.payload };
     case ACTIONS.FILTER_BY_REGION:
       return {
         ...state,
-        filters: { ...state.filters, regions: action.selectedRegions },
+        filteredPokemonData: action.payload,
       };
     case ACTIONS.CLEAR_TYPE_FILTER:
       return {

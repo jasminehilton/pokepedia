@@ -7,14 +7,14 @@ import TypeButtonList from './components/TypeButtonList';
 import PokemonList from "./components/PokemonList";
 // import useCollections from './hooks/useCollections';
 
-// import RegionList from "./components/RegionList";
+import RegionList from "./components/RegionList";
 
 function App() {
 
   return (
 
     <PokemonDataProvider>
-      {/* <RegionList /> */}
+      <RegionList />
       <TypeButtonList />
       <PokemonList />
       {/* <PokemonInfo /> */}
