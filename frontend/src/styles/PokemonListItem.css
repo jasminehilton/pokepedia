@@ -2,8 +2,11 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 10px;
-  margin: 200px;
-  background-color:rgb(217, 88, 88);
+  margin-left: 250px;
+  margin-right: 250px;
+  margin-top: 500px;
+  background-color: #f7f7f7;
+  background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
 
 }
 
