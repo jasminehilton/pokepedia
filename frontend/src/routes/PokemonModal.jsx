@@ -4,6 +4,7 @@ import fetchPokemonLocations from '../helpers/fetchPokemonLocations';
 import { fetchEvolutionData } from '../helpers/fetchEvolutionData'; 
 import PokemonEvolutions from '../components/PokemonEvolutions';
 import "../styles/PokemonModal.css"
+import { fetchSpeciesData } from "../helpers/fetchSpeciesData";
 
 const PokemonModal = () => {
   const dispatch = usePokemonDataDispatchContext();
@@ -13,14 +14,31 @@ const PokemonModal = () => {
   }
   const [evolutionDetails, setEvolutionDetails] = useState({});
 
+  const [speciesDetails, setSpeciesDetails] = useState({}) 
+
   fetchPokemonLocations(dispatch, state.selectPokemonData.id);
+  
+  fetchSpeciesData(state.selectPokemonData, setSpeciesDetails);
+
+  const getFlavorText = (flavorEntries) => {
+    let flavorText = flavorEntries.find((flavorEntry) => {
+      return flavorEntry.language.name === "en"
+    })
+
+    if(flavorText) {
+      return flavorText.flavor_text
+    }
+    
+    return '';
+
+  }
 
   useEffect(() => {
     // Fetch evolution data for each Pokémon in the list
-    state.pokemonData.forEach((pokemon) => {
-      fetchEvolutionData(pokemon, setEvolutionDetails);
-    });
-  }, [state.pokemonData]);
+    // state.pokemonData.forEach((pokemon) => {
+      fetchEvolutionData(state.selectPokemonData, setEvolutionDetails);
+    // });
+  }, [state.selectPokemonData]);
 
   return (
     <div className="pokemon-modal">
@@ -36,8 +54,24 @@ const PokemonModal = () => {
             src={state.selectPokemonData.sprites.front_default}
             alt={state.selectPokemonData.name}
           />
-          <p className="child modal-form" >Forms: </p>
-          <p className="child modal-description" >Description: </p>
+        <div className="child modal-form-card " >
+          <p className=" child form-button form-default " >Default</p>
+          <p className="child form-button form-shiny " >Shiny</p>
+          <p className="child modal-form" >Forms:
+            <img
+              className="child modal-picture"
+              src={state.selectPokemonData.sprites.front_default}
+              alt={state.selectPokemonData.name}
+            /> 
+            <img
+              className="child modal-picture"
+              src={state.selectPokemonData.sprites.front_shiny}
+              alt={state.selectPokemonData.name}
+            /> 
+          </p>
+
+        </div>
+          <p className="child modal-description" >Description: {speciesDetails?.flavor_text_entries?.length > 0 && getFlavorText(speciesDetails.flavor_text_entries)} </p>
 
           <div className="child modal-stats" >
             <p className="child modal-gender" >Gender: </p>
