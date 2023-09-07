@@ -24,21 +24,32 @@ const PokemonModal = () => {
     let flavorText = flavorEntries.find((flavorEntry) => {
       return flavorEntry.language.name === "en"
     })
-
     if(flavorText) {
       return flavorText.flavor_text
     }
-    
     return '';
+  }
 
+  const getGenusText = (genusEntries) => {
+    let genusText = genusEntries.find((genusEntry) => {
+      // console.log(genusText)
+      return genusEntry.language.name === "en"
+    })
+    if(genusText) {
+      return genusText.genus
+      // need to only take the first name dont include "Pokemon"
+    }
+    return '';
   }
 
   useEffect(() => {
     // Fetch evolution data for each Pokémon in the list
-    // state.pokemonData.forEach((pokemon) => {
+    state.pokemonData.forEach((pokemon) => {
       fetchEvolutionData(state.selectPokemonData, setEvolutionDetails);
-    // });
+    });
   }, [state.selectPokemonData]);
+
+
 
   return (
     <div className="pokemon-modal">
@@ -72,12 +83,13 @@ const PokemonModal = () => {
 
         </div>
           <p className="child modal-description" >Description: {speciesDetails?.flavor_text_entries?.length > 0 && getFlavorText(speciesDetails.flavor_text_entries)} </p>
+     
 
           <div className="child modal-stats" >
             <p className="child modal-gender" >Gender: </p>
             <p className="child modal-height" >Height: {state.selectPokemonData.height}</p>
             <p className="child modal-weight" >Weight: {state.selectPokemonData.weight}</p>
-            <p className="child modal-category" >Category: </p>
+            <p className="child modal-category" >Category:  {speciesDetails?.genera?.length > 0 && getGenusText(speciesDetails.genera)} </p>
             <p className="child modal-ability" >Abilities: {state.selectPokemonData.abilities.map((ability) => ability.ability.name).join(', ')}</p>
           </div>
 
