@@ -28,6 +28,19 @@
   color: #61dafb;
 }
 
+body {
+  background-color: rgb(132, 49, 49);
+  /* margin: 0;
+  padding: 0; */
+  /* background-image: url('https://wallpapercave.com/wp/wp3170170.jpg'); URL of the image */
+  /* background-size: cover; /* Scale the image to cover the entire viewport */
+  /* background-position: center; Center the image horizontally and vertically */
+  /* background-repeat: no-repeat; Prevent image repetition */
+  /* height: 300vh; Set the body height to the viewport height */
+  background-color: #000000;
+  background-image: url("https://www.transparenttextures.com/patterns/brushed-alum.png");
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

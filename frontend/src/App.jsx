@@ -12,14 +12,15 @@ import PokemonList from "./components/PokemonList";
 function App() {
 
   return (
-
-    <PokemonDataProvider>
-      {/* <RegionList /> */}
-      <TypeButtonList />
-      <PokemonList />
-      {/* <PokemonInfo /> */}
-      {/* <Regions /> */}
-    </PokemonDataProvider>
+    <div className="App">
+      <PokemonDataProvider>
+        {/* <RegionList /> */}
+        <TypeButtonList />
+        <PokemonList />
+        {/* <PokemonInfo /> */}
+        {/* <Regions /> */}
+      </PokemonDataProvider>
+    </div>
   );
 }
 

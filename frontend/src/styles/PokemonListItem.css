@@ -2,7 +2,9 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 10px;
-  margin: 200px 
+  margin: 200px;
+  background-color:rgb(217, 88, 88);
+
 }
 
 .pokemon-list__item {
@@ -15,11 +17,11 @@
   width: 220px;
   height: 290px;
   padding-bottom: -0em;
-
   display: flex;
   flex-direction: column;
   transition: box-shadow 1s ease;
   animation: shake 0.5s;
+  background-color: rgb(255, 255, 255);
 }
 
 .pokemon-id {
