@@ -10,6 +10,7 @@ import getPokemonsByRegion from "../helpers/fetchPokemonByRegion";
 import "../styles/Navbar.css"
 import capitalizeFirstLetter from "../helpers/capitalizeFirstLetter";
 import RegionListItem from "./RegionListItem";
+import Search from "./Search";
 
 const P = new Pokedex();
 
@@ -47,7 +48,7 @@ function RegionList() {
         </div>
           <div className="rightBigButtons">
           <button className="bigGreenButton">Login</button>
-          <button className="bigYellowButton">Search</button>
+          <Search />
           </div>
       </div>
   );
