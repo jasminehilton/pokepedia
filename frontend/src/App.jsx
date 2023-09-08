@@ -12,6 +12,7 @@ import getDisplayedPokemon from "./helpers/getDisplayedPokemon";
 import RegionList from "./components/RegionList";
 import "./styles/Navbar.css"
 import HomeRoute from "./routes/HomeRoute";
+import PokemonLogo from "./components/PokemonLogo";
 
 function App() {
   const state = usePokemonDataContext(); //imports the state
@@ -43,6 +44,7 @@ function App() {
 
   return (
     <div className="App">
+      <PokemonLogo />
       <RegionList />
       <TypeButtonList />
       <HomeRoute />

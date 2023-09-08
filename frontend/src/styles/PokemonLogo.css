@@ -1,9 +1,12 @@
 .pokemon-logo {
   height: 250px;
   width: 700px;
-  position: absolute;
-  left: 31%;
-  top: 575px;
+}
+
+.pokemonLogoContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .pokemon-logo:hover {

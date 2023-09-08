@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import fetchPokemonData from "../helpers/fetchPokemonData";
 import PokemonList from "../components/PokemonList";
 import PokemonFooter from "../components/PokemonFooter";
-import PokemonLogo from "../components/PokemonLogo";
+// import PokemonLogo from "../components/PokemonLogo";
 import handlePageChange from "../helpers/handlePageChange";
 import Pagination from "../components/Pagination";
 import Spinner from "../components/Spinner";
@@ -46,7 +46,7 @@ const HomeRoute = () => {
               )
             }
           />
-          <PokemonLogo />
+          {/* <PokemonLogo /> */}
           <PokemonList />
           <PokemonFooter />
         </div>
