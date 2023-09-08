@@ -1,4 +1,4 @@
-/* .pagination-logo {
+.pagination-logo {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -13,12 +13,17 @@
 }
 
 .pagination-prev-button {
-  background: none;
-  border: none;
+  /* background: none; */
+  /* border: none; */
+}
+
+.pagination-next-button {
+  /* background: none; */
+  /* border: none; */
 }
 
 .logo-region-type-pagination {
   display: flex;
   flex-direction: column;
   justify-content: row;
-} */
+}
