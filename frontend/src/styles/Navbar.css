@@ -1,0 +1,98 @@
+.typesButtonsList {
+  width: 70%;
+}
+
+.regionsButtonsList {
+  width: 70%;
+}
+
+.rightBigButtons {
+  display: flex;
+  justify-content: space-evenly;
+  width: 20%;
+}
+
+.typesList {
+  background-color: rgb(214, 22, 0);
+  border-radius: 0 0 20px 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding: 15px;
+  border-bottom: 5px solid darkred;
+  border-left: 5px solid darkred;
+  border-right: 5px solid darkred;
+  display: flex;
+  align-items: center;
+}
+
+.regionList {
+  background-color: rgb(214, 22, 0);
+  border-radius:20px 20px 0 0;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 15px;
+  border-top: 5px solid darkred;
+  border-left: 5px solid darkred;
+  border-right: 5px solid darkred;
+  display: flex;
+  align-items: center;
+}
+
+.bigBlueButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+  background: linear-gradient(215deg, rgb(164, 238, 255), rgba(0, 34, 255, 0.8)); /* Gradient for glass effect */
+  border-style: solid;
+  font-size: 22px;
+  border-width: 10px;
+  border-color: rgb(255, 255, 255);
+  color: white;
+  font-weight: bold;
+  box-shadow: 
+  0px 0px 5px 2px rgba(0, 0, 0, 0.8),
+  0 0 2px 1px black inset;
+}
+
+.bigGreenButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+  background: linear-gradient(215deg, rgb(164, 255, 172), rgba(0, 255, 13, 0.8)); /* Gradient for glass effect */
+  border-style: solid;
+  font-size: 22px;
+  border-width: 10px;
+  border-color: rgb(255, 255, 255);
+  color: white;
+  font-weight: bold;
+  box-shadow: 
+  0px 0px 5px 2px rgba(0, 0, 0, 0.8),
+  0 0 2px 1px black inset;
+}
+
+.bigYellowButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+  background: linear-gradient(215deg, rgb(240, 255, 164), rgba(255, 238, 0, 0.8)); /* Gradient for glass effect */
+  border-style: solid;
+  font-size: 20px;
+  border-width: 10px;
+  border-color: rgb(255, 255, 255);
+  color: white;
+  font-weight: bold;
+  box-shadow: 
+  0px 0px 5px 2px rgba(0, 0, 0, 0.8),
+  0 0 2px 1px black inset;
+}

@@ -2,6 +2,9 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import { usePokemonDataContext, usePokemonDataDispatchContext } from "../providers/pokeProvider";
 import TypeButton from './TypeButton';
+import filterPokemon from '../helpers/filter';
+import "../styles/Navbar.css"
+
 
 const TypeButtonList = () => {
 
@@ -38,17 +41,28 @@ const TypeButtonList = () => {
     };
   };
 
+  const removedExtraTypesData = state.typesData.filter(
+    (type) => type !== "shadow" && type !== "unknown"
+  );
+
   return (
-    <div>
-      {state.typesData.map((type) => (
+    <div className='typesList'>
+      <button className="bigBlueButton">Types</button>
+      <div className='typesButtonsList'>
+      {removedExtraTypesData.map((type) => (
         <TypeButton
           key={type}
           typeName={type}
           onTypeSelect={() => onTypeSelect(type)}
         />
       ))}
+      </div>
+      <div className="rightBigButtons">
+      <button className="bigGreenButton">Register</button>
+      <button className="bigYellowButton">Collection</button>
+      </div>
     </div>
-  )
+  );
 };
 
 export default TypeButtonList;

@@ -7,6 +7,9 @@ import {
 import getRegions from "../helpers/fetchRegions";
 import setSelectedRegion from "../helpers/setSelectedRegion";
 import getPokemonsByRegion from "../helpers/fetchPokemonByRegion";
+import "../styles/Navbar.css"
+import capitalizeFirstLetter from "../helpers/capitalizeFirstLetter";
+import RegionListItem from "./RegionListItem";
 
 const P = new Pokedex();
 
@@ -24,31 +27,31 @@ function RegionList() {
       getPokemonsByRegion(state.filters.regions, dispatch);
     }
   }, [state.filters.regions]);
-
+  
   return (
-    <div className="App">
-      1. Region List
-      {/* <div>2. Selected region is - {selectedRegion?.name}</div> */}
-      <div>
-        {/* 3. Selected Region - {regions.length} */}
-        {state.regionsData.map((region, index) => (
-          <div key={index}>
-            <button
-              onClick={() =>
-                setSelectedRegion(
-                  region,
-                  dispatch,
-                  state.filters.regions
-                )
-              }
-            >
-              {region.name}
-            </button>
+		<div className="regionList">
+        <button className="bigBlueButton">Regions</button>
+        <div className="regionsButtonsList">
+          {state.regionsData.map((region) => (
+          <RegionListItem
+          key={region}
+          regionName={capitalizeFirstLetter(region.name)}
+          setSelectedRegion={() =>
+            setSelectedRegion(
+              region,
+              dispatch,
+              state.filters.regions
+            )}
+        />
+          ))}
+        </div>
+          <div className="rightBigButtons">
+          <button className="bigGreenButton">Login</button>
+          <button className="bigYellowButton">Search</button>
           </div>
-        ))}
       </div>
-    </div>
   );
 }
 
 export default RegionList;
+
