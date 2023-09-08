@@ -1,0 +1,47 @@
+.grass {
+  background-color: rgb(38, 235, 90);
+}
+
+.fire {
+  background-color: rgb(235, 71, 38);
+}
+
+.water {
+  background-color: rgb(38, 186, 235);
+}
+
+.electric {
+  background-color: rgb(189, 127, 213);
+}
+
+.ice {
+  background-color: rgb(38, 235, 235);
+}
+
+.fighting {
+  background-color: rgb(232, 121, 121);
+}
+
+.poison {
+  background-color: rgb(121, 38, 235);
+}
+
+.ground {
+  background-color: rgb(181, 31, 92);
+}
+
+.flying {
+  background-color: rgb(161, 215, 230);
+}
+
+.psychic {
+  background-color: rgb(235, 38, 186);
+}
+
+.ghost {
+  background-color: rgb(121, 38, 235);
+}
+
+.bug {
+  background-color: rgb(38, 235, 38);
+}
