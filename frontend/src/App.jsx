@@ -42,12 +42,15 @@ function App() {
   ]);
 
   const data = {
-    caught_normal: null,
-    caught_shiney: true
-  }
+    collectionObj: {
+      caught_normal: true,
+      caught_shiney: true,
+    },
+    pokemon_id: 251,
+  };
   useEffect(() => {
     axios
-      .post("http://localhost:8080/collection/update/1", data)
+      .post("http://localhost:8080/collection/1/create", data)
       .then((res) => {
         console.log("Response:", res);
       });
