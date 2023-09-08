@@ -83,6 +83,11 @@ const PokemonModal = () => {
 
 
 
+  //   state.pokemonData.forEach((pokemon) => {
+  //     fetchEvolutionData(pokemon, setEvolutionDetails);
+  //   });
+  // }, [state.pokemonData]);
+  const officialArtworkUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${state.selectPokemonData.id}.png`
   return (
     <div className="pokemon-modal">
       <div className="pokemon-modal-content">
@@ -90,33 +95,16 @@ const PokemonModal = () => {
           &times;
         </span>
         <div className=" modal-container" >
-          <h1 className="child modal-name" >{state.selectPokemonData.name}</h1>
+          <div className="child modal-star-ball" >
+            <p className="child modal-star" >star</p>
+            <p className="child modal-ball">poke</p>
+          </div>         
           <p className="child modal-number" >ID: {state.selectPokemonData.id}</p>
           <img
-            className="child modal-picture"
-            src={state.selectPokemonData.sprites.front_default}
+            className=" child modal-picture"
+            src={officialArtworkUrl}
             alt={state.selectPokemonData.name}
           />
-        <div className="child modal-form-card " >
-          <p className=" child form-button form-default " >Default</p>
-          <p className="child form-button form-shiny " >Shiny</p>
-          <p className="child modal-form" >Forms:
-            <img
-              className="child modal-form-picture"
-              src={state.selectPokemonData.sprites.front_default}
-              alt={state.selectPokemonData.name}
-            /> 
-            <img
-              className="child modal-form-picture"
-              src={state.selectPokemonData.sprites.front_shiny}
-              alt={state.selectPokemonData.name}
-            /> 
-          </p>
-
-        </div>
-          <p className="child modal-description" >Description: {speciesDetails?.flavor_text_entries?.length > 0 && getFlavorText(speciesDetails.flavor_text_entries)} </p>
-     
-
           <div className="child modal-stats" >
             <p className="child modal-gender" >Gender: </p>
             <p className="child modal-height" >Height: {state.selectPokemonData.height}</p>
@@ -124,32 +112,41 @@ const PokemonModal = () => {
             <p className="child modal-category" >Category:  {speciesDetails?.genera?.length > 0 && getGenusText(speciesDetails.genera)} </p>
             <p className="child modal-ability" >Abilities: {state.selectPokemonData.abilities.map((ability) => ability.ability.name).join(', ')}</p>
           </div>
-
+          <h1 className="child modal-name" >{state.selectPokemonData.name}</h1>
+          <div className="child modal-form" >Forms:
+              <p className=" child form-default " >Default</p>
+            <img
+              className="child modal-form-picture"
+              src={state.selectPokemonData.sprites.front_default}
+              alt={state.selectPokemonData.name}
+            /> 
+            <p className="child form-shiny " >Shiny</p>
+            <img
+              className="child modal-form-picture"
+              src={state.selectPokemonData.sprites.front_shiny}
+              alt={state.selectPokemonData.name}
+            />            
+          </div>     
+          <p className="child modal-description" >Description: {speciesDetails?.flavor_text_entries?.length > 0 && getFlavorText(speciesDetails.flavor_text_entries)}</p>
           <div className="child modal-type-weak" >
             <p className="child modal-type" >Types: {state.selectPokemonData.types.map((type) => type.type.name).join(', ')}</p>
             <p className="child modal-weakness" >Weaknesses: {typesDetails?.damage_relations?.double_damage_from.map((weakness) => weakness.name).join(', ')}  </p>
           </div>
-
-          <div className="child modal-star-ball" >
-            <p className="child modal-star" >star</p>
-            <p className="child modal-ball">pokeball</p>
-          </div>
-
-          <ul className="child modal-location" >
+          <div className="child modal-location" >
             Locations:
             {state.locations.map((location, index) => (
-              <li key={index}>
+              <div key={index}>
                 {location.location_area.name}
-                <ul>
+                <div>
                   {location.version_details.map((version, vIndex) => (
-                    <li key={vIndex}>{version.version.name}</li>
+                  <div key={vIndex}>{version.version.name}</div>
                   ))}
-                </ul>
-              </li>
+                </div>
+              </div>
             ))}
-          </ul>
+          </div>
           <div className="child modal-evol-chain">
-            <h4 >Evolution Chain:</h4>
+            <h4 className="modal-evol-picture" >Evolution Chain:</h4>
             {evolutionDetails[state.selectPokemonData.name] && (
               <p>
                 {PokemonEvolutions(evolutionDetails[state.selectPokemonData.name].chain)}
