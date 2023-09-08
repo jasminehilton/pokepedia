@@ -21,7 +21,7 @@ const PokemonModal = () => {
       fetchEvolutionData(pokemon, setEvolutionDetails);
     });
   }, [state.pokemonData]);
-
+  const officialArtworkUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${state.selectPokemonData.id}.png`
   return (
     <div className="pokemon-modal">
       <div className="pokemon-modal-content">
@@ -31,7 +31,7 @@ const PokemonModal = () => {
         <h1>{state.selectPokemonData.name}</h1>
         <p>ID: {state.selectPokemonData.id}</p>
         <img
-          src={state.selectPokemonData.sprites.front_default}
+          src={officialArtworkUrl}
           alt={state.selectPokemonData.name}
         />
         <p>Height: {state.selectPokemonData.height}</p>
