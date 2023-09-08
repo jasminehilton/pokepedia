@@ -102,12 +102,12 @@ const PokemonModal = () => {
           <p className="child form-button form-shiny " >Shiny</p>
           <p className="child modal-form" >Forms:
             <img
-              className="child modal-picture"
+              className="child modal-form-picture"
               src={state.selectPokemonData.sprites.front_default}
               alt={state.selectPokemonData.name}
             /> 
             <img
-              className="child modal-picture"
+              className="child modal-form-picture"
               src={state.selectPokemonData.sprites.front_shiny}
               alt={state.selectPokemonData.name}
             /> 

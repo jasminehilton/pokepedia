@@ -37,9 +37,9 @@
 
 .modal-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   /* grid-template-columns: 1fr; */
-  grid-template-rows: 1fr;
+  grid-template-rows: repeat(auto-fill, minmax(100px, 1fr));
   /* grid-template-columns: repeat(2, 1fr); */
   gap: 5px;
   
@@ -59,7 +59,7 @@
 /* ================================STAR & POKEBALL=========================== */
 .modal-star-ball {
   grid-row: 1 / span 1;
-  grid-column: 1 / span 1;
+  grid-column: 1 / span 2;
   display:grid;
 }
 
@@ -69,12 +69,13 @@
   }
 
   .modal-ball {
-
+    grid-row: 1 / span 1;
+    grid-column: 1 / span 1;
   }
 /* ================================TYPES & WEAKNESS=========================== */
 .modal-type-weak {
-  grid-row: 9 / span 2;
-  grid-column: 1 / span 3;
+  grid-row: 10 / span 1;
+  grid-column: 1 / span 8;
   display:grid;
 }
 
@@ -90,8 +91,8 @@
 /* ================================FORMS CARD============================ */
 .modal-form-card {
   display:grid;
-  grid-row: 4 / span 5;
-  grid-column: 1 / span 2;
+  grid-row: 7 / span 2;
+  grid-column: 1 / span 4;
   gap: 5px;
 }
 
@@ -120,8 +121,8 @@
 
 /* ================================STATS CARD============================ */
 .modal-stats {
-  grid-row:1 / span 6;
-  grid-column: 4 / span 2;
+  grid-row:1 / span 7;
+  grid-column: 9 / span 3;
   display:grid;
 }
 
@@ -153,30 +154,30 @@
 /* ================================SINGLES============================ */
 .modal-number {
   grid-row: 1 / span 1;
-  grid-column: 2 / span 1;
+  grid-column: 3 / span 2;
   font-family: 'Roboto Mono', monospace;
 }
 
 .modal-name {
-  grid-row:2;
-  grid-column: 1 / span 2;
+  grid-row: 2 / span 1;
+  grid-column: 1 / span 4;
   font-size: 32px;
 }
 
 .modal-picture {
   grid-row:1 / span 2;
-  grid-column: 3 / span 2;
-  height:150px;
+  grid-column: 5 / span 2;
+  /* height:400px; */
 }
 
 .modal-description {
-  grid-row:4 / span 4;
-  grid-column: 3 / span 1;
+  grid-row: 9 / span 1;
+  grid-column: 1 / span 8;
 }
 
 .modal-location {
-  grid-row: 7 / span 3;
-  grid-column: 4 / span 2;
+  grid-row: 8 / span 3;
+  grid-column: 9 / span 4;
 
   height:300px;
   overflow-y: scroll;
@@ -199,7 +200,7 @@
 }
 
 .modal-evol-chain {
-  grid-row: 11 / span 2;
-  grid-column: 1 / span 5;
+  grid-row: 11 / span 1;
+  grid-column: 1 / span 11;
   
 }
