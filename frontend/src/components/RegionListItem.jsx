@@ -1,17 +1,17 @@
 import React from "react";
 import { usePokemonDataContext } from '../providers/pokeProvider';
-function RegionListItem() {
+import "../styles/RegionButtons.css";
+
+function RegionListItem({ setSelectedRegion, regionName }) {
   const state = usePokemonDataContext(); //imports the state
 
+  const buttonClassName = state.filters.regions.name === regionName.toLowerCase() ?
+    `region-button ${regionName} selected` : `region-button`;
+
   return (
-    <div className="App">
-      <div>
-        Selected Region Pokemons - {state.pokemonByRegion.length}
-        {state.pokemonByRegion.map((pokemon, index) => (
-          <div key={index}>{pokemon.name}</div>
-        ))}
-      </div>
-    </div>
+    <button className={buttonClassName} onClick={setSelectedRegion}>
+      {regionName}
+    </button>
   );
 }
 

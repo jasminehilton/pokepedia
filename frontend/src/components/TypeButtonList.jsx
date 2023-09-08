@@ -47,9 +47,7 @@ const TypeButtonList = () => {
 
   return (
     <div className='typesList'>
-      <div>
-      <button className="bigButton">Types</button>
-      </div>
+      <button className="bigBlueButton">Types</button>
       <div className='typesButtonsList'>
       {removedExtraTypesData.map((type) => (
         <TypeButton
@@ -58,6 +56,10 @@ const TypeButtonList = () => {
           onTypeSelect={() => onTypeSelect(type)}
         />
       ))}
+      </div>
+      <div className="rightBigButtons">
+      <button className="bigGreenButton">Register</button>
+      <button className="bigYellowButton">Collection</button>
       </div>
     </div>
   );
