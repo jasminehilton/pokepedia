@@ -5,7 +5,7 @@ export const fetchTypesData = async (pokemonData, setTypesDetails) => {
       throw new Error('Network response was not ok');
     }
     const typesData = await typesResponse.json();
-    console.log("typesData = ",typesData)
+    // console.log("typesData = ",typesData)
     setTypesDetails(typesData)
 
   } catch (error) {

@@ -14,7 +14,7 @@ const TypeButtonList = () => {
 
 
   useEffect(() => {
-    console.log('Selected types:', state.filters.types);
+    // console.log('Selected types:', state.filters.types);
   }, [state.filters.types]);
 
   useEffect(() => {
