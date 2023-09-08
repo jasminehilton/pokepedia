@@ -4,8 +4,15 @@ const Pagination = ({ prev, next }) => {
 
   return (
     <div className="pagination-container">
-      <button onClick={prev}>Previous</button>
-      <button onClick={next}>Next</button>
+      <button
+        className="pagination-prev-button"
+        onClick={prev}>
+<img width="100" height="100" src="https://img.icons8.com/arcade/100/000/left-squared.png" alt="left-squared"/>      </button>
+      <div
+        className="pagination-next-button"
+        onClick={next}>
+        Next
+      </div>
     </div>
   )
 }

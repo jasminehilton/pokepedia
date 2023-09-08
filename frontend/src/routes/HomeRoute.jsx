@@ -28,6 +28,7 @@ const HomeRoute = () => {
         <p>Error: {state.error}</p>
       ) : (
         <div>
+          <PokemonLogo />
           <div>
             <Pagination
               next={() =>
@@ -48,7 +49,6 @@ const HomeRoute = () => {
               }
             />
           </div>
-          <PokemonLogo />
           <PokemonList />
           <PokemonFooter />
         </div>
