@@ -5,7 +5,7 @@ const PokemonLogo = () => {
     <div className="pokemonLogoContainer">
     <img
       className="pokemon-logo"
-      src="https://fontmeme.com/permalink/230908/81ad3821f0eb7cf9e1e4299a341642c7.png"
+      src="https://fontmeme.com/permalink/230908/d9ac56c5127687a6a23707f77cca5f56.png"
       alt="pokemon-logo"
     />
     </div>
