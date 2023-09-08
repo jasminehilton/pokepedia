@@ -1,4 +1,4 @@
-.pagination-logo {
+/* .pagination-logo {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -13,7 +13,12 @@
 }
 
 .pagination-prev-button {
-  /* no outline for button */
   background: none;
   border: none;
 }
+
+.logo-region-type-pagination {
+  display: flex;
+  flex-direction: column;
+  justify-content: row;
+} */

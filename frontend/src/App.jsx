@@ -43,8 +43,8 @@ function App() {
 
   return (
     <div className="App">
-      <RegionList />
-      <TypeButtonList />
+      {/* <RegionList />
+      <TypeButtonList /> */}
       <HomeRoute />
       {/* <PokemonInfo /> */}
       {/* <Regions /> */}

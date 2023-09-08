@@ -7,12 +7,14 @@ const Pagination = ({ prev, next }) => {
       <button
         className="pagination-prev-button"
         onClick={prev}>
-<img width="100" height="100" src="https://img.icons8.com/arcade/100/000/left-squared.png" alt="left-squared"/>      </button>
-      <div
+        {/* <img width="100" height="100" src="https://img.icons8.com/arcade/100/000/left-squared.png" alt="left-squared" /> */}
+        Prev
+      </button>
+      <button
         className="pagination-next-button"
         onClick={next}>
         Next
-      </div>
+      </button>
     </div>
   )
 }

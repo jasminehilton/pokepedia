@@ -6,6 +6,8 @@ import PokemonLogo from "../components/PokemonLogo";
 import handlePageChange from "../helpers/handlePageChange";
 import Pagination from "../components/Pagination";
 import Spinner from "../components/Spinner";
+import RegionList from "../components/RegionList";
+import TypeButtonList from "../components/TypeButtonList";
 import {
   usePokemonDataContext,
   usePokemonDataDispatchContext,
@@ -28,26 +30,32 @@ const HomeRoute = () => {
         <p>Error: {state.error}</p>
       ) : (
         <div>
-          <PokemonLogo />
-          <div>
-            <Pagination
-              next={() =>
-                handlePageChange(
-                  dispatch,
-                  state.currentPage + 1,
-                  state.itemsPerPage,
-                  state.pokemonData.length
-                )
-              }
-              prev={() =>
-                handlePageChange(
-                  dispatch,
-                  state.currentPage - 1,
-                  state.itemsPerPage,
-                  state.pokemonData.length
-                )
-              }
-            />
+          <div className="logo-region-type-pagination">
+            <PokemonLogo />
+            <div>
+              <RegionList />
+              <TypeButtonList />
+            </div>
+            <div>
+              <Pagination
+                next={() =>
+                  handlePageChange(
+                    dispatch,
+                    state.currentPage + 1,
+                    state.itemsPerPage,
+                    state.pokemonData.length
+                  )
+                }
+                prev={() =>
+                  handlePageChange(
+                    dispatch,
+                    state.currentPage - 1,
+                    state.itemsPerPage,
+                    state.pokemonData.length
+                  )
+                }
+              />
+            </div>
           </div>
           <PokemonList />
           <PokemonFooter />
