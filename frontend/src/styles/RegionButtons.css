@@ -15,9 +15,9 @@
   transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s, filter 0.2s;
 }
 
-/* .region-button:hover {
+.region-button:hover {
   filter: brightness(1.12);
-} */
+}
 
 .region-button.selected {
   transform: translateY(2px);
