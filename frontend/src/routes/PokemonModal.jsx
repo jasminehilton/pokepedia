@@ -5,6 +5,8 @@ import { fetchEvolutionData } from '../helpers/fetchEvolutionData';
 import PokemonEvolutions from '../components/PokemonEvolutions';
 import "../styles/PokemonModal.css"
 import { fetchSpeciesData } from "../helpers/fetchSpeciesData";
+import { fetchTypesData } from "../helpers/fetchTypesData";
+
 
 const PokemonModal = () => {
   const dispatch = usePokemonDataDispatchContext();
@@ -16,9 +18,14 @@ const PokemonModal = () => {
 
   const [speciesDetails, setSpeciesDetails] = useState({}) 
 
-  fetchPokemonLocations(dispatch, state.selectPokemonData.id);
+  const [typesDetails, setTypesDetails] = useState({})
+
+  // fetchPokemonLocations(dispatch, state.selectPokemonData.id);
   
-  fetchSpeciesData(state.selectPokemonData, setSpeciesDetails);
+  // fetchSpeciesData(state.selectPokemonData, setSpeciesDetails);
+
+  // fetchTypesData(state.selectPokemonData, setTypesDetails);
+ 
 
   const getFlavorText = (flavorEntries) => {
     let flavorText = flavorEntries.find((flavorEntry) => {
@@ -42,12 +49,37 @@ const PokemonModal = () => {
     return '';
   }
 
+
+
+    // NOTE: this is getting pokemon evolution data for all the pokemons we have and not just the pokemon that is selected and viewed in the modal
+    // i think it is fine to get one by one because right now it is getting it for all 1000 pokemons and their many evolutions, which can be more than like 10k calls
+    // probably better to have this data only live in this component instead of state, because it doesn't need to be shared across the app
+    
   useEffect(() => {
     // Fetch evolution data for each Pokémon in the list
-    state.pokemonData.forEach((pokemon) => {
-      fetchEvolutionData(state.selectPokemonData, setEvolutionDetails);
-    });
-  }, [state.selectPokemonData]);
+    // state.pokemonData.forEach((pokemon) => {
+    fetchEvolutionData(state.selectPokemonData, setEvolutionDetails);
+    // });
+
+    fetchPokemonLocations(dispatch, state.selectPokemonData.id);
+  
+    fetchSpeciesData(state.selectPokemonData, setSpeciesDetails);
+
+    fetchTypesData(state.selectPokemonData, setTypesDetails);
+  }, []);
+    
+  // useEffect(() => {
+  //    // Fetch evolution data for each Pokémon in the list
+  //   state.pokemonData.forEach((pokemon) => {
+  //     fetchEvolutionData(pokemon, setEvolutionDetails);
+  //   });
+  // }, [state.selectPokemonData]);
+  
+  // So everytime the pokemon data is updated which is everytime we get the evolution data, this entire modal get rendered again - so it's in a constant 
+  // state of fetching data. 
+  // Probably better to just do one call by fetching evolution data for only the selected pokemon and not store in the state but in the PokemonModal component with 
+  // a simple useState
+
 
 
 
@@ -95,7 +127,7 @@ const PokemonModal = () => {
 
           <div className="child modal-type-weak" >
             <p className="child modal-type" >Types: {state.selectPokemonData.types.map((type) => type.type.name).join(', ')}</p>
-            <p className="child modal-weakness" >Weaknesses: </p>
+            <p className="child modal-weakness" >Weaknesses: {typesDetails?.damage_relations?.double_damage_from.map((weakness) => weakness.name).join(', ')}  </p>
           </div>
 
           <div className="child modal-star-ball" >
