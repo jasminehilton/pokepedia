@@ -4,7 +4,10 @@
   gap: 5px;
   margin-left: 200px;
   margin-right: 200px;
+<<<<<<< HEAD
+=======
   margin-top: 400px;
+>>>>>>> 5f7427b0da0db923088869dc0f26ed5095908f08
   margin-bottom: 300px;
   background-color: #f7f7f7;
   background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
@@ -60,6 +63,10 @@
   box-shadow: 10px 10px 10px rgba(1, 1, 1, 0.1);
   transform: rotate(3deg); /* Apply a small rotation on hover */
   animation: shake 0.3s ease-in-out 1; 
+}
+
+.pagination-buttons {
+  display: flex;
 }
 
 @keyframes shake {
