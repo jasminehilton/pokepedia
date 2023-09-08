@@ -44,14 +44,8 @@ function App() {
 
   return (
     <div className="App">
-<<<<<<< HEAD
-      <PokemonLogo />
-      <RegionList />
-      <TypeButtonList />
-=======
       {/* <RegionList />
       <TypeButtonList /> */}
->>>>>>> 5f7427b0da0db923088869dc0f26ed5095908f08
       <HomeRoute />
       {/* <PokemonInfo /> */}
       {/* <Regions /> */}
