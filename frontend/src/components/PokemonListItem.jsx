@@ -7,7 +7,7 @@ const PokemonListItem = ({ pokemon, onDisplayPokemonModal }) => {
   return (
     <div className="pokemon-display">
       <div className="pokemon-list__item">
-        <p className="pokemon-id">ID: {pokemon.id}</p>
+        <h5 className="pokemon-id">No.{pokemon.id}</h5>
         <div className="pokemon-list__image-name">
           <img
             className="pokemon-list__image"

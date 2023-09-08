@@ -10,6 +10,7 @@ import {
 import filterPokemon from "./helpers/filter";
 import getDisplayedPokemon from "./helpers/getDisplayedPokemon";
 import RegionList from "./components/RegionList";
+import "./styles/Navbar.css"
 import HomeRoute from "./routes/HomeRoute";
 
 function App() {
