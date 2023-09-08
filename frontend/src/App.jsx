@@ -41,14 +41,13 @@ function App() {
     state.filters.regions,
   ]);
 
-  const collectionObj = { caught_normal: true, caught_shiney: false };
-  const dataObj = {
-    collectionObj,
-    pokemon_id: 5,
-  };
+  const data = {
+    caught_normal: null,
+    caught_shiney: true
+  }
   useEffect(() => {
     axios
-      .post("http://localhost:8080/collection/1/create", dataObj)
+      .post("http://localhost:8080/collection/update/1", data)
       .then((res) => {
         console.log("Response:", res);
       });

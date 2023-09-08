@@ -20,22 +20,22 @@ const createCollection = (user_id, collections, pokemon_id) => {
     });
 };
 // Delete a collection by ID
-const deleteCollection = (user_id, collection_id) => {
+const deleteCollection = (collection_id) => {
   return db
     .query(
-      "DELETE FROM collections WHERE user_id = $1 AND collection_id = $2;",
-      [user_id, collection_id]
+      "DELETE FROM collections WHERE id = $1;",
+      [collection_id]
     )
     .then((data) => {
       return data.rows;
     });
 };
 // Update the caught normal column of a users collection
-const updateCaughtNormal = (user_id, collection_id, caught_normal) => {
+const updateCaughtNormal = (collection_id, caught_normal) => {
   return db
     .query(
-      "UPDATE collections SET caught_normal = $1 WHERE user_id = $2 AND collection_id = $3;",
-      [caught_normal, user_id, collection_id]
+      "UPDATE collections SET caught_normal = $1 WHERE id = $2;",
+      [caught_normal, collection_id]
     )
     .then((data) => {
       return data.rows;
@@ -43,10 +43,10 @@ const updateCaughtNormal = (user_id, collection_id, caught_normal) => {
 };
 
 // Update the caught shiney column of a users collection
-const updateCaughtShiney = (user_id, collection_id, caught_shiney) => {
+const updateCaughtShiney = (collection_id, caught_shiney) => {
   return db
     .query(
-      "UPDATE collections SET caught_shiney = $1 WHERE user_id = $2 AND collection_id = $3"
+      "UPDATE collections SET caught_shiney = $1 WHERE id = $2", [caught_shiney, collection_id]
     )
     .then((data) => {
       return data.rows;
