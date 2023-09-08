@@ -12,7 +12,7 @@ import {
   usePokemonDataContext,
   usePokemonDataDispatchContext,
 } from "../providers/pokeProvider";
-
+import PokemonLogo from "../components/PokemonLogo";
 
 const HomeRoute = () => {
   const state = usePokemonDataContext();
@@ -30,27 +30,6 @@ const HomeRoute = () => {
         <p>Error: {state.error}</p>
       ) : (
         <div>
-<<<<<<< HEAD
-          <Pagination
-            next={() =>
-              handlePageChange(
-                dispatch,
-                state.currentPage + 1,
-                state.itemsPerPage,
-                state.pokemonData.length
-              )
-            }
-            prev={() =>
-              handlePageChange(
-                dispatch,
-                state.currentPage - 1,
-                state.itemsPerPage,
-                state.pokemonData.length
-              )
-            }
-          />
-          {/* <PokemonLogo /> */}
-=======
           <div className="logo-region-type-pagination">
             <PokemonLogo />
             <div>
@@ -78,7 +57,6 @@ const HomeRoute = () => {
               />
             </div>
           </div>
->>>>>>> 5f7427b0da0db923088869dc0f26ed5095908f08
           <PokemonList />
           <PokemonFooter />
         </div>
