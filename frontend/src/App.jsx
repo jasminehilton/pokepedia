@@ -13,6 +13,7 @@ import RegionList from "./components/RegionList";
 import HomeRoute from "./routes/HomeRoute";
 import axios from "axios";
 
+
 function App() {
   const state = usePokemonDataContext(); //imports the state
   const dispatch = usePokemonDataDispatchContext(); //imports dispatch
@@ -41,6 +42,9 @@ function App() {
     state.filters.regions,
   ]);
 
+  useEffect(() => {
+    dispatch({ type: 'SET_CAUGHT_SHINY', payload: {pokemon_id: 751, collection_id: null}})
+  }, [])
 
   return (
     <div className="App">

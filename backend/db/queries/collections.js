@@ -12,8 +12,8 @@ const getCollectionByUserId = (user_id) => {
 const createCollection = (user_id, collections, pokemon_id) => {
   return db
     .query(
-      "INSERT INTO collections (user_id, pokemon_id, caught_normal, caught_shiney) VALUES ($1, $2, $3, $4);",
-      [user_id, pokemon_id, collections.caught_normal, collections.caught_shiney]
+      "INSERT INTO collections (user_id, pokemon_id, caught_normal, caught_shiny) VALUES ($1, $2, $3, $4);",
+      [user_id, pokemon_id, collections.caught_normal, collections.caught_shiny]
     )
     .then((data) => {
       return data.rows;
@@ -43,10 +43,10 @@ const updateCaughtNormal = (collection_id, caught_normal) => {
 };
 
 // Update the caught shiney column of a users collection
-const updateCaughtShiney = (collection_id, caught_shiney) => {
+const updateCaughtShiny = (collection_id, caught_shiny) => {
   return db
     .query(
-      "UPDATE collections SET caught_shiney = $1 WHERE id = $2", [caught_shiney, collection_id]
+      "UPDATE collections SET caught_shiny = $1 WHERE id = $2", [caught_shiny, collection_id]
     )
     .then((data) => {
       return data.rows;
@@ -58,5 +58,5 @@ module.exports = {
   createCollection,
   deleteCollection,
   updateCaughtNormal,
-  updateCaughtShiney
+  updateCaughtShiny
 };

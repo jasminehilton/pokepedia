@@ -5,7 +5,7 @@ const {
   createCollection,
   deleteCollection,
   updateCaughtNormal,
-  updateCaughtShiney,
+  updateCaughtShiny,
 } = require("../db/queries/collections.js");
 
 router.get("/:user_id", (req, res) => {
@@ -16,7 +16,8 @@ router.get("/:user_id", (req, res) => {
 
 // endpoint for creating collections
 router.post("/:user_id/create", (req, res) => {
-  const user_id = req.params.user_id;
+  console.log(req);
+  const user_id = 1;
   const collections = req.body.collectionObj;
   const pokemon_id = req.body.pokemon_id;
   console.log(collections, pokemon_id, user_id);
@@ -31,7 +32,7 @@ router.post("/:user_id/create", (req, res) => {
 router.post("/update/:collection_id", (req, res) => {
   const collection_id = req.params.collection_id;
   const caught_normal = req.body.caught_normal;
-  const caught_shiney = req.body.caught_shiney;
+  const caught_shiny = req.body.caught_shiny;
 
   if (caught_normal) {
     updateCaughtNormal(collection_id, caught_normal).then((collection) => {
@@ -39,8 +40,8 @@ router.post("/update/:collection_id", (req, res) => {
     });
   }
 
-  if (caught_shiney) {
-    updateCaughtShiney(collection_id, caught_shiney).then((collection) => {});
+  if (caught_shiny) {
+    updateCaughtShiny(collection_id, caught_shiny).then((collection) => {});
     // res.status(200).send();
   }
 

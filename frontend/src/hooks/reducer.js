@@ -1,5 +1,5 @@
 import { useReducer } from "react";
-
+import axios from "axios";
 
 // jotai - state management
 
@@ -25,7 +25,9 @@ export const ACTIONS = {
   SET_CURRENT_PAGE: "SET_CURRENT_PAGE",
   SET_DISPLAYED_POKEMON: "SET_DISPLAYED_POKEMON",
   SET_POKEMON_BY_REGION: "SET_POKEMON_BY_REGION",
-  FETCH_POKEMON_COLLECTION: ""
+  FETCH_POKEMON_COLLECTION: "FETCH_POKEMON_COLLECTION",
+  SET_CAUGHT_NORMAL: "SET_CAUGHT_NORMAL",
+  SET_CAUGHT_SHINY: "SET_CAUGHT_SHINY",
 };
 
 const initialState = {
@@ -60,9 +62,6 @@ const initialState = {
     takeNoDamage: [],
     dealNoDamage: [],
   },
-  //isLoggedIn: true, demo purposes
-  //isShiny: null,
-  //isCaught: [],
 };
 
 const reducer = (state, action) => {
@@ -163,8 +162,74 @@ const reducer = (state, action) => {
     case ACTIONS.SET_POKEMON_BY_REGION:
       return {
         ...state,
-        pokemonByRegion: action.payload
+        pokemonByRegion: action.payload,
+      };
+    case ACTIONS.SET_CAUGHT_NORMAL:
+      const updatedCollectionNormal = state.collectionPokemon.map((pokemon) => {
+        if (pokemon.id === action.payload.pokemonId) {
+          return { ...pokemon, caught_normal: action.payload.isCaught };
+        }
+        return pokemon;
+      });
+
+      // Send a POST request to update the backend with the new caught_normal value
+      // You need to implement the backend update logic here
+
+      return { ...state, collectionPokemon: updatedCollectionNormal };
+
+    case ACTIONS.SET_CAUGHT_SHINY:
+      // payload: { userId, pokemonId, caught_normal, caught_shiny }
+      const pokemonId = action.payload.pokemon_id;
+      const collection_id = action.payload.collection_id;
+      const isAlreadyInList = state.collectionPokemon.some(
+        (pokemon) => pokemon.pokemon_id === pokemonId
+      );
+
+      let updatedCollectionShiny;
+
+      if (isAlreadyInList) {
+        // If the Pokémon is already in the list, update the 'caught_shiny' property
+        updatedCollectionShiny = state.collectionPokemon.map((pokemon) => {
+          if (pokemon.id === action.payload.pokemonId) {
+            return { ...pokemon, caught_shiny: true };
+          }
+          return pokemon;
+        });
+
+        const data = {
+          caught_normal: null,
+          caught_shiney: true,
+        };
+
+        axios.post(`/update/${collection_id}`, data).then((res) => {
+          console.log("Successful update");
+        });
+      } else {
+        const data = {
+          collectionObj: {
+            caught_normal: false,
+            caught_shiney: true,
+          },
+          pokemon_id: pokemonId,
+        };
+
+        axios
+          .post(`http://localhost:8080/collection/1/create`, data)
+          .then((res) => {
+            console.log("Successful creation");
+          });
+
+        axios.get("http://localhost:8080/collection/1").then((res) => {
+          updatedCollectionShiny = res.data;
+        });
       }
+
+      // Send a POST request to update the backend with the new caught_shiny value
+      // You need to implement the backend update logic here
+
+      return { ...state, collectionPokemon: updatedCollectionShiny };
+    case ACTIONS.FETCH_POKEMON_COLLECTION:
+      return { ...state, collectionPokemon: action.payload };
     default:
       return state;
   }
@@ -173,9 +238,9 @@ const reducer = (state, action) => {
 export default function usePokemonData() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const fetchPokeData = (data) => {
-    dispatch({ type: ACTIONS.SELECT_POKEMON, selectPokemon: data });
-  };
+  // const fetchPokeData = (data) => {
+  //   dispatch({ type: ACTIONS.SELECT_POKEMON, selectPokemon: data });
+  // };
 
   return {
     state,
