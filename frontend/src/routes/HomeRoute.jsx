@@ -31,7 +31,7 @@ const HomeRoute = () => {
       ) : (
         <div>
           <div className="logo-region-type-pagination">
-            <PokemonLogo />
+            {/* <PokemonLogo /> */}
             <div>
               <RegionList />
               <TypeButtonList />

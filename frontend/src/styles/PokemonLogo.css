@@ -1,6 +1,9 @@
 .pokemon-logo {
-  height: 250px;
-  width: 700px;
+  height: 140px;
+  width: 400px;
+  position: absolute;
+  margin-bottom: 65px;
+  opacity: 0.9;
 }
 
 .pokemonLogoContainer {

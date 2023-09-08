@@ -5,7 +5,7 @@ import {
 } from "../providers/pokeProvider";
 import PokemonModal from "../routes/PokemonModal";
 import PokemonListItem from "./PokemonListItem";
-
+import PokemonLogo from "./PokemonLogo";
 
 const PokemonList = () => {
   const state = usePokemonDataContext();
@@ -17,6 +17,7 @@ const PokemonList = () => {
 
   return (
     <div>
+      <PokemonLogo />
       <div className="pokemon-container">
         {state.displayedPokemon.map((pokemon, index) => (
           <PokemonListItem
