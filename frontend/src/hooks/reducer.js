@@ -24,7 +24,8 @@ export const ACTIONS = {
   FETCH_POKEMON_FAILURE: "FETCH_POKEMON_FAILURE",
   SET_CURRENT_PAGE: "SET_CURRENT_PAGE",
   SET_DISPLAYED_POKEMON: "SET_DISPLAYED_POKEMON",
-  SET_POKEMON_BY_REGION: "SET_POKEMON_BY_REGION"
+  SET_POKEMON_BY_REGION: "SET_POKEMON_BY_REGION",
+  FETCH_POKEMON_COLLECTION: ""
 };
 
 const initialState = {
@@ -39,6 +40,8 @@ const initialState = {
   previous: null,
   search: "",
   pokemonByRegion: [],
+  collectionPokemon: [],
+  loggedIn: true,
   regionsData: [],
   typesData: [],
   filters: {
