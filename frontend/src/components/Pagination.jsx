@@ -10,13 +10,13 @@ const Pagination = ({ prev, next }) => {
       <AwesomeButton
         className="pagination-prev-button"
         type="danger"
-        onClick={prev}>
+        onPress={prev}>
         Prev
       </AwesomeButton>
       <AwesomeButton
         className="pagination-next-button"
         type="danger"
-        onClick={next}>
+        onPress={next}>
         Next
       </AwesomeButton>
     </div>
