@@ -5,10 +5,9 @@ const PokemonEvolutions = (chain) => {
 
   const renderChain = (chain) => {
     evolutions.push(
-      <h3 className="modal-evol-picture" key={chain.species.name}>
+      <h3  key={chain.species.name}>
         {chain.species.name}
         <img
-          // className="modal-evol-picture"
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${chain.species.url.split('/').slice(-2, -1)}.png`}
           alt={chain.species.name}
         />
