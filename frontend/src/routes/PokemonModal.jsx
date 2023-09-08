@@ -114,18 +114,22 @@ const PokemonModal = () => {
           </div>
           <h1 className="child modal-name" >{state.selectPokemonData.name}</h1>
           <div className="child modal-form" >Forms:
+            <div className="child form-names" >
               <p className=" child form-default " >Default</p>
-            <img
-              className="child modal-form-picture"
-              src={state.selectPokemonData.sprites.front_default}
-              alt={state.selectPokemonData.name}
-            /> 
-            <p className="child form-shiny " >Shiny</p>
-            <img
-              className="child modal-form-picture"
-              src={state.selectPokemonData.sprites.front_shiny}
-              alt={state.selectPokemonData.name}
-            />            
+              <p className="child form-shiny " >Shiny</p>
+            </div>
+            <div> 
+              <img
+                className="child modal-form-picture"
+                src={state.selectPokemonData.sprites.front_default}
+                alt={state.selectPokemonData.name}
+              /> 
+              <img
+                className="child modal-form-picture"
+                src={state.selectPokemonData.sprites.front_shiny}
+                alt={state.selectPokemonData.name}
+              />   
+            </div>          
           </div>     
           <p className="child modal-description" >Description: {speciesDetails?.flavor_text_entries?.length > 0 && getFlavorText(speciesDetails.flavor_text_entries)}</p>
           <div className="child modal-type-weak" >
