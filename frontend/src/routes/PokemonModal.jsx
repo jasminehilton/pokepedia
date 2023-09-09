@@ -129,7 +129,6 @@ const PokemonModal = () => {
                 alt={state.selectPokemonData.name}
               /> 
             </div>
-
             <div className="child form-shiny "> 
               <p className="form-title" >Shiny</p>
                 <img
@@ -139,7 +138,6 @@ const PokemonModal = () => {
                 />   
             </div>          
           </div>   
-
           <p className="parent modal-description" >Description: {speciesDetails?.flavor_text_entries?.length > 0 && getFlavorText(speciesDetails.flavor_text_entries)}</p>
           <div className="parent modal-type-weak" >
             <p className="child modal-type" >Types: {state.selectPokemonData.types.map((type) => type.type.name).join(', ')}</p>
