@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../styles/Registration.css";
 
 const Registration = () => {
   const [email, setEmail] = useState("");
@@ -32,23 +33,24 @@ const Registration = () => {
   return (
     <section className="form-registration">
       <div>
-        <h1>Pokedex Registration</h1>
+        <p
+          className="form-title"
+        >Pokedex Registration</p>
       </div>
-      <form>
-        <label className="form-label">Email</label>
+      <form className="form-container">
         <input
           className="form-input"
           type="text"
           value={email}
           onChange={handleEmail}
+          placeholder="Email"
         />
-
-        <label className="form-label">Password</label>
         <input
           className="form-input"
           type="password"
           value={password}
           onChange={handlePassword}
+          placeholder="Password"
         />
 
         <button
