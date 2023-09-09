@@ -27,29 +27,29 @@ function RegionList() {
       getPokemonsByRegion(state.filters.regions, dispatch);
     }
   }, [state.filters.regions]);
-  
+
   return (
-		<div className="regionList">
-        <button className="bigBlueButton">Regions</button>
-        <div className="regionsButtonsList">
-          {state.regionsData.map((region) => (
+    <div className="regionList">
+      <button className="bigBlueButton">Regions</button>
+      <div className="regionsButtonsList">
+        {state.regionsData.map((region, index) => (
           <RegionListItem
-          key={region}
-          regionName={capitalizeFirstLetter(region.name)}
-          setSelectedRegion={() =>
-            setSelectedRegion(
-              region,
-              dispatch,
-              state.filters.regions
-            )}
-        />
-          ))}
-        </div>
-          <div className="rightBigButtons">
-          <button className="bigGreenButton">Login</button>
-          <button className="bigYellowButton">Search</button>
-          </div>
+            key={index}
+            regionName={capitalizeFirstLetter(region.name)}
+            setSelectedRegion={() =>
+              setSelectedRegion(
+                region,
+                dispatch,
+                state.filters.regions
+              )}
+          />
+        ))}
       </div>
+      <div className="rightBigButtons">
+        <button className="bigGreenButton">Login</button>
+        <button className="bigYellowButton">Search</button>
+      </div>
+    </div>
   );
 }
 
