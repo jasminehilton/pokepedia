@@ -24,7 +24,9 @@ export const ACTIONS = {
   FETCH_POKEMON_FAILURE: "FETCH_POKEMON_FAILURE",
   SET_CURRENT_PAGE: "SET_CURRENT_PAGE",
   SET_DISPLAYED_POKEMON: "SET_DISPLAYED_POKEMON",
-  SET_POKEMON_BY_REGION: "SET_POKEMON_BY_REGION"
+  SET_POKEMON_BY_REGION: "SET_POKEMON_BY_REGION",
+  DISPLAY_POKEMON_SEARCH: "DISPLAY_POKEMON_SEARCH",
+  CLOSE_POKEMON_SEARCH: "CLOSE_POKEMON_SEARCH",
 };
 
 const initialState = {
@@ -47,6 +49,7 @@ const initialState = {
   },
   isButtonSelected: false, // useState
   isModalVisible: false, // useState
+  isSearchBarVisible: false,
   selectPokemonData: null,
   locations: [],
   typeInteractions: {
@@ -95,6 +98,16 @@ const reducer = (state, action) => {
         selectPokemonData: {},
         isModalVisible: false,
       };
+    case ACTIONS.DISPLAY_POKEMON_SEARCH:
+      return {
+        ...state,
+        isSearchBarVisible: true,
+      };
+    case ACTIONS.CLOSE_POKEMON_SEARCH:
+      return {
+        ...state,
+        isSearchBarVisible: false,
+      };
     case ACTIONS.FETCH_TYPES:
       return { ...state, typesData: action.typesData };
     case ACTIONS.FETCH_REGIONS:
@@ -131,7 +144,9 @@ const reducer = (state, action) => {
     case ACTIONS.SELECT_PAGE:
       return { ...state };
     case ACTIONS.INITIATE_SEARCH:
-      return { ...state };
+      return { 
+        ...state,
+        searchInput: action.searchInput,};
     case ACTIONS.FETCH_POKEMON_SUCCESS:
       return {
         ...state,

@@ -1,50 +1,39 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   usePokemonDataContext,
   usePokemonDataDispatchContext,
 } from "../providers/pokeProvider";
 
 const Search = () => {
-  const state = usePokemonDataContext(); // Access context state
-  const dispatch = usePokemonDataDispatchContext(); // Access context dispatch
+  const state = usePokemonDataContext();
+  const dispatch = usePokemonDataDispatchContext();
 
-  const handleSearchInputChange = (event) => {
-    dispatch({ type: "INITIATE_SEARCH", searchInput: event.target.value });
+  const searchButtonClick = () => { //Toggles the search bar
+    dispatch({ type: state.isSearchBarVisible ? "CLOSE_POKEMON_SEARCH" : "DISPLAY_POKEMON_SEARCH" });
   };
 
-  const handleSearchButtonClick = () => {
-    // Implement your logic for showing/hiding the search bar if needed
-  };
-
-  const handleSearch = () => {
-    console.log("Searching for:", state.searchInput);
-    // Implement your search logic here using state.searchInput
-  };
-
-  const handleKeyDown = (event) => {
+  const handleSearch = (event) => { //Changes the state on enter key
     if (event.key === "Enter") {
-      handleSearch(); // Trigger search when Enter key is pressed
+      dispatch({ type: "INITIATE_SEARCH", searchInput: event.target.value });
     }
   };
 
+  useEffect(() => { //Displays the search input
+    console.log("Updated searchInput:", state.searchInput);
+  }, [state.searchInput]);
+
+
   return (
     <div>
-      <button
-        className="bigYellowButton"
-        onClick={handleSearchButtonClick}
-      >
-        Search
-      </button>
+      <button className="bigYellowButton" onClick={searchButtonClick}>Search</button>
       {state.isSearchBarVisible && (
         <div>
           <input
             type="text"
             placeholder="Search..."
             value={state.searchInput}
-            onChange={handleSearchInputChange}
-            onKeyDown={handleKeyDown} // Use onKeyDown for Enter key
+            onKeyDown={handleSearch}
           />
-          <button className="bigYellowButton" onClick={handleSearch}></button>
         </div>
       )}
     </div>
