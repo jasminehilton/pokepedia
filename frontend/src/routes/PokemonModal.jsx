@@ -8,6 +8,8 @@ import { fetchSpeciesData } from "../helpers/fetchSpeciesData";
 import { fetchTypesData } from "../helpers/fetchTypesData";
 
 
+
+
 const PokemonModal = () => {
   const dispatch = usePokemonDataDispatchContext();
   const state = usePokemonDataContext();
@@ -26,6 +28,7 @@ const PokemonModal = () => {
 
   // fetchTypesData(state.selectPokemonData, setTypesDetails);
  
+  console.log("state.selectPokemonData.id" , state.selectPokemonData.types[0].type.name )
 
   const getFlavorText = (flavorEntries) => {
     let flavorText = flavorEntries.find((flavorEntry) => {
@@ -94,14 +97,15 @@ const PokemonModal = () => {
         <span className="close" onClick={onClosePokemonModal}>
           &times;
         </span>
-        <div className=" modal-container" >
+        <div className= {` modal-container ${state.selectPokemonData.types[0].type.name} `}  >
+        {/* <div className= " modal-container "  > */}
           <div className="child modal-star-ball" >
             <p className="child modal-star" >star</p>
             <p className="child modal-ball">poke</p>
           </div>         
-          <p className="child modal-number" >ID: {state.selectPokemonData.id}</p>
+          <p className="child modal-number" >No. {state.selectPokemonData.id}</p>
           <img
-            className=" child modal-picture"
+            className="modal-picture"
             src={officialArtworkUrl}
             alt={state.selectPokemonData.name}
           />
@@ -112,7 +116,7 @@ const PokemonModal = () => {
             <p className="child modal-category" >Category:  {speciesDetails?.genera?.length > 0 && getGenusText(speciesDetails.genera)} </p>
             <p className="child modal-ability" >Abilities: {state.selectPokemonData.abilities.map((ability) => ability.ability.name).join(', ')}</p>
           </div>
-          <h1 className="child modal-name" >{state.selectPokemonData.name}</h1>
+          <p className="child modal-name" >{state.selectPokemonData.name}</p>
 
           <div className="child modal-form" >Forms:
           
@@ -143,9 +147,9 @@ const PokemonModal = () => {
           <ul className="child modal-location" >
           Locations:
           {state.locations.map((location, index) => (
-            <li key={index}>
+            <li className="child" key={index}>
               {location.location_area.name}
-              <ul>
+              <ul className="child" >
                 {location.version_details.map((version, vIndex) => (
                   <li key={vIndex}>{version.version.name}</li>
                 ))}
