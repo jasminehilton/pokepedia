@@ -1,16 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { usePokemonDataContext, usePokemonDataDispatchContext } from "../providers/pokeProvider";
 import TypeButton from './TypeButton';
 import "../styles/Navbar.css"
-import Registration from './Registration';
+import RegistrationModal from '../routes/RegistrationModal';
 
 const TypeButtonList = () => {
 
   const state = usePokemonDataContext(); //imports the state
   const dispatch = usePokemonDataDispatchContext(); //imports dispatch
-
-
+  const [showRegistration, setShowRegistration] = useState(false);
 
   useEffect(() => {
     // console.log('Selected types:', state.filters.types);
@@ -28,6 +27,9 @@ const TypeButtonList = () => {
       });
   }, []);
 
+  const onDisplayRegistration = () => {
+    setShowRegistration(!showRegistration);
+  };
 
   const onTypeSelect = (typeName) => {
     const selectedTypes = state.filters.types;
@@ -59,11 +61,13 @@ const TypeButtonList = () => {
       <div className="rightBigButtons">
         <button
           className="bigGreenButton"
+          onClick={() => onDisplayRegistration()}
         >
           Register
         </button>
         <button className="bigYellowButton">Collection</button>
       </div>
+      {showRegistration && <RegistrationModal />}
     </div>
   );
 };
