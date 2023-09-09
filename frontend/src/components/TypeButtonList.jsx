@@ -21,14 +21,16 @@ const TypeButtonList = () => {
     axios
       .get('https://pokeapi.co/api/v2/type')
       .then((response) => {
-        const typesDataArray = response.data.results.map((type) => type.name);
+        const typesDataArray = response.data.results
+        .map((type) => type.name)
+        .filter((type) => type !== "shadow" && type !== "unknown");
         dispatch({ type: "FETCH_TYPES", typesData: typesDataArray });
+        // console.log(typesDataArray);
       })
       .catch((error) => {
         console.error('Error fetching Pokemon types data:', error);
       });
   }, []);
-
 
   const onTypeSelect = (typeName) => {
     const selectedTypes = state.filters.types;
@@ -41,15 +43,11 @@ const TypeButtonList = () => {
     };
   };
 
-  const removedExtraTypesData = state.typesData.filter(
-    (type) => type !== "shadow" && type !== "unknown"
-  );
-
   return (
     <div className='typesList'>
       <button className="bigBlueButton">Types</button>
       <div className='typesButtonsList'>
-      {removedExtraTypesData.map((type) => (
+      {state.typesData.map((type) => (
         <TypeButton
           key={type}
           typeName={type}

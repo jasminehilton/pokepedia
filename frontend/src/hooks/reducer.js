@@ -39,7 +39,7 @@ const initialState = {
   displayedPokemon: [],
   next: null,
   previous: null,
-  search: "",
+  searchWords: [],
   pokemonByRegion: [],
   regionsData: [],
   typesData: [],
@@ -146,7 +146,7 @@ const reducer = (state, action) => {
     case ACTIONS.INITIATE_SEARCH:
       return { 
         ...state,
-        searchInput: action.searchInput,};
+        searchWords: action.searchWords,};
     case ACTIONS.FETCH_POKEMON_SUCCESS:
       return {
         ...state,
