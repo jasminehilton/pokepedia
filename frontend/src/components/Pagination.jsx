@@ -1,20 +1,24 @@
 import React from "react";
 import "../styles/Pagination.css";
+import { AwesomeButton } from 'react-awesome-button';
+import 'react-awesome-button/dist/styles.css';
+
 const Pagination = ({ prev, next }) => {
 
   return (
     <div className="pagination-container">
-      <button
+      <AwesomeButton
         className="pagination-prev-button"
-        onClick={prev}>
-        {/* <img width="100" height="100" src="https://img.icons8.com/arcade/100/000/left-squared.png" alt="left-squared" /> */}
+        type="danger"
+        onPress={prev}>
         Prev
-      </button>
-      <button
+      </AwesomeButton>
+      <AwesomeButton
         className="pagination-next-button"
-        onClick={next}>
+        type="danger"
+        onPress={next}>
         Next
-      </button>
+      </AwesomeButton>
     </div>
   )
 }
