@@ -10,44 +10,24 @@ const Registration = () => {
   const handleEmail = (e) => {
     setEmail(e.target.value);
     setSubmitted(false);
-  }
+    setError(false);
+  };
 
   const handlePassword = (e) => {
     setPassword(e.target.value);
     setSubmitted(false);
-  }
+    setError(false); 
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (email && password) {
       setSubmitted(true);
-    }
-    else {
+      setError(false);
+    } else {
       setError(true);
     }
-  }
-
-  const successMessage = () => {
-    return (
-      <div
-        className="success-message"
-        style={{ display: submitted ? "block" : "none" }}
-      >
-        <h1>User {email} successfully registered!!</h1>
-      </div>
-    );
-  }
-
-  const errorMessage = () => {
-    return (
-      <div
-        className="error-message"
-        style={{ display: error ? "block" : "none" }}
-      >
-        <h1>Please enter a valid email and password</h1>
-      </div>
-    )
-  }
+  };
 
   return (
     <section className="form-registration">
@@ -58,7 +38,8 @@ const Registration = () => {
         <label className="form-label">Email</label>
         <input
           className="form-input"
-          type="text" value={email}
+          type="text"
+          value={email}
           onChange={handleEmail}
         />
 
@@ -69,7 +50,7 @@ const Registration = () => {
           value={password}
           onChange={handlePassword}
         />
-        
+
         <button
           onClick={handleSubmit}
           className="form-button-submit"
@@ -78,6 +59,18 @@ const Registration = () => {
           Submit
         </button>
       </form>
+
+      {submitted && (
+        <div className="success-message">
+          <h1>User {email} successfully registered!!</h1>
+        </div>
+      )}
+
+      {error && (
+        <div className="error-message">
+          <h1>Please enter a valid email and password</h1>
+        </div>
+      )}
     </section>
   );
 };
