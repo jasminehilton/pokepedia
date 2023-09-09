@@ -28,7 +28,7 @@ const PokemonModal = () => {
 
   // fetchTypesData(state.selectPokemonData, setTypesDetails);
  
-  console.log("state.selectPokemonData.id" , state.selectPokemonData.types[0].type.name )
+
 
   const getFlavorText = (flavorEntries) => {
     let flavorText = flavorEntries.find((flavorEntry) => {
