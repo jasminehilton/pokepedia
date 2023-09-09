@@ -32,9 +32,9 @@ function RegionList() {
     <div className="regionList">
       <button className="bigBlueButton">Regions</button>
       <div className="regionsButtonsList">
-        {state.regionsData.map((region) => (
+        {state.regionsData.map((region, index) => (
           <RegionListItem
-            key={region.id}
+            key={index}
             regionName={capitalizeFirstLetter(region.name)}
             setSelectedRegion={() =>
               setSelectedRegion(
