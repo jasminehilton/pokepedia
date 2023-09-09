@@ -140,19 +140,19 @@ const PokemonModal = () => {
             <p className="child modal-type" >Types: {state.selectPokemonData.types.map((type) => type.type.name).join(', ')}</p>
             <p className="child modal-weakness" >Weaknesses: {typesDetails?.damage_relations?.double_damage_from.map((weakness) => weakness.name).join(', ')}  </p>
           </div>
-          <div className="child modal-location" >
-            Locations:
-            {state.locations.map((location, index) => (
-              <div key={index}>
-                {location.location_area.name}
-                <div>
-                  {location.version_details.map((version, vIndex) => (
-                  <div key={vIndex}>{version.version.name}</div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+          <ul className="child modal-location" >
+          Locations:
+          {state.locations.map((location, index) => (
+            <li key={index}>
+              {location.location_area.name}
+              <ul>
+                {location.version_details.map((version, vIndex) => (
+                  <li key={vIndex}>{version.version.name}</li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ul>
           <div className=" evol-child-yellow child modal-evol-chain">
             <h4 className=" evol-child-blue " >Evolution Chain:</h4>
             {evolutionDetails[state.selectPokemonData.name] && (
