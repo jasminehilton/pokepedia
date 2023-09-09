@@ -1,0 +1,27 @@
+.pagination-logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 60px;
+}
+
+.pagination-prev-button {
+  width: 150px;          /* Adjust the width as needed */
+}
+
+.pagination-next-button {
+  width: 150px;          /* Adjust the width as needed */
+}
+
+.logo-region-type-pagination {
+  display: flex;
+  flex-direction: column;
+  justify-content: row;
+}
