@@ -117,7 +117,7 @@ const PokemonModal = () => {
           <div className="child modal-form" >Forms:
           
             <div className="child form-default" >
-              <p>Default</p>
+              <p className="form-title" >Default</p>
               <img
                 className="child modal-form-picture"
                 src={state.selectPokemonData?.sprites?.front_default}
@@ -126,7 +126,7 @@ const PokemonModal = () => {
             </div>
 
             <div className="child form-shiny "> 
-              <p>Shiny</p>
+              <p className="form-title" >Shiny</p>
                 <img
                   className="child modal-form-picture"
                   src={state.selectPokemonData?.sprites?.front_shiny}

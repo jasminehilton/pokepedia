@@ -101,8 +101,15 @@
     display: grid;
     justify-content: space-evenly;
     text-align: center;
-
+    
   }
+
+  .form-title {
+    margin: 0;
+  }
+    .modal-form-picture {
+      height:140px;
+    }
 
     .form-shiny {
       grid-row: 2 / span 1;
