@@ -1,15 +1,11 @@
 .pokemon-modal {
-  background-color: rgb(235, 149, 183);
   position: fixed;
-  /* height: 50%; */
   height: 90%;
-  /* width: 60%; */
   width: 90%;
   box-shadow: 0 0 0 100vmax rgba(0,0,0,.5);
-  /* top: 20%;
-  left: 20%; */
   top: 5%;
   left: 5%;
+  opacity: 99%;
 
 
   overflow-y: scroll;
@@ -37,33 +33,33 @@
 
 .modal-container {
   display: grid;
-  /* grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  grid-template-rows: repeat(auto-fill, minmax(100px, 1fr)); */
-  /* grid-template-columns: 1fr;
-  grid-template-rows: 1fr; */
   grid-template-columns: 100px; 
   grid-template-rows: 100px; 
+}
 
-  gap: 5px;
+.parent {
+  display:grid;
+  margin:10px;
+  padding:10px;
+  border: 1px solid white;
+  border-radius: 10px;
+  background-color: #f2f2f2;
+  font-family: 'VT323', monospace;
+  font-size: 24px;
+  box-shadow: 1px 1px 5px 1px grey;
   
 }
 
 .child {
-  border: 2px dotted purple;
-  border-radius: 5px;
-  background-color: palevioletred;
-  /* width:auto; */
-  margin:10px;
-  /* width:200px; */
-  /* text-align: center; */
-  font-family: 'VT323', monospace;
-  font-size: 24px;
+  border-radius: 10px;
 }
+
+
+
 /* ================================STAR & POKEBALL=========================== */
 .modal-star-ball {
   grid-row: 1 / span 1;
   grid-column: 1 / span 2;
-  display:grid;
 }
 
   .modal-star {
@@ -77,9 +73,8 @@
   }
 /* ================================TYPES & WEAKNESS=========================== */
 .modal-type-weak {
-  grid-row: 8 / span 1;
-  grid-column: 1 / span 8;
-  display:grid;
+  grid-row: 6 / span 1;
+  grid-column: 1 / span 9;
 }
 
   .modal-type {
@@ -95,36 +90,34 @@
 
   .modal-form {
     grid-row: 3 / span 2; 
-    grid-column: 1 / span 7;
-    display: grid;
-    /* justify-content: space-between; */
+    grid-column: 1 / span 8;
+    justify-content: space-evenly;
+    text-align: center;
+    
   }
 
-  .modal-form-picture {
-    /* grid-row: 1 / span 1; */
-    /* grid-column: 2 / span 1; */
+  .form-title {
+    margin: 0;
   }
-
-  .form-names {
-    display: grid;
-  }
+    .modal-form-picture {
+      height:150px;
+      border-radius: 10px 10px 0px 0px;
+    }
 
     .form-shiny {
-      grid-row: 1 / span 1;
+      grid-row: 2 / span 1;
       grid-column: 2 / span 1;
-
     }
 
     .form-default {
-      grid-row: 1 / span 1;
+      grid-row: 2 / span 1;
       grid-column: 1 / span 1;
     }
 
 /* ================================STATS CARD============================ */
 .modal-stats {
-  grid-row:1 / span 7;
+  grid-row:1 / span 4;
   grid-column: 10 / span 5;
-  display:grid;
 }
 
   .modal-height {
@@ -145,7 +138,6 @@
   .modal-gender {
     grid-row: 1 / span 2;
     grid-column: 1 / span 1;
-
   }
 
   .modal-category {
@@ -154,36 +146,36 @@
   }
 /* ================================SINGLES============================ */
 .modal-number {
-  grid-row: 1 / span 1;
-  grid-column: 3 / span 1;
   font-family: 'Roboto Mono', monospace;
+  width:150px;
+  text-align: center;
 }
 
 .modal-name {
   grid-row: 2 / span 1;
-  grid-column: 1 / span 7;
+  grid-column: 1 / span 8;
   font-size: 32px;
+  text-align: center;
 }
 
 .modal-picture {
-  /* grid-row:1 / span 1;  */
-  /* grid-column: 4 / span 5; */
-  grid-column-start: 8;
-  height:350px;
+  grid-column-start: 9;
+  padding-top:20px;
+  width:400px;
 }
 
 .modal-description {
-  grid-row: 6 / span 1;
-  grid-column: 1 / span 8;
+  grid-row: 5 / span 1;
+  grid-column: 1 / span 9;
+  padding:10px;
 }
 
 .modal-location {
-  grid-row: 8 / span 2;
+  grid-row: 5 / span 3;
   grid-column: 10 / span 5;
-
-  height:400px;
+  padding:20px;
+  height:470px;
   overflow-y: scroll;
-  /* border-radius: 12px; */
   scrollbar-width: none;
   -ms-overflow-style: none; 
 
@@ -202,13 +194,42 @@
 }
 
 .modal-evol-chain {
-  grid-row: 9 / span 2;
-  grid-column: 1 / span 8;
-  height:320px;
-
+  grid-row: 7;
+  grid-column: 1 / span 9;
 }
+  
+    .evol-child-blue {
+      margin: 5px;
+    }
+  
+    .evol-child-red {
+      display: grid;
+      grid-row: 2;
+      text-align: center;
+      margin: 0;
+    }
 
-  .modal-evol-picture {
-    height:150px;
+      .evol-child-white {
+        display: grid;
+        padding:5px;
+      }
 
-  }
+        .evol-child-green {
+          margin: 0;
+          grid-row: 1;
+          justify-content: space-evenly;
+        }
+
+        .evol-child-black {
+          margin: 5px;
+        }
+
+        .evol-child-purple {
+          height:150px;
+          
+        }
+
+        .evol-child-orange {
+          margin: 5px;
+        }
+
