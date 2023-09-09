@@ -67,7 +67,11 @@ const TypeButtonList = () => {
         </button>
         <button className="bigYellowButton">Collection</button>
       </div>
-      {showRegistration && <RegistrationModal />}
+      {showRegistration &&
+        <RegistrationModal
+          showRegistration={showRegistration}
+          toggleModal={onDisplayRegistration}
+        />}
     </div>
   );
 };
