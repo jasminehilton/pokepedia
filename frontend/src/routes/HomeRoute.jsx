@@ -54,6 +54,7 @@ const HomeRoute = () => {
                     state.pokemonData.length
                   )
                 }
+                isModalVisible={state.isModalVisible}
               />
             </div>
           </div>
