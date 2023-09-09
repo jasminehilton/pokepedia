@@ -2,10 +2,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 10px;
 }
 
 .form-title {
-  font-size: 2rem;
+  font-size: 2.3rem;
   font-family: 'VT323', monospace;
-  font-size: 40px;
+}
+
+.form-registration {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+::placeholder {
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
 }

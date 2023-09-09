@@ -8,7 +8,7 @@ const RegistrationModal = ({ showRegistration, toggleModal }) => {
     <div className={`registration-modal ${showRegistration ? "active" : ""}`}>
       <div className="modal-content">
         <span className="form-close" onClick={toggleModal}>
-          o
+          O
         </span>
         <Registration />
       </div>

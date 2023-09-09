@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../styles/Registration.css";
 import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 const Registration = () => {
   const [email, setEmail] = useState("");
@@ -64,14 +65,13 @@ const Registration = () => {
           </div>
         )}
 
-
-        <button
+        <Button
           onClick={handleSubmit}
-          className="form-button-submit"
+          variant="danger"
           type="submit"
         >
           Submit
-        </button>
+        </Button>
       </Form>
     </section>
   );
