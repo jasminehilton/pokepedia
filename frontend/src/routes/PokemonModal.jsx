@@ -98,33 +98,33 @@ const PokemonModal = () => {
         <span className="close" onClick={onClosePokemonModal}>
           &times;
         </span>
-        <div className= {` modal-container ${state.selectPokemonData.types[0].type.name} `}  >
-        {/* <div className= " modal-container "  > */}
-          <div className="child modal-star-ball" >
+        {/* <div className= {` modal-container ${state.selectPokemonData.types[0].type.name} `}  > */}
+        <div className= " modal-container "  >
+          <div className="parent modal-star-ball" >
             <p className="child modal-star" >star</p>
             <p className="child modal-ball">poke</p>
           </div>         
-          <p className="child modal-number" >No. {state.selectPokemonData.id}</p>
+          <p className="parent modal-number" >No. {state.selectPokemonData.id}</p>
           <img
             className="modal-picture"
             src={officialArtworkUrl}
             alt={state.selectPokemonData.name}
           />
-          <div className="child modal-stats" >
+          <div className="parent modal-stats" >
             <p className="child modal-gender" >Gender: </p>
             <p className="child modal-height" >Height: {state.selectPokemonData.height}</p>
             <p className="child modal-weight" >Weight: {state.selectPokemonData.weight}</p>
             <p className="child modal-category" >Category:  {speciesDetails?.genera?.length > 0 && getGenusText(speciesDetails.genera)} </p>
             <p className="child modal-ability" >Abilities: {state.selectPokemonData.abilities.map((ability) => ability.ability.name).join(', ')}</p>
           </div>
-          <p className="child modal-name" >{state.selectPokemonData.name}</p>
+          <p className="parent modal-name" >{state.selectPokemonData.name}</p>
 
-          <div className="child modal-form" >Forms:
+          <div className="parent modal-form" >Forms:
           
-            <div className="child form-default" >
-              <p className="form-title" >Default</p>
+            <div className=" form-default" >
+              <p className=" form-title" >Default</p>
               <img
-                className="child modal-form-picture"
+                className={ `parent modal-form-picture ${state.selectPokemonData.types[0].type.name} `}
                 src={state.selectPokemonData?.sprites?.front_default}
                 alt={state.selectPokemonData.name}
               /> 
@@ -133,19 +133,19 @@ const PokemonModal = () => {
             <div className="child form-shiny "> 
               <p className="form-title" >Shiny</p>
                 <img
-                  className="child modal-form-picture"
+                  className={ `parent modal-form-picture ${state.selectPokemonData.types[0].type.name} `}
                   src={state.selectPokemonData?.sprites?.front_shiny}
                   alt={state.selectPokemonData.name}
                 />   
             </div>          
           </div>   
 
-          <p className="child modal-description" >Description: {speciesDetails?.flavor_text_entries?.length > 0 && getFlavorText(speciesDetails.flavor_text_entries)}</p>
-          <div className="child modal-type-weak" >
+          <p className="parent modal-description" >Description: {speciesDetails?.flavor_text_entries?.length > 0 && getFlavorText(speciesDetails.flavor_text_entries)}</p>
+          <div className="parent modal-type-weak" >
             <p className="child modal-type" >Types: {state.selectPokemonData.types.map((type) => type.type.name).join(', ')}</p>
             <p className="child modal-weakness" >Weaknesses: {typesDetails?.damage_relations?.double_damage_from.map((weakness) => weakness.name).join(', ')}  </p>
           </div>
-          <ul className="child modal-location" >
+          <ul className="parent modal-location" >
           Locations:
           {state.locations.map((location, index) => (
             <li className="child" key={index}>
@@ -158,7 +158,7 @@ const PokemonModal = () => {
             </li>
           ))}
         </ul>
-          <div className=" evol-child-yellow child modal-evol-chain">
+          <div className=" evol-child-yellow parent modal-evol-chain">
             <h4 className=" evol-child-blue " >Evolution Chain:</h4>
             {evolutionDetails[state.selectPokemonData.name] && (
               <p className="evol-child-red " >
