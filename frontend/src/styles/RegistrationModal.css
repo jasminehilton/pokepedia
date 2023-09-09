@@ -5,23 +5,6 @@
   box-shadow: 0 0 0 100vmax rgba(0,0,0,.5);
   top: 10%;
   left: 35%;
-  opacity: 99%;
-  background: rgba(164, 49, 49, 0.1);
-  overflow-y: scroll;
-  border-radius: 12px;
-  scrollbar-width: none;
-  -ms-overflow-style: none; 
-
-  &::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: rgba(255, 248, 248, 0.1);
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: transparent;
-    border-radius: 3px; /* Rounded corners for the thumb */
-  }
+  background-color: #000000;
+  background-image: url("https://www.transparenttextures.com/patterns/brushed-alum.png");
 }
