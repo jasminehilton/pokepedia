@@ -161,9 +161,9 @@ const PokemonModal = () => {
           <div className=" evol-child-yellow parent modal-evol-chain">
             <h4 className=" evol-child-blue " >Evolution Chain:</h4>
             {evolutionDetails[state.selectPokemonData.name] && (
-              <p className="evol-child-red " >
+              <div className="evol-child-red " >
                 {PokemonEvolutions(evolutionDetails[state.selectPokemonData.name].chain)}
-              </p>
+              </div>
             )}
           </div>
         </div>
