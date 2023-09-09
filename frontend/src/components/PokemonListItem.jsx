@@ -14,12 +14,12 @@ const PokemonListItem = ({ pokemon, onDisplayPokemonModal }) => {
         <p className="pokemon-id">No.{pokemon.id}</p>
         <div className="pokemon-list__image-name">
           <img
-            className="pokemon-list__image"
+            className={`pokemon-list__image ${pokemon.types[0].type.name}`}
             src={officialArtworkUrl}
             alt={pokemon.name}
             onClick={() => onDisplayPokemonModal(pokemon)}
           />
-          <p className={`pokemon-name ${pokemon.types[0].type.name}`}>{capitalizeFirstLetter(pokemon.name)}</p>
+          <p className={`pokemon-name`}>{capitalizeFirstLetter(pokemon.name)}</p>
         </div>
       </div>
     </div>
