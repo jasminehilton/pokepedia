@@ -120,7 +120,7 @@ const PokemonModal = () => {
               <p>Default</p>
               <img
                 className="child modal-form-picture"
-                src={state.selectPokemonData.sprites.front_default}
+                src={state.selectPokemonData?.sprites?.front_default}
                 alt={state.selectPokemonData.name}
               /> 
             </div>
@@ -129,7 +129,7 @@ const PokemonModal = () => {
               <p>Shiny</p>
                 <img
                   className="child modal-form-picture"
-                  src={state.selectPokemonData.sprites.front_shiny}
+                  src={state.selectPokemonData?.sprites?.front_shiny}
                   alt={state.selectPokemonData.name}
                 />   
             </div>          
@@ -153,10 +153,10 @@ const PokemonModal = () => {
               </div>
             ))}
           </div>
-          <div className="child modal-evol-chain">
-            <h4 className="modal-evol-picture" >Evolution Chain:</h4>
+          <div className=" evol-child-yellow child modal-evol-chain">
+            <h4 className=" evol-child-blue " >Evolution Chain:</h4>
             {evolutionDetails[state.selectPokemonData.name] && (
-              <p>
+              <p className="evol-child-red " >
                 {PokemonEvolutions(evolutionDetails[state.selectPokemonData.name].chain)}
               </p>
             )}
