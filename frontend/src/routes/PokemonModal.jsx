@@ -92,7 +92,8 @@ const PokemonModal = () => {
   // }, [state.pokemonData]);
   const officialArtworkUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${state.selectPokemonData.id}.png`
   return (
-    <div className="pokemon-modal">
+    // <div className="pokemon-modal ">
+    <div className= {`pokemon-modal ${state.selectPokemonData.types[0].type.name} `}>
       <div className="pokemon-modal-content">
         <span className="close" onClick={onClosePokemonModal}>
           &times;
