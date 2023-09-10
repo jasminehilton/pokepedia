@@ -1,19 +1,26 @@
+import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import "../styles/Login.css";
 
-const RegistrationForm = (
-  { email, handleEmail, password, handlePassword,
-    submitted, error, handleSubmit }) => {
-
+const LoginForm = ({
+  email,
+  handleEmail,
+  password,
+  handlePassword,
+  submitted,
+  error,
+  handleSubmit,
+}) => {
   return (
-    <section className="form-registration">
+    <section className="form-login">
       <div className="pokeball">
         <img
           src="https://www.freeiconspng.com/uploads/pokeball-pokemon-ball-picture-11.png"
           width="200" height="200" alt="Pokeball" />
       </div>
       <div>
-        <p className="form-title">Pokedex Registration</p>
+        <p className="form-title">Pokedex Login</p>
       </div>
       <Form className="form-container">
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -36,13 +43,13 @@ const RegistrationForm = (
         </Form.Group>
         {submitted && (
           <div className="success-message">
-            <p>User {email} successfully registered!!</p>
+            <p>Login successful for user {email}!</p>
           </div>
         )}
 
         {error && (
           <div className="error-message">
-            <Form.Text>Please enter a valid email and password</Form.Text>
+            <Form.Text>Invalid email or password. Please try again.</Form.Text>
           </div>
         )}
 
@@ -51,11 +58,11 @@ const RegistrationForm = (
           variant="danger"
           type="submit"
         >
-          Register
+          Login
         </Button>
       </Form>
-    </section >
-  )
+    </section>
+  );
 };
 
-export default RegistrationForm;
+export default LoginForm;

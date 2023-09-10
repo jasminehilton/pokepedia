@@ -1,0 +1,33 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+
+.form-title {
+  font-size: 2.3rem;
+  font-family: 'VT323', monospace;
+}
+
+.form-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  margin-left: 30px;
+  margin-right: 30px;
+  background-color: beige;
+  background-color: #f7f7f7;
+  background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
+}
+
+::placeholder {
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
+}
+
+.input-font {
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
+}
