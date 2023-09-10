@@ -10,6 +10,7 @@ const RegistrationModal = ({ showRegistration, toggleModal }) => {
         <span className="form-close" onClick={toggleModal}>
           O
         </span>
+
         <Registration />
       </div>
     </div>

@@ -33,6 +33,11 @@ const Registration = () => {
 
   return (
     <section className="form-registration">
+      <div className="pokeball">
+        <img
+          src="https://www.freeiconspng.com/uploads/pokeball-pokemon-ball-picture-11.png"
+          width="200" height="200" alt="Pokeball" />
+      </div>
       <div>
         <p className="form-title">Pokedex Registration</p>
       </div>
@@ -75,7 +80,7 @@ const Registration = () => {
           Submit
         </Button>
       </Form>
-    </section>
+    </section >
   );
 };
 
