@@ -3,7 +3,7 @@ import "../styles/Registration.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-const Registration = () => {
+const Registration = ({ closeModal }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [submitted, setSubmitted] = useState(false);
@@ -26,6 +26,7 @@ const Registration = () => {
     if (email && password) {
       setSubmitted(true);
       setError(false);
+      closeModal();
     } else {
       setError(true);
     }

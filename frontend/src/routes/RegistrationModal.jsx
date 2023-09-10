@@ -11,7 +11,11 @@ const RegistrationModal = ({ showRegistration, toggleModal }) => {
           O
         </span>
 
-        <Registration className="modal-content"/>
+        <Registration
+
+          className="modal-content"
+          closeModal={toggleModal}
+          />
       </div>
     </div>
   );
