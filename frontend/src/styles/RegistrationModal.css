@@ -10,6 +10,7 @@
   border-radius: 20px;
   scrollbar-width: none;
   -ms-overflow-style: none; 
+  border: 9px solid rgb(196, 189, 189);
 
   &::-webkit-scrollbar {
     width: 6px;
