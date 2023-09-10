@@ -17,7 +17,7 @@ const PokemonList = () => {
 
   return (
     <div>
-      <PokemonLogo />
+      {/* <PokemonLogo /> */}
       <div className="pokemon-container">
         {state.displayedPokemon.map((pokemon, index) => (
           <PokemonListItem
