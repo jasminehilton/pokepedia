@@ -58,7 +58,11 @@ function RegionList() {
         >
           Login
         </button>
-        <button className="bigYellowButton">Search</button>
+        <button
+          className="bigYellowButton"
+        >
+          Search
+        </button>
       </div>
       {showLogin &&
         <LoginModal
