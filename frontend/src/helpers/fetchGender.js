@@ -1,17 +1,21 @@
 
-export const fetchFemale = async (femaleData, setFemale) => {
+export const fetchFemale = async (femaleData, setFemale, pokemonData ) => {
   try {
     const femaleResponse = await fetch("https://pokeapi.co/api/v2/gender/1/");
     if (!femaleResponse.ok) {
       throw new Error('Network response was not ok');
     }
     const femaleData = await femaleResponse.json();
-
     setFemale(femaleData)
+    const femaleArray = femaleData.pokemon_species_details.map((pokemon_species) => pokemon_species.pokemon_species.name).join(', ')
 
-  const femaleArray = femaleData.pokemon_species_details.map((pokemon_species) => pokemon_species.pokemon_species.name).join(', ')
+    for (let female in femaleArray) {
+      console.log("femalefemale" , female)
+    }
 
-  console.log("femaleArray =", femaleArray)
+  
+    console.log("femaleArray =", femaleArray)
+
   } catch (error) {
     console.error('Error:', error);
   }

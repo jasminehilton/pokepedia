@@ -6,7 +6,7 @@ import PokemonEvolutions from '../components/PokemonEvolutions';
 import "../styles/PokemonModal.css"
 import { fetchSpeciesData } from "../helpers/fetchSpeciesData";
 import { fetchTypesData } from "../helpers/fetchTypesData";
-import { fetchFemale, fetchMale, fetchGenderless } from "../helpers/fetchGender";
+// import { fetchFemale, fetchMale, fetchGenderless } from "../helpers/fetchGender";
 
 
 
@@ -24,11 +24,11 @@ const PokemonModal = () => {
 
   const [typesDetails, setTypesDetails] = useState({})
 
-  const [femaleData, setFemale] = useState({})
+  // const [femaleData, setFemale] = useState({})
 
-  const [maleData, setMale] = useState({})
+  // const [maleData, setMale] = useState({})
 
-  const [genderlessData, setGenderless] = useState({})
+  // const [genderlessData, setGenderless] = useState({})
 
   // fetchPokemonLocations(dispatch, state.selectPokemonData.id);
   
@@ -78,11 +78,11 @@ const PokemonModal = () => {
 
     fetchTypesData(state.selectPokemonData, setTypesDetails);
 
-    fetchFemale(state.selectPokemonData, setFemale)
+    // fetchFemale(state.selectPokemonData, setFemale)
 
-    fetchMale(state.selectPokemonData, setMale)
+    // fetchMale(state.selectPokemonData, setMale)
 
-    fetchGenderless(state.selectPokemonData, setGenderless)
+    // fetchGenderless(state.selectPokemonData, setGenderless)
   }, []);
     
   // useEffect(() => {
