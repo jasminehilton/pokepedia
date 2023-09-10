@@ -6,7 +6,8 @@ import PokemonEvolutions from '../components/PokemonEvolutions';
 import "../styles/PokemonModal.css"
 import { fetchSpeciesData } from "../helpers/fetchSpeciesData";
 import { fetchTypesData } from "../helpers/fetchTypesData";
-import { fetchGender } from "../helpers/fetchGender";
+import { fetchFemale, fetchMale, fetchGenderless } from "../helpers/fetchGender";
+
 
 
 
@@ -23,7 +24,11 @@ const PokemonModal = () => {
 
   const [typesDetails, setTypesDetails] = useState({})
 
-  // const [genderDetails, setGender] = useState({})
+  const [femaleData, setFemale] = useState({})
+
+  const [maleData, setMale] = useState({})
+
+  const [genderlessData, setGenderless] = useState({})
 
   // fetchPokemonLocations(dispatch, state.selectPokemonData.id);
   
@@ -73,7 +78,11 @@ const PokemonModal = () => {
 
     fetchTypesData(state.selectPokemonData, setTypesDetails);
 
-    // fetchGender()
+    fetchFemale(state.selectPokemonData, setFemale)
+
+    fetchMale(state.selectPokemonData, setMale)
+
+    fetchGenderless(state.selectPokemonData, setGenderless)
   }, []);
     
   // useEffect(() => {

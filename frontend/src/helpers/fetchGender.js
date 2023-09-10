@@ -1,21 +1,24 @@
-// https://pokeapi.co/api/v2/gender/1/
-export const fetchFemale = async (pokemonData, setFemale) => {
+
+export const fetchFemale = async (femaleData, setFemale) => {
   try {
     const femaleResponse = await fetch("https://pokeapi.co/api/v2/gender/1/");
     if (!femaleResponse.ok) {
       throw new Error('Network response was not ok');
     }
     const femaleData = await femaleResponse.json();
-    console.log("femaleData", femaleData)
+
     setFemale(femaleData)
 
+  const femaleArray = femaleData.pokemon_species_details.map((pokemon_species) => pokemon_species.pokemon_species.name).join(', ')
+
+  console.log("femaleArray =", femaleArray)
   } catch (error) {
     console.error('Error:', error);
   }
 };
 
-// https://pokeapi.co/api/v2/gender/2/
-export const fetchMale = async (pokemonData, setMale) => {
+
+export const fetchMale = async (maleData, setMale) => {
   try {
     const maleResponse = await fetch("https://pokeapi.co/api/v2/gender/2/");
     if (!maleResponse.ok) {
@@ -25,13 +28,17 @@ export const fetchMale = async (pokemonData, setMale) => {
     
     setMale(maleData)
 
+    const maleArray = maleData.pokemon_species_details.map((pokemon_species) => pokemon_species.pokemon_species.name).join(', ')
+
+    console.log("maleArray =", maleArray)
+
   } catch (error) {
     console.error('Error:', error);
   }
 };
 
-// https://pokeapi.co/api/v2/gender/3/
-export const fetchGenderless = async (pokemonData, setGenderless) => {
+
+export const fetchGenderless = async (genderlessData, setGenderless) => {
   try {
     const genderlessResponse = await fetch("https://pokeapi.co/api/v2/gender/3/");
     if (!genderlessResponse.ok) {
@@ -40,6 +47,10 @@ export const fetchGenderless = async (pokemonData, setGenderless) => {
     const genderlessData = await genderlessResponse.json();
     
     setGenderless(genderlessData)
+
+    const genderlessArray = genderlessData.pokemon_species_details.map((pokemon_species) => pokemon_species.pokemon_species.name).join(', ')
+
+    console.log("genderlessArray =", genderlessArray)
 
   } catch (error) {
     console.error('Error:', error);
