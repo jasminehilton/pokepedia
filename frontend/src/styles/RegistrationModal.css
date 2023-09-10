@@ -1,16 +1,17 @@
 .registration-modal {
   position: fixed;
-  height: 60%;
-  width: 30%;
+  height: 550px;
+  width: 40%;
   box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.5);
-  top: 22%;
-  left: 35%;
-  background-color: beige;
+  top: 12%;
+  left: 30%;
   overflow-y: scroll;
   border-radius: 20px;
   scrollbar-width: none;
   -ms-overflow-style: none; 
   border: 9px solid rgb(196, 189, 189);
+  background-color: #000000;
+  background-image: url("https://www.transparenttextures.com/patterns/brushed-alum.png");
 
   &::-webkit-scrollbar {
     width: 6px;
@@ -27,5 +28,6 @@
 }
 
 .form-close {
-  margin: 11px;
+  margin: 10px;
+  font-size: 1rem;
 }
