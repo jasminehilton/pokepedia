@@ -43,6 +43,7 @@ const Registration = () => {
             placeholder="email@example.com"
             value={email}
             onChange={handleEmail}
+            className="input-font"
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
@@ -51,6 +52,7 @@ const Registration = () => {
             placeholder="Password"
             value={password}
             onChange={handlePassword}
+            className="input-font"
           />
         </Form.Group>
         {submitted && (
