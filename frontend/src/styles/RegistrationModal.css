@@ -2,8 +2,8 @@
   position: fixed;
   height: 40%;
   width: 30%;
-  box-shadow: 0 0 0 100vmax rgba(0,0,0,.5);
-  top: 10%;
+  box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.5);
+  top: 22%;
   left: 35%;
   background-color: beige;
   overflow-y: scroll;
