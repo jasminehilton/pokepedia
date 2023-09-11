@@ -32,6 +32,8 @@ export const ACTIONS = {
   SET_CAUGHT_SHINY: "SET_CAUGHT_SHINY",
   SET_IS_NEW: "SET_IS_NEW",
   SET_MY_COLLECTION_SELECTED: "SET_MY_COLLECTION_SELECTED",
+  REMOVE_CAUGHT_SHINY: "REMOVE_CAUGHT_SHINY",
+  REMOVE_CAUGHT_NORMAL: "REMOVE_CAUGHT_NORMAL",
 };
 
 const initialState = {
@@ -183,7 +185,7 @@ const reducer = (state, action) => {
     case ACTIONS.SET_CAUGHT_NORMAL:
       // payload: { pokemon_id: , collection: id }
       const pokemonIdN = action.payload.pokemon_id;
-      const collection_idN = action.payload.collection_id;
+      let collection_idN = action.payload.collection_id;
 
       let updatedCollectionNormal;
 
@@ -203,7 +205,10 @@ const reducer = (state, action) => {
 
         console.log(data, collection_idN, "beans", pokemonIdN);
         axios
-          .post(`http://localhost:8080/collection/update/${collection_idN}`, data)
+          .post(
+            `http://localhost:8080/collection/update/${collection_idN}`,
+            data
+          )
           .then((res) => {
             console.log("Successful update");
           })
@@ -233,7 +238,7 @@ const reducer = (state, action) => {
     case ACTIONS.SET_CAUGHT_SHINY:
       // payload: { pokemon_id: , collection: id }
       const pokemonId = action.payload.pokemon_id;
-      const collection_id = action.payload.collection_id;
+      let collection_id = action.payload.collection_id;
 
       let updatedCollectionShiny;
 
@@ -251,9 +256,14 @@ const reducer = (state, action) => {
           caught_shiny: true,
         };
 
-        axios.post(`http://localhost:8080/collection/update/${collection_id}`, data).then((res) => {
-          console.log("Successful update");
-        });
+        axios
+          .post(
+            `http://localhost:8080/collection/update/${collection_id}`,
+            data
+          )
+          .then((res) => {
+            console.log("Successful update");
+          });
 
         return { ...state, collectionPokemon: updatedCollectionShiny };
       } else {
@@ -279,6 +289,70 @@ const reducer = (state, action) => {
       return { ...state, isNew: action.payload };
     case ACTIONS.SET_MY_COLLECTION_SELECTED:
       return { ...state, myCollectionSelected: action.payload };
+    case ACTIONS.REMOVE_CAUGHT_NORMAL:
+      console.log("heya");
+      let deleteN = false;
+      let updatedCollectionNormalRN = [];
+      updatedCollectionNormalRN = state.collectionPokemon.map((pokemon) => {
+        if (pokemon.pokemon_id === action.payload.pokemonId) {
+          console.log(pokemon);
+          if (pokemon.caught_shiny === false) {
+            deleteN = true;
+            console.log("beef");
+            return null;
+          } else {
+            console.log("cow");
+            return { ...pokemon, caught_normal: false };
+          }
+        }
+        return pokemon;
+      });
+
+      if (deleteN) {
+        console.log(deleteN);
+        axios
+          .post(
+            `http://localhost:8080/collection/delete/${action.payload.collection_id}`
+          )
+          .then(console.log("Successfully Deleted."));
+      }
+
+      console.log("eee");
+      return {
+        // Filter
+        ...state,
+        collectionPokemon: updatedCollectionNormalRN,
+      };
+    case ACTIONS.REMOVE_CAUGHT_SHINY:
+      let deleteS = false;
+      let updatedCollectionShinyRS = [];
+      updatedCollectionShinyRS = state.collectionPokemon.map((pokemon) => {
+        if (pokemon.id === action.payload.pokemonId) {
+          if (
+            pokemon.caught_shiny === false &&
+            pokemon.caught_normal === false
+          ) {
+            deleteS = true;
+            return null;
+          } else {
+            return { ...pokemon, caught_shiny: false };
+          }
+        }
+        return pokemon;
+      });
+      if (deleteS) {
+        axios
+          .post(
+            `http://localhost:8080/collection/delete/${action.payload.collection_id}`
+          )
+          .then((res) => {
+            console.log("Successful Deletion");
+          });
+      }
+      return {
+        ...state,
+        collectionPokemon: updatedCollectionShinyRS,
+      };
     default:
       return state;
   }

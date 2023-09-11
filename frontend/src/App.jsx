@@ -12,14 +12,20 @@ import "./styles/Navbar.css";
 import HomeRoute from "./routes/HomeRoute";
 import fetchCollectionForUser from "./helpers/fetchCollection";
 
-
 function App() {
   const state = usePokemonDataContext(); //imports the state
   const dispatch = usePokemonDataDispatchContext(); //imports dispatch
 
   useEffect(() => {
     fetchCollectionForUser(dispatch, 1);
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    dispatch({
+      type: "REMOVE_CAUGHT_NORMAL",
+      payload: { collection_id: 2, pokemonId: 4 },
+    });
+  }, [state.myCollectionSelected]);
 
   useEffect(() => {
     filterPokemon(
@@ -50,9 +56,9 @@ function App() {
   useEffect(() => {
     if (state.isNew === true) {
       fetchCollectionForUser(dispatch, 1);
-      dispatch({ type: 'SET_IS_NEW', payload: false })
+      dispatch({ type: "SET_IS_NEW", payload: false });
     }
-  }, [state.isNew])
+  }, [state.isNew]);
 
   return (
     <div className="App">
