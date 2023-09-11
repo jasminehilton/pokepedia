@@ -84,22 +84,16 @@ function RegionList() {
             <button className="bigGreenButton" onClick={userSignOut}>
               Sign Out
             </button>
-
           </div>
         ) : (
           <button
-            className="bigGreenButton"
-            onClick={onDisplayLogin}
+          className="bigGreenButton"
+          onClick={onDisplayLogin}
           >
             Login
           </button>
         )}
-
-        <button
-          className="bigYellowButton"
-        >
-          Search
-        </button>
+        <Search />
       </div>
       {showLogin &&
         <LoginModal
