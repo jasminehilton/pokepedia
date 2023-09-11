@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import LoginForm from "./LoginForm";
-import { auth } from "../firebase";
+import { auth } from "../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 const Login = ({ closeModal }) => {

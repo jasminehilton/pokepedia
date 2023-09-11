@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/LoginModal.css";
 
-import Login from "../components/Login";
+import Login from "../components/authentication/Login";
 
 const LoginModal = ({ showLogin, toggleModal }) => {
   return (

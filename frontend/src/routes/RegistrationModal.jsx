@@ -1,7 +1,6 @@
 import React from "react";
 import "../styles/RegistrationModal.css";
-
-import Registration from "../components/Registration";
+import Registration from '../components/authentication/Registration'
 
 const RegistrationModal = ({ showRegistration, toggleModal }) => {
   return (

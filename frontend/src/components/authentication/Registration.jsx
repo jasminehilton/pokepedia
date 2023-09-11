@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "../styles/Registration.css";
+import '../../styles/Registration.css';
 import RegistrationForm from "./RegistrationForm";
-import { auth } from "../firebase";
+import { auth } from "../../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const Registration = ({ closeModal }) => {
