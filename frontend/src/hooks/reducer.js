@@ -3,31 +3,36 @@ import { useReducer } from "react";
 // jotai - state management
 
 export const ACTIONS = {
-	SELECT_POKEMON: "SELECT_POKEMON",
-	FETCH_POKEMON_LOCATIONS: "FETCH_POKEMON_LOCATIONS",
-	FETCH_POKEMON_TYPE_INTERACTIONS: "FETCH_POKEMON_TYPE_INTERACTIONS",
-	DISPLAY_POKEMON_DATA: "DISPLAY_POKEMON_DATA",
-	CLOSE_POKEMON_DATA: "CLOSE_POKEMON_DATA",
-	FETCH_TYPES: "FETCH_TYPES",
-	FETCH_REGIONS: "FETCH_REGIONS",
-	FILTER_BY_TYPE: "FILTER_BY_TYPE",
-	ADD_TYPE_FILTER: "ADD_TYPE_FILTER",
-	ADD_REGION_FILTER: "ADD_REGION_FILTER",
-	FILTER_BY_REGION: "FILTER_BY_REGION",
-	CLEAR_TYPE_FILTER: "CLEAR_TYPE_FILTER",
-	CLEAR_REGION_FILTER: "CLEAR_REGION_FILTER",
-	CLEAR_FILTERS: "CLEAR_FILTERS",
-	SELECT_PAGE: "SELECT_PAGE",
-	INITIATE_SEARCH: "INITIATE_SEARCH",
-	FETCH_POKEMON_SUCCESS: "FETCH_POKEMON_SUCCESS",
-	FETCH_POKEMON_FAILURE: "FETCH_POKEMON_FAILURE",
-	SET_CURRENT_PAGE: "SET_CURRENT_PAGE",
-	SET_DISPLAYED_POKEMON: "SET_DISPLAYED_POKEMON",
-	SET_POKEMON_BY_REGION: "SET_POKEMON_BY_REGION",
-	FETCH_POKEMON_GENDERS: "FETCH_POKEMON_GENDERS",
+  SELECT_POKEMON: "SELECT_POKEMON",
+  FETCH_POKEMON_LOCATIONS: "FETCH_POKEMON_LOCATIONS",
+  FETCH_POKEMON_TYPE_INTERACTIONS: "FETCH_POKEMON_TYPE_INTERACTIONS",
+  DISPLAY_POKEMON_DATA: "DISPLAY_POKEMON_DATA",
+  CLOSE_POKEMON_DATA: "CLOSE_POKEMON_DATA",
+  FETCH_TYPES: "FETCH_TYPES",
+  FETCH_REGIONS: "FETCH_REGIONS",
+  FILTER_BY_TYPE: "FILTER_BY_TYPE",
+  ADD_TYPE_FILTER: "ADD_TYPE_FILTER",
+  ADD_REGION_FILTER: "ADD_REGION_FILTER",
+  FILTER_BY_REGION: "FILTER_BY_REGION",
+  CLEAR_TYPE_FILTER: "CLEAR_TYPE_FILTER",
+  CLEAR_REGION_FILTER: "CLEAR_REGION_FILTER",
+  CLEAR_FILTERS: "CLEAR_FILTERS",
+  SELECT_PAGE: "SELECT_PAGE",
+  INITIATE_SEARCH: "INITIATE_SEARCH",
+  FETCH_POKEMON_SUCCESS: "FETCH_POKEMON_SUCCESS",
+  FETCH_POKEMON_FAILURE: "FETCH_POKEMON_FAILURE",
+  SET_CURRENT_PAGE: "SET_CURRENT_PAGE",
+  SET_DISPLAYED_POKEMON: "SET_DISPLAYED_POKEMON",
+  SET_POKEMON_BY_REGION: "SET_POKEMON_BY_REGION",
+  FETCH_POKEMON_GENDERS: "FETCH_POKEMON_GENDERS",
+  DISPLAY_POKEMON_SEARCH: "DISPLAY_POKEMON_SEARCH",
+  CLOSE_POKEMON_SEARCH: "CLOSE_POKEMON_SEARCH",
+  LOGIN_SUCCESS: "LOGIN_SUCCESS",
+  LOGOUT: "LOGOUT",
 };
 
 const initialState = {
+  isLoggedIn: false,
 	isLoading: true,
 	pokemonData: [],
 	filteredPokemonData: [],
@@ -37,7 +42,7 @@ const initialState = {
 	displayedPokemon: [],
 	next: null,
 	previous: null,
-	search: "",
+  searchWords: [],
 	pokemonByRegion: [],
 	pokemonByGenders: [],
 	regionsData: [],
@@ -48,6 +53,7 @@ const initialState = {
 	},
 	isButtonSelected: false, // useState
 	isModalVisible: false, // useState
+  isSearchBarVisible: false,
 	selectPokemonData: null,
 	locations: [],
 	typeInteractions: {
@@ -96,6 +102,16 @@ const reducer = (state, action) => {
 				selectPokemonData: {},
 				isModalVisible: false,
 			};
+    case ACTIONS.DISPLAY_POKEMON_SEARCH:
+      return {
+        ...state,
+        isSearchBarVisible: true,
+      };
+    case ACTIONS.CLOSE_POKEMON_SEARCH:
+      return {
+        ...state,
+        isSearchBarVisible: false,
+      };
 		case ACTIONS.FETCH_TYPES:
 			return { ...state, typesData: action.typesData };
 		case ACTIONS.FETCH_REGIONS:
@@ -168,6 +184,16 @@ const reducer = (state, action) => {
 				...state,
 				pokemonByGenders: action.payload,
 			};
+    case ACTIONS.LOGIN_SUCCESS:
+      return {
+        ...state,
+        isLoggedIn: true,
+      };
+    case ACTIONS.LOGOUT:
+      return {
+        ...state,
+        isLoggedIn: false,
+      };      
 		default:
 			return state;
 	}
