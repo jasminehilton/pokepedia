@@ -26,10 +26,13 @@ export const ACTIONS = {
   SET_DISPLAYED_POKEMON: "SET_DISPLAYED_POKEMON",
   SET_POKEMON_BY_REGION: "SET_POKEMON_BY_REGION",
   DISPLAY_POKEMON_SEARCH: "DISPLAY_POKEMON_SEARCH",
-  CLOSE_POKEMON_SEARCH: "CLOSE_POKEMON_SEARCH",
+  CLOSE_POKEMON_SEARCH: "CLOSE_POKEMON_SEARCH",,
+  LOGIN_SUCCESS: "LOGIN_SUCCESS",
+  LOGOUT: "LOGOUT",
 };
 
 const initialState = {
+  isLoggedIn: false,
   isLoading: true,
   pokemonData: [],
   filteredPokemonData: [],
@@ -176,7 +179,17 @@ const reducer = (state, action) => {
       return {
         ...state,
         pokemonByRegion: action.payload
-      }
+      };
+    case ACTIONS.LOGIN_SUCCESS:
+      return {
+        ...state,
+        isLoggedIn: true,
+      };
+    case ACTIONS.LOGOUT:
+      return {
+        ...state,
+        isLoggedIn: false,
+      };
     default:
       return state;
   }

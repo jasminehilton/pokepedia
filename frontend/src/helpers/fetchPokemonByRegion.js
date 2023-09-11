@@ -4,7 +4,6 @@ import axios from "axios";
     let allPokemons = []
     axios.get(selectedRegion.url)
     .then((response) => {
-      console.log('response ', response.data)
       let pokedexes = response.data.pokedexes
       // iterates through the list of pokedexes in the region object
       for(let pokedex of pokedexes) {
