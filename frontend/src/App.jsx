@@ -40,6 +40,7 @@ function App() {
     state.pokemonData,
     state.currentPage,
     state.filters.regions,
+    state.isLoggedIn
   ]);
 
   return (

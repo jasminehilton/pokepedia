@@ -11,6 +11,8 @@ import "../styles/Navbar.css"
 import capitalizeFirstLetter from "../helpers/capitalizeFirstLetter";
 import RegionListItem from "./RegionListItem";
 import LoginModal from "../routes/LoginModal";
+import { onAuthStateChanged, signOut } from '@firebase/auth';
+import { auth } from '../firebase';
 
 const P = new Pokedex();
 
@@ -18,6 +20,7 @@ function RegionList() {
   const state = usePokemonDataContext(); //imports the state
   const dispatch = usePokemonDataDispatchContext(); //imports dispatch
   const [showLogin, setShowLogin] = useState(false);
+  const [authUser, setAuthUser] = useState(null);
 
   useEffect(() => {
     // console.log("load the pokemon regions now");
@@ -32,6 +35,28 @@ function RegionList() {
 
   const onDisplayLogin = () => {
     setShowLogin(!showLogin);
+  };
+
+  useEffect(() => {
+    const listen = onAuthStateChanged(auth, (authUser) => {
+      if (authUser) {
+        setAuthUser(authUser)
+        state.isLoggedIn = true;
+      } else {
+        setAuthUser(null)
+      }
+    });
+
+    return () => listen();
+  }, []);
+
+  const userSignOut = () => {
+    signOut(auth).then(() => {
+      console.log('Signed Out');
+      setAuthUser(null);
+    }).catch((error) => {
+      console.log(error);
+    });
   };
 
   return (
@@ -52,12 +77,23 @@ function RegionList() {
         ))}
       </div>
       <div className="rightBigButtons">
-        <button
-          className="bigGreenButton"
-          onClick={onDisplayLogin}
-        >
-          Login
-        </button>
+        {state.isLoggedIn ? (
+          <div>
+            {/* <button className="bigGreenButton" onClick={userSignOut}>
+              Sign Out
+            </button> */}
+
+            
+          </div>
+        ) : (
+          <button
+            className="bigGreenButton"
+            onClick={onDisplayLogin}
+          >
+            Login
+          </button>
+        )}
+
         <button
           className="bigYellowButton"
         >
