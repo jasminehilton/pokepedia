@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import { usePokemonDataContext, usePokemonDataDispatchContext } from "../providers/pokeProvider";
 import TypeButton from './TypeButton';
-import filterPokemon from '../helpers/filter';
 import "../styles/Navbar.css"
 
 
@@ -14,7 +13,7 @@ const TypeButtonList = () => {
 
 
   useEffect(() => {
-    // console.log('Selected types:', state.filters.types);
+    console.log('Selected types:', state.filters.types);
   }, [state.filters.types]);
 
   useEffect(() => {

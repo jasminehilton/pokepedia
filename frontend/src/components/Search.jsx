@@ -3,7 +3,7 @@ import {
   usePokemonDataContext,
   usePokemonDataDispatchContext,
 } from "../providers/pokeProvider";
-import TypeButtonList from "./TypeButtonList";
+// import TypeButtonList from "./TypeButtonList";
 
 const Search = () => {
   const state = usePokemonDataContext();
@@ -28,17 +28,24 @@ const Search = () => {
         }
       }
       dispatch({ type: "INITIATE_SEARCH", searchWords: stringArray });
+      doSearch();
     }
   };
 
 
-  // const doSearch = (typeName) => {
-  //   if (state.searchWords === typeName)
-  //   if (state.searchWords.includes(state.filters.types)) {
-  //   }
-  // }
+  const doSearch = () => {
+    const selectedTypes = state.filters.types;
+    const includesType = state.typesData.some((type) => state.searchWords.includes(type));
 
+    if (includesType) {
+      const newTypesToAdd = state.searchWords.filter((type) => !selectedTypes.includes(type)); // Find types in searchWords that are not in selectedTypes
+      if (newTypesToAdd.length > 0) {
+        const updatedSelectedTypes = [...selectedTypes, ...newTypesToAdd]; // Update the state.filters.types with the new types
+        dispatch({ type: "ADD_TYPE_FILTER", selectedTypes: updatedSelectedTypes }); // Dispatch the action to add/update the type filter
+      };
+    };
 
+  };
 
   useEffect(() => { //Displays the search words state
     console.log("Updated searchWords:", state.searchWords);
