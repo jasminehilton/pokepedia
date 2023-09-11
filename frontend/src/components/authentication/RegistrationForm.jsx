@@ -22,6 +22,7 @@ const RegistrationForm = (
             placeholder="email@example.com"
             value={email}
             onChange={(e) => {
+              setEmail("");
               setError(false);
               setEmail(e.target.value)
             }}
@@ -34,6 +35,7 @@ const RegistrationForm = (
             placeholder="Password"
             value={password}
             onChange={(e) => {
+              setPassword("");
               setError(false);
               setPassword(e.target.value)
             }}

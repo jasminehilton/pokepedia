@@ -20,6 +20,8 @@ const Registration = ({ closeModal }) => {
         closeModal();
       }).catch(error => {
         console.log(error);
+        setEmail("");
+        setPassword("");
         setError(true);
       });
   };

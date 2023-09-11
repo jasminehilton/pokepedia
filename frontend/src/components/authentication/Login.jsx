@@ -21,6 +21,8 @@ const Login = ({ closeModal }) => {
       }).catch(error => {
         console.log(error);
         setError(true);
+        setEmail("");
+        setPassword("");
       });
   };
 
