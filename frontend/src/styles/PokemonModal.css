@@ -118,6 +118,7 @@
 .modal-stats {
   grid-row:1 / span 4;
   grid-column: 10 / span 5;
+  /* justify-content: space-between; */
 }
 
   .modal-gender {
@@ -131,17 +132,18 @@
   }
 
   .modal-weight {
-    grid-row: 2 / span 1;
-    grid-column: 2 / span 2;
+    grid-row: 3 / span 1;
+    grid-column: 1 / span 2;
+    /* padding-left:2rem; */
   }
 
   .modal-category {
-    grid-row: 3 / span 1;
+    grid-row: 4 / span 1;
     grid-column: 1 / span 2;
   }
 
   .modal-ability {
-    grid-row: 4 / span 1;
+    grid-row: 5 / span 1;
     grid-column: 1 / span 2;
   }
 
