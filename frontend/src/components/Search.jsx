@@ -60,7 +60,7 @@ const Search = () => {
   // };
 
   useEffect(() => { //Displays the search words state
-    console.log("Updated searchWords:", state.searchWords);
+    // console.log("Updated searchWords:", state.searchWords);
   }, [state.searchWords]);
 
 
