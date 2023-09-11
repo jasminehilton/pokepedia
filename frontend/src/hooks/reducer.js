@@ -194,7 +194,7 @@ const reducer = (state, action) => {
       return { ...state, collectionPokemon: updatedCollectionNormal };
 
     case ACTIONS.SET_CAUGHT_SHINY:
-      // payload: { userId, pokemonId, caught_normal, caught_shiny }
+      // payload: { pokemon_id: , collection: id }
       const pokemonId = action.payload.pokemon_id;
       const collection_id = action.payload.collection_id;
       const isAlreadyInList = state.collectionPokemon.some(
@@ -226,7 +226,7 @@ const reducer = (state, action) => {
         const data = {
           collectionObj: {
             caught_normal: false,
-            caught_shiney: true,
+            caught_shiny: true,
           },
           pokemon_id: pokemonId,
         };
