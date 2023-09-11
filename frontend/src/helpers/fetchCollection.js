@@ -5,10 +5,8 @@ const fetchCollectionForUser = (dispatch, user_id) => {
   axios.get(`http://localhost:8080/collection/${user_id}`)
   .then((res) => {
     collection = res.data;
-    console.log(collection);
+    dispatch({ type: 'FETCH_POKEMON_COLLECTION', payload: collection })
   });
-
-  dispatch({ type: 'FETCH_POKEMON_COLLECTION', payload: collection})
 };
 
 export default fetchCollectionForUser;

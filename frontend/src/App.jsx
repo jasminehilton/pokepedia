@@ -48,7 +48,7 @@ function App() {
   ]);
 
   useEffect(() => {
-    if (state.isNew) {
+    if (state.isNew === true) {
       fetchCollectionForUser(dispatch, 1);
     }
   }, [state.isNew])
