@@ -13,9 +13,6 @@ import RegionList from "./components/RegionList";
 import "./styles/Navbar.css"
 import HomeRoute from "./routes/HomeRoute";
 import PokemonLogo from "./components/PokemonLogo";
-import SignIn from "./components/auth/SignIn";
-import SignUp from "./components/auth/SignUp";
-import AuthDetails from "./components/auth/AuthDetails";
 
 function App() {
   const state = usePokemonDataContext(); //imports the state
