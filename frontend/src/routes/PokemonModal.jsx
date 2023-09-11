@@ -6,7 +6,6 @@ import PokemonEvolutions from '../components/PokemonEvolutions';
 import "../styles/PokemonModal.css"
 import { fetchSpeciesData } from "../helpers/fetchSpeciesData";
 import { fetchTypesData } from "../helpers/fetchTypesData";
-// import { fetchFemale, fetchMale, fetchGenderless } from "../helpers/fetchGender";
 
 
 
@@ -24,18 +23,7 @@ const PokemonModal = () => {
 
   const [typesDetails, setTypesDetails] = useState({})
 
-  // const [femaleData, setFemale] = useState({})
-
-  // const [maleData, setMale] = useState({})
-
-  // const [genderlessData, setGenderless] = useState({})
-
-  // fetchPokemonLocations(dispatch, state.selectPokemonData.id);
-  
-  // fetchSpeciesData(state.selectPokemonData, setSpeciesDetails);
-
-  // fetchTypesData(state.selectPokemonData, setTypesDetails);
- 
+  const [gender, setGender] = useState('');  
 
 
   const getFlavorText = (flavorEntries) => {
@@ -50,7 +38,6 @@ const PokemonModal = () => {
 
   const getGenusText = (genusEntries) => {
     let genusText = genusEntries.find((genusEntry) => {
-      // console.log(genusText)
       return genusEntry.language.name === "en"
     })
     if(genusText) {
@@ -60,17 +47,18 @@ const PokemonModal = () => {
     return '';
   }
 
+  const getPokemonGender = () => {
+    let pokemonGenders = state.pokemonByGenders.filter((pokemonGender) => {
+      return pokemonGender.name === state.selectPokemonData.name
+    })
+
+    setGender(pokemonGenders.map((pokemonGender) => pokemonGender.gender).join(', '))
+
+  }
 
 
-    // NOTE: this is getting pokemon evolution data for all the pokemons we have and not just the pokemon that is selected and viewed in the modal
-    // i think it is fine to get one by one because right now it is getting it for all 1000 pokemons and their many evolutions, which can be more than like 10k calls
-    // probably better to have this data only live in this component instead of state, because it doesn't need to be shared across the app
-    
   useEffect(() => {
-    // Fetch evolution data for each Pokémon in the list
-    // state.pokemonData.forEach((pokemon) => {
     fetchEvolutionData(state.selectPokemonData, setEvolutionDetails);
-    // });
 
     fetchPokemonLocations(dispatch, state.selectPokemonData.id);
   
@@ -78,41 +66,17 @@ const PokemonModal = () => {
 
     fetchTypesData(state.selectPokemonData, setTypesDetails);
 
-    // fetchFemale(state.selectPokemonData, setFemale)
+    getPokemonGender()
 
-    // fetchMale(state.selectPokemonData, setMale)
-
-    // fetchGenderless(state.selectPokemonData, setGenderless)
   }, []);
     
-  // useEffect(() => {
-  //    // Fetch evolution data for each Pokémon in the list
-  //   state.pokemonData.forEach((pokemon) => {
-  //     fetchEvolutionData(pokemon, setEvolutionDetails);
-  //   });
-  // }, [state.selectPokemonData]);
-  
-  // So everytime the pokemon data is updated which is everytime we get the evolution data, this entire modal get rendered again - so it's in a constant 
-  // state of fetching data. 
-  // Probably better to just do one call by fetching evolution data for only the selected pokemon and not store in the state but in the PokemonModal component with 
-  // a simple useState
-
-
-
-
-  //   state.pokemonData.forEach((pokemon) => {
-  //     fetchEvolutionData(pokemon, setEvolutionDetails);
-  //   });
-  // }, [state.pokemonData]);
   const officialArtworkUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${state.selectPokemonData.id}.png`
   return (
-    // <div className="pokemon-modal ">
-    <div className= {`pokemon-modal ${state.selectPokemonData.types[0].type.name} `}>
+    <div className= {`pokemon-modal ${state.selectPokemonData.types[0].type.name}`} >
       <div className="pokemon-modal-content">
         <span className="close" onClick={onClosePokemonModal}>
           &times;
         </span>
-        {/* <div className= {` modal-container ${state.selectPokemonData.types[0].type.name} `}  > */}
         <div className= " modal-container "  >
           <div className="parent modal-star-ball" >
             <p className="child modal-star" >star</p>
@@ -125,7 +89,7 @@ const PokemonModal = () => {
             alt={state.selectPokemonData.name}
           />
           <div className="parent modal-stats" >
-            <p className="child modal-gender" >Gender: </p>
+            <p className="child modal-gender" >Gender: {gender}</p>
             <p className="child modal-height" >Height: {state.selectPokemonData.height}</p>
             <p className="child modal-weight" >Weight: {state.selectPokemonData.weight}</p>
             <p className="child modal-category" >Category:  {speciesDetails?.genera?.length > 0 && getGenusText(speciesDetails.genera)} </p>
