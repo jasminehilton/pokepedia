@@ -315,6 +315,18 @@ const reducer = (state, action) => {
             `http://localhost:8080/collection/delete/${action.payload.collection_id}`
           )
           .then(console.log("Successfully Deleted."));
+      } else {
+        const dataOBJ = {
+          caught_normal: false,
+          caught_shiny: null,
+        };
+        axios
+        
+          .post(
+            `http://localhost:8080/collection/update/${action.payload.collection_id}`,
+            dataOBJ
+          )
+          .then(console.log("Updated beans"));
       }
 
       console.log("eee");

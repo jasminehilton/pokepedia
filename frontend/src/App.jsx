@@ -25,7 +25,7 @@ function App() {
       type: "REMOVE_CAUGHT_NORMAL",
       payload: { collection_id: 2, pokemonId: 4 },
     });
-  }, [state.myCollectionSelected]);
+  }, []);
 
   useEffect(() => {
     filterPokemon(
