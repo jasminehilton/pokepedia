@@ -47,12 +47,12 @@ function App() {
 
   return (
     <div className="App">
-      <SignIn />
+      {/* <SignIn />
       <SignUp />
-      <AuthDetails />
+      <AuthDetails /> */}
       {/* <RegionList />
       <TypeButtonList /> */}
-      {/* <HomeRoute /> */}
+      <HomeRoute />
       {/* <PokemonInfo /> */}
       {/* <Regions /> */}
       {/* <PokemonFooter /> */}

@@ -1,45 +1,37 @@
 import React, { useState } from "react";
 import LoginForm from "./LoginForm";
+import { auth } from "../firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const Login = ({ closeModal }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
 
-  const handleEmail = (e) => {
-    setEmail(e.target.value);
-    setSubmitted(false);
-    setError(false);
-  };
-
-  const handlePassword = (e) => {
-    setPassword(e.target.value);
-    setSubmitted(false);
-    setError(false);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Replace this logic with your authentication logic
-    if (email === "user@example.com" && password === "password") {
-      setSubmitted(true);
-      setError(false);
-      closeModal();
-    } else {
-      setError(true);
-    }
+  const signIn = (e) => {
+    e.preventDefault(); //prevents page from refreshing
+    signInWithEmailAndPassword(auth, email, password)
+      .then(useCredential => {
+        console.log(useCredential);
+        setSubmitted(true);
+        setError(false);
+      }).catch(error => {
+        console.log(error);
+        setError(true);
+      });
   };
 
   return (
     <LoginForm
       email={email}
-      handleEmail={handleEmail}
+      setEmail={setEmail}
       password={password}
-      handlePassword={handlePassword}
+      setPassword={setPassword}
       submitted={submitted}
       error={error}
-      handleSubmit={handleSubmit}
+      signIn={signIn}
     />
   );
 };

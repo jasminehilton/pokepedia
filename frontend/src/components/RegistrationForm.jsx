@@ -2,8 +2,8 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 const RegistrationForm = (
-  { email, handleEmail, password, handlePassword,
-    submitted, error, handleSubmit }) => {
+  { email, setEmail, password, setPassword,
+    submitted, error, signUp }) => {
 
   return (
     <section className="form-registration">
@@ -15,13 +15,13 @@ const RegistrationForm = (
       <div>
         <p className="form-title">Pokedex Registration</p>
       </div>
-      <Form className="form-container">
+      <Form className="form-container" onSubmit={signUp}>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Control
             type="email"
             placeholder="email@example.com"
             value={email}
-            onChange={handleEmail}
+            onChange={(e) => setEmail(e.target.value)}
             className="input-font"
           />
         </Form.Group>
@@ -30,7 +30,7 @@ const RegistrationForm = (
             type="password"
             placeholder="Password"
             value={password}
-            onChange={handlePassword}
+            onChange={(e) => setPassword(e.target.value)}
             className="input-font"
           />
         </Form.Group>
@@ -47,7 +47,7 @@ const RegistrationForm = (
         )}
 
         <Button
-          onClick={handleSubmit}
+          onClick={signUp}
           variant="danger"
           type="submit"
         >

@@ -5,12 +5,12 @@ import "../styles/Login.css";
 
 const LoginForm = ({
   email,
-  handleEmail,
+  setEmail,
   password,
-  handlePassword,
+  setPassword,
   submitted,
   error,
-  handleSubmit,
+  signIn,
 }) => {
   return (
     <section className="form-login">
@@ -22,13 +22,13 @@ const LoginForm = ({
       <div>
         <p className="form-title">Pokedex Login</p>
       </div>
-      <Form className="form-container">
+      <Form className="form-container" onSubmit={signIn}>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Control
             type="email"
             placeholder="email@example.com"
             value={email}
-            onChange={handleEmail}
+            onChange={(e) => setEmail(e.target.value)}
             className="input-font"
           />
         </Form.Group>
@@ -37,7 +37,7 @@ const LoginForm = ({
             type="password"
             placeholder="Password"
             value={password}
-            onChange={handlePassword}
+            onChange={(e) => setPassword(e.target.value)}
             className="input-font"
           />
         </Form.Group>
@@ -54,7 +54,7 @@ const LoginForm = ({
         )}
 
         <Button
-          onClick={handleSubmit}
+          onClick={signIn}
           variant="danger"
           type="submit"
         >
