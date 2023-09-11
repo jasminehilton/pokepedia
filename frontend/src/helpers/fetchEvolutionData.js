@@ -1,3 +1,4 @@
+import capitalizeFirstLetter from "./capitalizeFirstLetter";
 export const fetchEvolutionData = async (pokemonData, setEvolutionDetails) => {
   try {
     const speciesResponse = await fetch(pokemonData.species.url);

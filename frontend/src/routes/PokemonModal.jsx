@@ -8,7 +8,7 @@ import { fetchSpeciesData } from "../helpers/fetchSpeciesData";
 import { fetchTypesData } from "../helpers/fetchTypesData";
 
 
-
+import capitalizeFirstLetter from "../helpers/capitalizeFirstLetter";
 
 
 const PokemonModal = () => {
@@ -92,9 +92,9 @@ const PokemonModal = () => {
             <p className="child modal-height" >Height: {state.selectPokemonData.height}0 cm</p>
             <p className="child modal-weight" >Weight: {Math.floor(state.selectPokemonData.weight)/ 10} kg</p>
             <p className="child modal-category" >Category:  {speciesDetails?.genera?.length > 0 && getGenusText(speciesDetails.genera)} </p>
-            <p className="child modal-ability" >Abilities: {state.selectPokemonData.abilities.map((ability) => ability.ability.name).join(', ')}</p>
+            <p className="child modal-ability" >Abilities: {state.selectPokemonData.abilities.map((ability) => capitalizeFirstLetter(ability.ability.name)).join(', ')}</p>
           </div>
-          <p className="parent modal-name" >{state.selectPokemonData.name}</p>
+          <p className="parent modal-name" >{capitalizeFirstLetter(state.selectPokemonData.name)}</p>
 
           <div className="parent modal-form" >Forms:
           
@@ -117,17 +117,17 @@ const PokemonModal = () => {
           </div>   
           <p className="parent modal-description" >Description: {speciesDetails?.flavor_text_entries?.length > 0 && getFlavorText(speciesDetails.flavor_text_entries)}</p>
           <div className="parent modal-type-weak" >
-            <p className="child modal-type" >Types: {state.selectPokemonData.types.map((type) => type.type.name).join(', ')}</p>
-            <p className="child modal-weakness" >Weaknesses: {typesDetails?.damage_relations?.double_damage_from.map((weakness) => weakness.name).join(', ')}  </p>
+            <p className="child modal-type" >Types: {state.selectPokemonData.types.map((type) => capitalizeFirstLetter(type.type.name)).join(', ')}</p>
+            <p className="child modal-weakness" >Weaknesses: {typesDetails?.damage_relations?.double_damage_from.map((weakness) => capitalizeFirstLetter(weakness.name)).join(', ')}  </p>
           </div>
           <ul className="parent modal-location" >
           Locations:
           {state.locations.map((location, index) => (
             <li className="child" key={index}>
-              {location.location_area.name}
+              {capitalizeFirstLetter(location.location_area.name)}
               <ul className="child" >
                 {location.version_details.map((version, vIndex) => (
-                  <li key={vIndex}>{version.version.name}</li>
+                  <li key={vIndex}>{capitalizeFirstLetter(version.version.name)}</li>
                 ))}
               </ul>
             </li>

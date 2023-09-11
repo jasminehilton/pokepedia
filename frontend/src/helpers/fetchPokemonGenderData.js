@@ -1,6 +1,6 @@
 import { ACTIONS } from "../hooks/reducer";
 import axios from "axios";
-
+import capitalizeFirstLetter from "./capitalizeFirstLetter";
 export const fetchPokemonGenderData = async (dispatch) => {
 	let pokemonGenders = [];
 
@@ -17,7 +17,7 @@ export const fetchPokemonGenderData = async (dispatch) => {
 	Promise.all(pokemonGenderPromises)
 		.then((responses) => {
 			responses.forEach((response) => {
-				let gender = response.data.name;
+				let gender = capitalizeFirstLetter(response.data.name);
 				let test = response.data.pokemon_species_details.map(
 					(pokemon_specie) => {
 						return {
