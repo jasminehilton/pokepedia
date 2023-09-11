@@ -46,7 +46,7 @@ const updateCaughtNormal = (collection_id, caught_normal) => {
 const updateCaughtShiny = (collection_id, caught_shiny) => {
   return db
     .query(
-      "UPDATE collections SET caught_shiny = $1 WHERE id = $2", [caught_shiny, collection_id]
+      "UPDATE collections SET caught_shiny = $1 WHERE id = $2;", [caught_shiny, collection_id]
     )
     .then((data) => {
       return data.rows;

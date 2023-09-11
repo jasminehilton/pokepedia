@@ -33,14 +33,14 @@ router.post("/update/:collection_id", (req, res) => {
   const collection_id = req.params.collection_id;
   const caught_normal = req.body.caught_normal;
   const caught_shiny = req.body.caught_shiny;
-
-  if (caught_normal) {
+  console.log(caught_normal, caught_shiny)
+  if (caught_normal !== null) {
     updateCaughtNormal(collection_id, caught_normal).then((collection) => {
       // res.status(200).send();
     });
   }
 
-  if (caught_shiny) {
+  if (caught_shiny !== null) {
     updateCaughtShiny(collection_id, caught_shiny).then((collection) => {});
     // res.status(200).send();
   }
