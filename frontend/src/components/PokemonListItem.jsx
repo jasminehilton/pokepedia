@@ -2,8 +2,9 @@ import React from "react";
 import "../styles/PokemonListItem.css"
 import capitalizeFirstLetter from "../helpers/capitalizeFirstLetter";
 import "../styles/PokemonTypes.css"
+import ShinyButton from './ShinyButton';
 
-const PokemonListItem = ({ pokemon, onDisplayPokemonModal }) => {
+const PokemonListItem = ({ pokemon, onDisplayPokemonModal, collection_id, isShiny }) => {
   const officialArtworkUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`;
 
   return (
@@ -19,6 +20,7 @@ const PokemonListItem = ({ pokemon, onDisplayPokemonModal }) => {
           />
           <p className={`pokemon-name`}>{capitalizeFirstLetter(pokemon.name)}</p>
         </div>
+        <ShinyButton pokemon_id={pokemon.id} collection_id={collection_id} isShiny={isShiny}/>
       </div>
     </div>
   );
