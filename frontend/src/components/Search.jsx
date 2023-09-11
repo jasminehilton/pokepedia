@@ -18,20 +18,14 @@ const Search = () => {
     setSearchInput(event.target.value); // Update the search input value
   };
 
-  const handleSearch = (event) => { //Updates the searchWords state on enter key
-    if (event.key === "Enter") {
-      let splitString = searchInput.split(" "); //splits the searchInput into usable array of strings
-      let stringArray = [];
-      for(let i = 0; i < splitString.length; i++) { //removing spaces and pushes words into new array
-        if(splitString[i] !== "") {
-          stringArray.push(splitString[i]);
-        }
-      }
-      dispatch({ type: "INITIATE_SEARCH", searchWords: stringArray });
-      doSearch();
-    }
-  };
+  useEffect(() => {
+    const splitString = searchInput
+      .split(" ")
+      .filter(Boolean)
+      .map((word) => word.toLowerCase()); // Split up the search input, remove spaces, and convert to lowercase
 
+    dispatch({ type: "INITIATE_SEARCH", searchWords: splitString });
+  }, [searchInput, dispatch]);
 
   const doSearch = () => {
     const selectedTypes = state.filters.types;
@@ -45,6 +39,12 @@ const Search = () => {
       };
     };
 
+  };
+
+  const handleSearch = (event) => { //Updates the searchWords state on enter key
+    if (event.key === "Enter") {
+      doSearch();
+    }
   };
 
   useEffect(() => { //Displays the search words state
