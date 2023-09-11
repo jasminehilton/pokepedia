@@ -2,6 +2,7 @@ import React from "react";
 import "../styles/PokemonListItem.css"
 import capitalizeFirstLetter from "../helpers/capitalizeFirstLetter";
 import "../styles/PokemonTypes.css"
+import NormalIcon from "../components/NormalIcon"
 
 const PokemonListItem = ({ pokemon, onDisplayPokemonModal }) => {
   const officialArtworkUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`;
@@ -17,7 +18,8 @@ const PokemonListItem = ({ pokemon, onDisplayPokemonModal }) => {
             alt={pokemon.name}
             onClick={() => onDisplayPokemonModal(pokemon)}
           />
-          <p className={`pokemon-name`}>{capitalizeFirstLetter(pokemon.name)}</p>
+            <p className={`pokemon-name`}>{capitalizeFirstLetter(pokemon.name)}</p>
+            <NormalIcon />
         </div>
       </div>
     </div>
