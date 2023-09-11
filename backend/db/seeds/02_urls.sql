@@ -1,5 +1,5 @@
 -- COLLECTION SEEDS
-INSERT INTO collections (user_id, pokemon_id, caught_normal, caught_shiney)
+INSERT INTO collections (user_id, pokemon_id, caught_normal, caught_shiny)
 VALUES
   (1, 25, true, false),
   (1, 4, true, true),
