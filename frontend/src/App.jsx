@@ -19,7 +19,6 @@ function App() {
 
   useEffect(() => {
     fetchCollectionForUser(dispatch, 1);
-    dispatch({type: "SET_CAUGHT_SHINY", payload: { pokemon_id: 552, collection_id: null }})
   }, [])
 
   useEffect(() => {

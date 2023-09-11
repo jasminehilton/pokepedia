@@ -31,7 +31,7 @@ export const ACTIONS = {
   SET_CAUGHT_NORMAL: "SET_CAUGHT_NORMAL",
   SET_CAUGHT_SHINY: "SET_CAUGHT_SHINY",
   SET_IS_NEW: "SET_IS_NEW",
-  SET_MY_COLLECTION_SELECTED: "SET_MY_COLLECTION_SELECTED"
+  SET_MY_COLLECTION_SELECTED: "SET_MY_COLLECTION_SELECTED",
 };
 
 const initialState = {
@@ -181,29 +181,63 @@ const reducer = (state, action) => {
         isLoggedIn: false,
       };
     case ACTIONS.SET_CAUGHT_NORMAL:
-      const updatedCollectionNormal = state.collectionPokemon.map((pokemon) => {
-        if (pokemon.id === action.payload.pokemonId) {
-          return { ...pokemon, caught_normal: action.payload.isCaught };
-        }
-        return pokemon;
-      });
+      // payload: { pokemon_id: , collection: id }
+      const pokemonIdN = action.payload.pokemon_id;
+      const collection_idN = action.payload.collection_id;
 
-      // Send a POST request to update the backend with the new caught_normal value
-      // You need to implement the backend update logic here
+      let updatedCollectionNormal;
 
-      return { ...state, collectionPokemon: updatedCollectionNormal };
+      if (collection_idN) {
+        // If the Pokémon is already in the list, update the 'caught_shiny' property
+        updatedCollectionNormal = state.collectionPokemon.map((pokemon) => {
+          if (pokemon.id === pokemonIdN) {
+            return { ...pokemon, caught_normal: true };
+          }
+          return pokemon;
+        });
+
+        const data = {
+          caught_normal: true,
+          caught_shiny: null,
+        };
+
+        console.log(data, collection_idN, "beans", pokemonIdN);
+        axios
+          .post(`http://localhost:8080/collection/update/${collection_idN}`, data)
+          .then((res) => {
+            console.log("Successful update");
+          })
+          .catch((error) => {
+            console.error("Beans:", error);
+          });
+
+        return { ...state, collectionPokemon: updatedCollectionNormal };
+      } else {
+        const data = {
+          collectionObj: {
+            caught_normal: true,
+            caught_shiny: false,
+          },
+          pokemon_id: pokemonIdN,
+        };
+
+        axios
+          .post(`http://localhost:8080/collection/1/create`, data)
+          .then((res) => {
+            console.log("Successful creation");
+          });
+
+        return { ...state, isNew: true };
+      }
 
     case ACTIONS.SET_CAUGHT_SHINY:
       // payload: { pokemon_id: , collection: id }
       const pokemonId = action.payload.pokemon_id;
       const collection_id = action.payload.collection_id;
-      const isAlreadyInList = state.collectionPokemon.some(
-        (pokemon) => pokemon.pokemon_id === pokemonId
-      );
 
       let updatedCollectionShiny;
 
-      if (isAlreadyInList) {
+      if (collection_id) {
         // If the Pokémon is already in the list, update the 'caught_shiny' property
         updatedCollectionShiny = state.collectionPokemon.map((pokemon) => {
           if (pokemon.id === action.payload.pokemonId) {
@@ -214,10 +248,10 @@ const reducer = (state, action) => {
 
         const data = {
           caught_normal: null,
-          caught_shiney: true,
+          caught_shiny: true,
         };
 
-        axios.post(`/update/${collection_id}`, data).then((res) => {
+        axios.post(`http://localhost:8080/collection/update/${collection_id}`, data).then((res) => {
           console.log("Successful update");
         });
 
@@ -242,9 +276,9 @@ const reducer = (state, action) => {
     case ACTIONS.FETCH_POKEMON_COLLECTION:
       return { ...state, collectionPokemon: action.payload };
     case ACTIONS.SET_IS_NEW:
-      return { ...state, isNew: action.payload }
+      return { ...state, isNew: action.payload };
     case ACTIONS.SET_MY_COLLECTION_SELECTED:
-      return { ...state, myCollectionSelected: action.payload }
+      return { ...state, myCollectionSelected: action.payload };
     default:
       return state;
   }
