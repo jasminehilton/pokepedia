@@ -20,12 +20,6 @@ function App() {
     fetchCollectionForUser(dispatch, 1);
   }, []);
 
-  useEffect(() => {
-    dispatch({
-      type: "REMOVE_CAUGHT_NORMAL",
-      payload: { collection_id: 2, pokemonId: 4 },
-    });
-  }, []);
 
   useEffect(() => {
     filterPokemon(

@@ -298,10 +298,8 @@ const reducer = (state, action) => {
           console.log(pokemon);
           if (pokemon.caught_shiny === false) {
             deleteN = true;
-            console.log("beef");
             return null;
           } else {
-            console.log("cow");
             return { ...pokemon, caught_normal: false };
           }
         }
@@ -321,17 +319,16 @@ const reducer = (state, action) => {
           caught_shiny: null,
         };
         axios
-        
+
           .post(
             `http://localhost:8080/collection/update/${action.payload.collection_id}`,
             dataOBJ
           )
-          .then(console.log("Updated beans"));
+          .then(console.log("Updated successfully"));
       }
 
       console.log("eee");
       return {
-        // Filter
         ...state,
         collectionPokemon: updatedCollectionNormalRN,
       };
@@ -339,11 +336,10 @@ const reducer = (state, action) => {
       let deleteS = false;
       let updatedCollectionShinyRS = [];
       updatedCollectionShinyRS = state.collectionPokemon.map((pokemon) => {
-        if (pokemon.id === action.payload.pokemonId) {
-          if (
-            pokemon.caught_shiny === false &&
-            pokemon.caught_normal === false
-          ) {
+        if (pokemon.pokemon_id === action.payload.pokemonId) {
+          console.log(pokemon);
+          if (pokemon.caught_normal === false) {
+            console.log("ee");
             deleteS = true;
             return null;
           } else {
@@ -360,6 +356,18 @@ const reducer = (state, action) => {
           .then((res) => {
             console.log("Successful Deletion");
           });
+      } else {
+        const dataOBJS = {
+          caught_normal: null,
+          caught_shiny: false,
+        };
+        axios
+
+          .post(
+            `http://localhost:8080/collection/update/${action.payload.collection_id}`,
+            dataOBJS
+          )
+          .then(console.log("Updated beans"));
       }
       return {
         ...state,
