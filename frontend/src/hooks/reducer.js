@@ -237,7 +237,6 @@ const reducer = (state, action) => {
 
     case ACTIONS.SET_CAUGHT_SHINY:
       // payload: { pokemon_id: , collection: id }
-      const pokemonId = action.payload.pokemon_id;
       let collection_id = action.payload.collection_id;
 
       let updatedCollectionShiny;
@@ -272,7 +271,7 @@ const reducer = (state, action) => {
             caught_normal: false,
             caught_shiny: true,
           },
-          pokemon_id: pokemonId,
+          pokemon_id: action.payload.pokemonId,
         };
 
         axios
