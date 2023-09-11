@@ -17,6 +17,7 @@ const Registration = ({ closeModal }) => {
         console.log(useCredential);
         setSubmitted(true);
         setError(false);
+        closeModal();
       }).catch(error => {
         console.log(error);
         setError(true);
