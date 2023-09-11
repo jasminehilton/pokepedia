@@ -10,7 +10,7 @@ import {
 import filterPokemon from "./helpers/filter";
 import getDisplayedPokemon from "./helpers/getDisplayedPokemon";
 import RegionList from "./components/RegionList";
-import "./styles/Navbar.css"
+import "./styles/Navbar.css";
 import HomeRoute from "./routes/HomeRoute";
 import PokemonLogo from "./components/PokemonLogo";
 
@@ -25,6 +25,7 @@ function App() {
       state.pokemonData,
       state.pokemonByRegion
     );
+    dispatch({ type: "SET_CURRENT_PAGE", payload: 1 });
   }, [state.filters.types, state.pokemonByRegion]);
 
   useEffect(() => {
@@ -40,7 +41,7 @@ function App() {
     state.pokemonData,
     state.currentPage,
     state.filters.regions,
-    state.isLoggedIn
+    state.isLoggedIn,
   ]);
 
   return (
