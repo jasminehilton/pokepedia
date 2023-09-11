@@ -41,9 +41,11 @@ function RegionList() {
     const listen = onAuthStateChanged(auth, (authUser) => {
       if (authUser) {
         setAuthUser(authUser)
-        state.isLoggedIn = true;
+        dispatch({ type: "LOGIN_SUCCESS" });
       } else {
         setAuthUser(null)
+        dispatch({ type: "LOGOUT" });
+        
       }
     });
 
@@ -77,13 +79,11 @@ function RegionList() {
         ))}
       </div>
       <div className="rightBigButtons">
-        {state.isLoggedIn ? (
+        {authUser ? (
           <div>
-            {/* <button className="bigGreenButton" onClick={userSignOut}>
+            <button className="bigGreenButton" onClick={userSignOut}>
               Sign Out
-            </button> */}
-
-            
+            </button>
           </div>
         ) : (
           <button
