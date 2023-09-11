@@ -31,3 +31,15 @@
   font-family: 'VT323', monospace;
   font-size: 1.2rem;
 }
+
+.email-label {
+  font-family: 'VT323', monospace;
+  font-size: 2.7rem;
+  color: beige;
+}
+
+.label {
+  font-family: 'VT323', monospace;
+  font-size: 1.5rem;
+  color: rgb(231, 231, 222);
+}

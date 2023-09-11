@@ -78,7 +78,8 @@ const TypeButtonList = () => {
       <div className="rightBigButtons">
         {authUser ? (
           <div>
-            <p className='form-title'>{authUser.email}</p>
+            <p className='label'>Signed in as:</p>
+            <p className='email-label'>{authUser.email}</p>
           </div>
         ) : (
           <button
