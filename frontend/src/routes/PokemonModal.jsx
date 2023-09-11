@@ -90,7 +90,6 @@ const PokemonModal = () => {
           <div className="parent modal-stats" >
             <p className="child modal-gender" >Gender: {gender}</p>
             <p className="child modal-height" >Height: {state.selectPokemonData.height}0 cm</p>
-            {/* <p className="child modal-weight" >Weight: {state.selectPokemonData.weight} kg</p> */}
             <p className="child modal-weight" >Weight: {Math.floor(state.selectPokemonData.weight)/ 10} kg</p>
             <p className="child modal-category" >Category:  {speciesDetails?.genera?.length > 0 && getGenusText(speciesDetails.genera)} </p>
             <p className="child modal-ability" >Abilities: {state.selectPokemonData.abilities.map((ability) => ability.ability.name).join(', ')}</p>

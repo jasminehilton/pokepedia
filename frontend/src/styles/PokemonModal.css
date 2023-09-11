@@ -150,8 +150,10 @@
 /* ================================SINGLES============================ */
 .modal-number {
   font-family: 'Roboto Mono', monospace;
-  width:150px;
+  /* width:150px; */
   text-align: center;
+  /* margin:auto; */
+  padding:22px;
 }
 
 .modal-name {
