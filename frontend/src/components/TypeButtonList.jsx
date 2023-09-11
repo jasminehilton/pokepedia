@@ -6,6 +6,7 @@ import "../styles/Navbar.css"
 import RegistrationModal from '../routes/RegistrationModal';
 import { onAuthStateChanged } from '@firebase/auth';
 import { auth } from '../firebase';
+import myCollectionSelected from '../helpers/setMyCollectionSelected';
 
 const TypeButtonList = () => {
 
@@ -89,7 +90,7 @@ const TypeButtonList = () => {
             Register
           </button>
         )}
-        <button className="bigYellowButton">Collection</button>
+        <button className="bigYellowButton" onClick={() => myCollectionSelected(dispatch, state.myCollectionSelected)}>Collection</button>
       </div>
       {
         showRegistration &&

@@ -30,6 +30,8 @@ export const ACTIONS = {
   FETCH_POKEMON_COLLECTION: "FETCH_POKEMON_COLLECTION",
   SET_CAUGHT_NORMAL: "SET_CAUGHT_NORMAL",
   SET_CAUGHT_SHINY: "SET_CAUGHT_SHINY",
+  SET_IS_NEW: "SET_IS_NEW",
+  SET_MY_COLLECTION_SELECTED: "SET_MY_COLLECTION_SELECTED"
 };
 
 const initialState = {
@@ -65,6 +67,7 @@ const initialState = {
     takeNoDamage: [],
     dealNoDamage: [],
   },
+  myCollectionSelected: false,
 };
 
 const reducer = (state, action) => {
@@ -238,6 +241,10 @@ const reducer = (state, action) => {
       }
     case ACTIONS.FETCH_POKEMON_COLLECTION:
       return { ...state, collectionPokemon: action.payload };
+    case ACTIONS.SET_IS_NEW:
+      return { ...state, isNew: action.payload }
+    case ACTIONS.SET_MY_COLLECTION_SELECTED:
+      return { ...state, myCollectionSelected: action.payload }
     default:
       return state;
   }

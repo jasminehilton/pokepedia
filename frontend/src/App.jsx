@@ -50,6 +50,7 @@ function App() {
   useEffect(() => {
     if (state.isNew === true) {
       fetchCollectionForUser(dispatch, 1);
+      dispatch({ type: 'SET_IS_NEW', payload: false })
     }
   }, [state.isNew])
 
