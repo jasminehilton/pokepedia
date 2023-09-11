@@ -2,10 +2,11 @@ import React from "react";
 import "../styles/PokemonListItem.css"
 import capitalizeFirstLetter from "../helpers/capitalizeFirstLetter";
 import "../styles/PokemonTypes.css"
-import NormalIcon from "../components/NormalIcon";
+import ShinyButton from './ShinyButton';
 import ShinyIcon from "./ShinyIcon";
+import NormalIcon from "./NormalIcon";
 
-const PokemonListItem = ({ pokemon, onDisplayPokemonModal }) => {
+const PokemonListItem = ({ pokemon, onDisplayPokemonModal, collection_id, isShiny }) => {
   const officialArtworkUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`;
 
   return (
@@ -25,6 +26,7 @@ const PokemonListItem = ({ pokemon, onDisplayPokemonModal }) => {
             <NormalIcon />
           </div>
         </div>
+        <ShinyButton pokemon_id={pokemon.id} collection_id={collection_id} isShiny={isShiny}/>
       </div>
     </div>
   );

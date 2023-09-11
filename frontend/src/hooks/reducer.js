@@ -244,7 +244,7 @@ const reducer = (state, action) => {
       if (collection_id) {
         // If the Pokémon is already in the list, update the 'caught_shiny' property
         updatedCollectionShiny = state.collectionPokemon.map((pokemon) => {
-          if (pokemon.id === action.payload.pokemonId) {
+          if (pokemon.pokemon_id === action.payload.pokemonId) {
             return { ...pokemon, caught_shiny: true };
           }
           return pokemon;
@@ -347,6 +347,9 @@ const reducer = (state, action) => {
         }
         return pokemon;
       });
+
+      const filteredCollectionShinyRS = updatedCollectionShinyRS.filter((pokemon) => pokemon !== null);
+
       if (deleteS) {
         axios
           .post(
@@ -368,9 +371,11 @@ const reducer = (state, action) => {
           )
           .then(console.log("Updated beans"));
       }
+
+      console.log(updatedCollectionShinyRS)
       return {
         ...state,
-        collectionPokemon: updatedCollectionShinyRS,
+        collectionPokemon: filteredCollectionShinyRS,
       };
     default:
       return state;
