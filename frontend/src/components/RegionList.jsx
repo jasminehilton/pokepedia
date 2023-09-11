@@ -45,10 +45,9 @@ function RegionList() {
       } else {
         setAuthUser(null)
         dispatch({ type: "LOGOUT" });
-        
+
       }
     });
-
     return () => listen();
   }, []);
 
@@ -84,6 +83,7 @@ function RegionList() {
             <button className="bigGreenButton" onClick={userSignOut}>
               Sign Out
             </button>
+
           </div>
         ) : (
           <button

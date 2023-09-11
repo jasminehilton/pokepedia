@@ -4,12 +4,15 @@ import { usePokemonDataContext, usePokemonDataDispatchContext } from "../provide
 import TypeButton from './TypeButton';
 import "../styles/Navbar.css"
 import RegistrationModal from '../routes/RegistrationModal';
+import { onAuthStateChanged } from '@firebase/auth';
+import { auth } from '../firebase';
 
 const TypeButtonList = () => {
 
   const state = usePokemonDataContext(); //imports the state
   const dispatch = usePokemonDataDispatchContext(); //imports dispatch
   const [showRegistration, setShowRegistration] = useState(false);
+  const [authUser, setAuthUser] = useState(null);
 
   useEffect(() => {
     // console.log('Selected types:', state.filters.types);
@@ -30,6 +33,20 @@ const TypeButtonList = () => {
   const onDisplayRegistration = () => {
     setShowRegistration(!showRegistration);
   };
+
+  useEffect(() => {
+    const listen = onAuthStateChanged(auth, (authUser) => {
+      if (authUser) {
+        setAuthUser(authUser)
+        dispatch({ type: "LOGIN_SUCCESS" });
+      } else {
+        setAuthUser(null)
+        dispatch({ type: "LOGOUT" });
+
+      }
+    });
+    return () => listen();
+  }, []);
 
   const onTypeSelect = (typeName) => {
     const selectedTypes = state.filters.types;
@@ -59,20 +76,28 @@ const TypeButtonList = () => {
         ))}
       </div>
       <div className="rightBigButtons">
-        <button
-          className="bigGreenButton"
-          onClick={() => onDisplayRegistration()}
-        >
-          Register
-        </button>
+        {authUser ? (
+          <div>
+            <p className='form-title'>{authUser.email}</p>
+          </div>
+        ) : (
+          <button
+            className="bigGreenButton"
+            onClick={() => onDisplayRegistration()}
+          >
+            Register
+          </button>
+        )}
         <button className="bigYellowButton">Collection</button>
       </div>
-      {showRegistration &&
+      {
+        showRegistration &&
         <RegistrationModal
           showRegistration={showRegistration}
           toggleModal={onDisplayRegistration}
-        />}
-    </div>
+        />
+      }
+    </div >
   );
 };
 
