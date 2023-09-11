@@ -32,6 +32,7 @@ const Login = ({ closeModal }) => {
       setPassword={setPassword}
       submitted={submitted}
       error={error}
+      setError={setError}
       signIn={signIn}
     />
   );

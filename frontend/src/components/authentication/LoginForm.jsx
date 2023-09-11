@@ -10,6 +10,7 @@ const LoginForm = ({
   setPassword,
   submitted,
   error,
+  setError,
   signIn,
 }) => {
   return (
@@ -28,7 +29,10 @@ const LoginForm = ({
             type="email"
             placeholder="email@example.com"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setError(false);
+              setEmail(e.target.value)
+            }}
             className="input-font"
           />
         </Form.Group>
@@ -37,7 +41,10 @@ const LoginForm = ({
             type="password"
             placeholder="Password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+              setError(false);
+              setPassword(e.target.value)
+            }}
             className="input-font"
           />
         </Form.Group>

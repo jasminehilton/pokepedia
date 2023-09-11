@@ -32,6 +32,7 @@ const Registration = ({ closeModal }) => {
       setPassword={setPassword}
       submitted={submitted}
       error={error}
+      setError={setError}
       signUp={signUp}
     />
   );

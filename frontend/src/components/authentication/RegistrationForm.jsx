@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 
 const RegistrationForm = (
   { email, setEmail, password, setPassword,
-    submitted, error, signUp }) => {
+    submitted, error, setError, signUp }) => {
 
   return (
     <section className="form-registration">
@@ -21,7 +21,10 @@ const RegistrationForm = (
             type="email"
             placeholder="email@example.com"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setError(false);
+              setEmail(e.target.value)
+            }}
             className="input-font"
           />
         </Form.Group>
@@ -30,7 +33,10 @@ const RegistrationForm = (
             type="password"
             placeholder="Password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+              setError(false);
+              setPassword(e.target.value)
+            }}
             className="input-font"
           />
         </Form.Group>
