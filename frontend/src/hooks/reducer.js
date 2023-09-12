@@ -20,8 +20,7 @@ export const ACTIONS = {
   CLEAR_FILTERS: "CLEAR_FILTERS",
   SELECT_PAGE: "SELECT_PAGE",
   INITIATE_SEARCH: "INITIATE_SEARCH",
-  SEARCH_BY_NAME: "SEARCH_BY_NAME",
-  SEARCH_BY_ID: "SEARCH_BY_ID",
+  SEARCH_SPECIFIC_POKEMON: "SEARCH_SPECIFIC_POKEMON",
   FETCH_POKEMON_SUCCESS: "FETCH_POKEMON_SUCCESS",
   FETCH_POKEMON_FAILURE: "FETCH_POKEMON_FAILURE",
   SET_CURRENT_PAGE: "SET_CURRENT_PAGE",
@@ -152,18 +151,11 @@ const reducer = (state, action) => {
       return { 
         ...state,
         searchWords: action.searchWords,};
-    // case ACTIONS.SEARCH_BY_NAME: {
-    //   return {
-    //     ...state,
-    //     filteredPokemonData: ,
-    //   };
-    // };
-    // case ACTIONS.SEARCH_BY_ID: {
-    //   return {
-    //     ...state,
-    //     filteredPokemonData: ,
-    //   };
-    // };
+        case ACTIONS.SEARCH_SPECIFIC_POKEMON:
+          return {
+            ...state,
+            filteredPokemonData: action.payload,
+          };
     case ACTIONS.FETCH_POKEMON_SUCCESS:
       return {
         ...state,

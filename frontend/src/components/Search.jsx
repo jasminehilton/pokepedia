@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import {
+  PokemonDataProvider,
   usePokemonDataContext,
   usePokemonDataDispatchContext,
 } from "../providers/pokeProvider";
@@ -32,6 +33,7 @@ const Search = () => {
     const includesRegion = state.regionsData.some((region) => state.searchWords.includes(region.name));
     const includesId = state.searchWords.some((word) => !isNaN(word));
     console.log(includesId);
+    console.log(state.pokemonData);
     // console.log(state.searchWords)
     console.log(state.filteredPokemonData);
 
@@ -50,12 +52,31 @@ const Search = () => {
       dispatch({ type: "CLEAR_REGION_FILTER", selectedRegions: {} });
     }
 
-    // if (includesId) {
-    //   let findById = 
-  //     dispatch({ type: "SEARCH_BY_ID", payload: searchId });
-  //   } else {
-  //     dispatch({ type: "SEARCH_BY_NAME", payload: searchTerm });
-  //   }
+    if (includesId) {
+      console.log("Id is:", state.searchWords);
+      const searchId = parseInt(state.searchWords.find((word) => !isNaN(word)), 10);
+      console.log("Search ID is:", searchId);
+      let findById = state.pokemonData.find((pokemon) => pokemon.id === searchId)
+      console.log(findById)
+      if (findById) {
+        dispatch({ type: "SEARCH_SPECIFIC_POKEMON", payload: findById });
+        console.log("SUCCESS+++++", state.filteredPokemonData)
+      } else {
+        console.log(`No Pokémon found with ID: ${searchId}`);
+      }
+    } else {
+      console.log("Name is:", state.searchWords);
+      const searchName = state.searchWords.find((word) => isNaN(word));
+      console.log("Search name is:", searchName);
+      const findByName = state.pokemonData.find((pokemon) => pokemon.name === searchName)
+      console.log(findByName)
+      if (findByName) {
+        dispatch({ type: "SEARCH_SPECIFIC_POKEMON", payload: findByName });
+        console.log("SUCCESS+++++", state.filteredPokemonData)
+      } else {
+        console.log(`No Pokémon found with name: ${searchName}`);
+      }
+    }
   };
 
   const handleSearch = (event) => { //Updates the searchWords state on enter key
