@@ -4,6 +4,7 @@ import {
   usePokemonDataDispatchContext,
 } from "../providers/pokeProvider";
 // import TypeButtonList from "./TypeButtonList";
+import Form from "react-bootstrap/Form";
 
 const Search = () => {
   const state = usePokemonDataContext();
@@ -29,7 +30,7 @@ const Search = () => {
 
   const doSearch = () => {
     const includesType = state.typesData.some((type) => state.searchWords.includes(type));
-  
+
     if (includesType) {
       const updatedSelectedTypes = [...state.searchWords]; // Create a new array with the search types
       dispatch({ type: "ADD_TYPE_FILTER", selectedTypes: updatedSelectedTypes });
@@ -45,7 +46,7 @@ const Search = () => {
     }
   };
 
-// this version below accounts for already pressed buttons
+  // this version below accounts for already pressed buttons
 
   // const doSearch = () => {
   //   const selectedTypes = state.filters.types;
@@ -63,19 +64,20 @@ const Search = () => {
     // console.log("Updated searchWords:", state.searchWords);
   }, [state.searchWords]);
 
-
   return (
     <div>
       <button className="bigYellowButton" onClick={searchButtonClick}>Search</button>
       {state.isSearchBarVisible && (
         <div>
-          <input
-            type="text"
-            placeholder="Search..."
-            value={searchInput}
-            onChange={handleInputChange}
-            onKeyDown={handleSearch}
-          />
+          <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
+            <Form.Control
+              type="text"
+              placeholder="Search..."
+              value={searchInput}
+              onChange={handleInputChange}
+              onKeyDown={handleSearch}
+            />
+          </Form.Group>
         </div>
       )}
     </div>
