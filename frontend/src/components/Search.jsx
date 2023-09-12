@@ -29,14 +29,33 @@ const Search = () => {
 
   const doSearch = () => {
     const includesType = state.typesData.some((type) => state.searchWords.includes(type));
-  
+    const includesRegion = state.regionsData.some((region) => state.searchWords.includes(region.name));
+    const includesId = state.searchWords.some((word) => !isNaN(word));
+    console.log(includesId);
+    // console.log(state.searchWords)
+    console.log(state.filteredPokemonData);
+
+
     if (includesType) {
-      const updatedSelectedTypes = [...state.searchWords]; // Create a new array with the search types
-      dispatch({ type: "ADD_TYPE_FILTER", selectedTypes: updatedSelectedTypes });
+      const types = state.searchWords.filter((word) => state.typesData.includes(word));
+      dispatch({ type: "ADD_TYPE_FILTER", selectedTypes: types });
     } else {
-      // If there are no matching types, you can clear the type filter or handle it as needed
       dispatch({ type: "CLEAR_TYPE_FILTER", selectedTypes: [] });
     }
+
+    if (includesRegion) {
+      const region = state.regionsData.filter((region) => state.searchWords[0] === region.name);
+      dispatch({ type: "ADD_REGION_FILTER", payload: region[0] });
+    } else {
+      dispatch({ type: "CLEAR_REGION_FILTER", selectedRegions: {} });
+    }
+
+    // if (includesId) {
+    //   let findById = 
+  //     dispatch({ type: "SEARCH_BY_ID", payload: searchId });
+  //   } else {
+  //     dispatch({ type: "SEARCH_BY_NAME", payload: searchTerm });
+  //   }
   };
 
   const handleSearch = (event) => { //Updates the searchWords state on enter key
