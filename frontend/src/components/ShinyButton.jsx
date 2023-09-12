@@ -7,9 +7,8 @@ import ShinyIcon from "./ShinyIcon";
 import "../styles/ShinyButton.css";
 
 const ShinyButton = (props) => {
-  const state = usePokemonDataContext();
   const dispatch = usePokemonDataDispatchContext();
-  let selectedClass = "";
+  let selectedClass = "grey-shiny";
   if (props.isShiny) {
     selectedClass = "shiny";
   }
@@ -33,15 +32,13 @@ const ShinyButton = (props) => {
     }
   };
   return (
-    <button
+    <ShinyIcon
       className={selectedClass}
       onClick={() => {
         toggleShiney(props.pokemon_id, props.collection_id, props.isShiny);
       }}
-    >
-      {" "}
-      Shinyyyy{" "}
-    </button>
+      isShiny={props.isShiny}
+    />
   );
 };
 

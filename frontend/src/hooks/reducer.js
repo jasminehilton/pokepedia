@@ -289,12 +289,10 @@ const reducer = (state, action) => {
     case ACTIONS.SET_MY_COLLECTION_SELECTED:
       return { ...state, myCollectionSelected: action.payload };
     case ACTIONS.REMOVE_CAUGHT_NORMAL:
-      console.log("heya");
       let deleteN = false;
       let updatedCollectionNormalRN = [];
       updatedCollectionNormalRN = state.collectionPokemon.map((pokemon) => {
         if (pokemon.pokemon_id === action.payload.pokemonId) {
-          console.log(pokemon);
           if (pokemon.caught_shiny === false) {
             deleteN = true;
             return null;
@@ -306,7 +304,6 @@ const reducer = (state, action) => {
       });
 
       if (deleteN) {
-        console.log(deleteN);
         axios
           .post(
             `http://localhost:8080/collection/delete/${action.payload.collection_id}`
@@ -326,7 +323,6 @@ const reducer = (state, action) => {
           .then(console.log("Updated successfully"));
       }
 
-      console.log("eee");
       return {
         ...state,
         collectionPokemon: updatedCollectionNormalRN,
@@ -336,9 +332,7 @@ const reducer = (state, action) => {
       let updatedCollectionShinyRS = [];
       updatedCollectionShinyRS = state.collectionPokemon.map((pokemon) => {
         if (pokemon.pokemon_id === action.payload.pokemonId) {
-          console.log(pokemon);
           if (pokemon.caught_normal === false) {
-            console.log("ee");
             deleteS = true;
             return null;
           } else {
@@ -348,7 +342,9 @@ const reducer = (state, action) => {
         return pokemon;
       });
 
-      const filteredCollectionShinyRS = updatedCollectionShinyRS.filter((pokemon) => pokemon !== null);
+      const filteredCollectionShinyRS = updatedCollectionShinyRS.filter(
+        (pokemon) => pokemon !== null
+      );
 
       if (deleteS) {
         axios
@@ -372,7 +368,6 @@ const reducer = (state, action) => {
           .then(console.log("Updated beans"));
       }
 
-      console.log(updatedCollectionShinyRS)
       return {
         ...state,
         collectionPokemon: filteredCollectionShinyRS,
