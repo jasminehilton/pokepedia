@@ -25,6 +25,7 @@ export const ACTIONS = {
   SET_CURRENT_PAGE: "SET_CURRENT_PAGE",
   SET_DISPLAYED_POKEMON: "SET_DISPLAYED_POKEMON",
   SET_POKEMON_BY_REGION: "SET_POKEMON_BY_REGION",
+  FETCH_POKEMON_GENDERS: "FETCH_POKEMON_GENDERS",
   DISPLAY_POKEMON_SEARCH: "DISPLAY_POKEMON_SEARCH",
   CLOSE_POKEMON_SEARCH: "CLOSE_POKEMON_SEARCH",
   LOGIN_SUCCESS: "LOGIN_SUCCESS",
@@ -53,6 +54,7 @@ const initialState = {
   previous: null,
   searchWords: [],
   pokemonByRegion: [],
+  pokemonByGenders: [],
   regionsData: [],
   typesData: [],
   filters: {
@@ -187,6 +189,11 @@ const reducer = (state, action) => {
         ...state,
         pokemonByRegion: action.payload,
       };
+    case ACTIONS.FETCH_POKEMON_GENDERS:
+      return {
+        ...state,
+        pokemonByGenders: action.payload,
+      };      
     case ACTIONS.LOGIN_SUCCESS:
       return {
         ...state,
