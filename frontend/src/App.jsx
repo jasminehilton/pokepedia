@@ -13,6 +13,7 @@ import RegionList from "./components/RegionList";
 import "./styles/Navbar.css";
 import HomeRoute from "./routes/HomeRoute";
 import PokemonLogo from "./components/PokemonLogo";
+import doSearch from "./helpers/doSearch";
 
 function App() {
   const state = usePokemonDataContext(); //imports the state
@@ -26,7 +27,15 @@ function App() {
       state.pokemonByRegion
     );
     dispatch({ type: "SET_CURRENT_PAGE", payload: 1 });
-  }, [state.filters.types, state.pokemonByRegion]);
+
+    if (state.searchWords.length > 0) {
+      doSearch(state, dispatch)
+    }
+  }, [state.filters.types, state.pokemonByRegion, state.searchWords]);
+    
+  // useEffect(() => {
+  //   doSearch(state, dispatch)
+  // }, [state.searchWords]);
 
   useEffect(() => {
     getDisplayedPokemon(
