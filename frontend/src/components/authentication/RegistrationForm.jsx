@@ -13,7 +13,7 @@ const RegistrationForm = (
           width="200" height="200" alt="Pokeball" />
       </div>
       <div>
-        <p className="form-title">Pokedex Registration</p>
+        <p className="form-title">Create Account</p>
       </div>
       <Form className="form-container" onSubmit={signUp}>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">

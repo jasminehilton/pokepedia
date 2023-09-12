@@ -50,6 +50,13 @@
   
 }
 
+.icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
 .child {
   border-radius: 10px;
 }

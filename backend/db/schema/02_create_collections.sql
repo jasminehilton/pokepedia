@@ -6,5 +6,5 @@ CREATE TABLE collections (
   user_id integer REFERENCES users(id) ON DELETE CASCADE NOT NULL,
   pokemon_id INTEGER NOT NULL,
   caught_normal BOOLEAN,
-  caught_shiney BOOLEAN
+  caught_shiny BOOLEAN
 );

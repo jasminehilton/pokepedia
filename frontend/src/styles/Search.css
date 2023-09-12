@@ -1,0 +1,7 @@
+.search-bar {
+  position: absolute;
+  top: 30rem;
+  right: 31%;
+  width: 20rem;
+  transform: translate(-50%, -50%);
+}
