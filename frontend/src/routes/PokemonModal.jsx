@@ -101,7 +101,7 @@ const PokemonModal = () => {
             <div className=" form-default" >
               <p className=" form-title" >Default</p>
               <img
-                className={ `parent modal-form-picture ${state.selectPokemonData.types[0].type.name} `}
+                className={ `parent modal-form-picture ${state.selectPokemonData?.types[0].type.name} `}
                 src={state.selectPokemonData?.sprites?.front_default}
                 alt={state.selectPokemonData.name}
               /> 
