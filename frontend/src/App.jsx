@@ -26,10 +26,12 @@ function App() {
       dispatch,
       state.filters.types,
       state.pokemonData,
-      state.pokemonByRegion
+      state.pokemonByRegion,
+      state.collectionPokemon,
+      state.myCollectionSelected
     );
     dispatch({ type: "SET_CURRENT_PAGE", payload: 1 });
-  }, [state.filters.types, state.pokemonByRegion]);
+  }, [state.filters.types, state.pokemonByRegion, state.myCollectionSelected]);
 
   useEffect(() => {
     getDisplayedPokemon(
