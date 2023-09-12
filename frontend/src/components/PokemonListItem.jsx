@@ -3,14 +3,14 @@ import "../styles/PokemonListItem.css";
 import capitalizeFirstLetter from "../helpers/capitalizeFirstLetter";
 import "../styles/PokemonTypes.css";
 import ShinyButton from "./ShinyButton";
-import ShinyIcon from "./ShinyIcon";
-import NormalIcon from "./NormalIcon";
+import NormalButton from "./NormalButton";
 
 const PokemonListItem = ({
   pokemon,
   onDisplayPokemonModal,
   collection_id,
   isShiny,
+  isNormal,
 }) => {
   const officialArtworkUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`;
 
@@ -34,7 +34,11 @@ const PokemonListItem = ({
               collection_id={collection_id}
               isShiny={isShiny}
             />
-            <NormalIcon />
+            <NormalButton
+              pokemon_id={pokemon.id}
+              collection_id={collection_id}
+              isNormal={isNormal}
+            />
           </div>
         </div>
       </div>

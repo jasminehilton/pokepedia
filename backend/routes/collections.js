@@ -16,11 +16,9 @@ router.get("/:user_id", (req, res) => {
 
 // endpoint for creating collections
 router.post("/:user_id/create", (req, res) => {
-  console.log(req);
   const user_id = 1;
   const collections = req.body.collectionObj;
   const pokemon_id = req.body.pokemon_id;
-  console.log(collections, pokemon_id, user_id);
   createCollection(user_id, collections, pokemon_id)
     .then((collection) => {
       res.json(collection);

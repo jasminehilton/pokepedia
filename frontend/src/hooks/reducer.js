@@ -199,7 +199,7 @@ const reducer = (state, action) => {
       };
     case ACTIONS.SET_CAUGHT_NORMAL:
       // payload: { pokemon_id: , collection: id }
-      const pokemonIdN = action.payload.pokemon_id;
+      const pokemonIdN = action.payload.pokemonId;
       let collection_idN = action.payload.collection_id;
 
       let updatedCollectionNormal;
@@ -207,7 +207,7 @@ const reducer = (state, action) => {
       if (collection_idN) {
         // If the Pokémon is already in the list, update the 'caught_shiny' property
         updatedCollectionNormal = state.collectionPokemon.map((pokemon) => {
-          if (pokemon.id === pokemonIdN) {
+          if (pokemon.pokemon_id === pokemonIdN) {
             return { ...pokemon, caught_normal: true };
           }
           return pokemon;
@@ -318,6 +318,10 @@ const reducer = (state, action) => {
         return pokemon;
       });
 
+      const filteredCollectionNormalRN = updatedCollectionNormalRN.filter(
+        (pokemon) => pokemon !== null
+      );
+
       if (deleteN) {
         axios
           .post(
@@ -340,7 +344,7 @@ const reducer = (state, action) => {
 
       return {
         ...state,
-        collectionPokemon: updatedCollectionNormalRN,
+        collectionPokemon: filteredCollectionNormalRN,
       };
     case ACTIONS.REMOVE_CAUGHT_SHINY:
       let deleteS = false;

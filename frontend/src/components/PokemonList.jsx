@@ -34,6 +34,7 @@ const PokemonList = () => {
                 // Variables to pass if it's in the collection
                 isShiny: foundPokemon.caught_shiny,
                 collection_id: foundPokemon.id,
+                isNormal: foundPokemon.caught_normal
               }
             : {
                 // Variables to pass if it's not in the collection
