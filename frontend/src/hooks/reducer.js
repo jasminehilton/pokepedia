@@ -127,7 +127,6 @@ const reducer = (state, action) => {
         filters: { ...state.filters, regions: action.payload },
       };
     case ACTIONS.FILTER_BY_TYPE:
-      console.log("HI+++++++")
       return { ...state, filteredPokemonData: action.payload };
     case ACTIONS.FILTER_BY_REGION:
       return {

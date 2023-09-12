@@ -28,27 +28,6 @@ const Search = () => {
     dispatch({ type: "INITIATE_SEARCH", searchWords: splitString });
   }, [searchInput, dispatch]);
 
-  
-  // const handleSearch = (event) => { //Updates the searchWords state on enter key
-  //   if (event.key === "Enter") {
-  //     doSearch();
-  //   }
-  // };
-
-// this version below accounts for already pressed buttons
-
-  // const doSearch = () => {
-  //   const selectedTypes = state.filters.types;
-  //   const includesType = state.typesData.some((type) => state.searchWords.includes(type));
-  //   if (includesType) {
-  //     const newTypesToAdd = state.searchWords.filter((type) => !selectedTypes.includes(type)); // Find types in searchWords that are not in selectedTypes
-  //     if (newTypesToAdd.length > 0) {
-  //       const updatedSelectedTypes = [...selectedTypes, ...newTypesToAdd]; // Update the state.filters.types with the new types
-  //       dispatch({ type: "ADD_TYPE_FILTER", selectedTypes: updatedSelectedTypes }); // Dispatch the action to add/update the type filter
-  //     };
-  //   };
-  // };
-
   useEffect(() => { //Displays the search words state
     // console.log("Updated searchWords:", state.searchWords);
   }, [state.searchWords]);

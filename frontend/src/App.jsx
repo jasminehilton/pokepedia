@@ -32,10 +32,6 @@ function App() {
       doSearch(state, dispatch)
     }
   }, [state.filters.types, state.pokemonByRegion, state.searchWords]);
-    
-  // useEffect(() => {
-  //   doSearch(state, dispatch)
-  // }, [state.searchWords]);
 
   useEffect(() => {
     getDisplayedPokemon(
