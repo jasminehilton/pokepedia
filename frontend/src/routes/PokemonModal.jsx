@@ -11,6 +11,7 @@ import { fetchSpeciesData } from "../helpers/fetchSpeciesData";
 import { fetchTypesData } from "../helpers/fetchTypesData";
 import ShinyButton from "../components/ShinyButton";
 import NormalButton from "../components/NormalButton";
+import capitalizeFirstLetter from "../helpers/capitalizeFirstLetter";
 
 const PokemonModal = () => {
   const dispatch = usePokemonDataDispatchContext();
@@ -23,6 +24,8 @@ const PokemonModal = () => {
   const [speciesDetails, setSpeciesDetails] = useState({});
 
   const [typesDetails, setTypesDetails] = useState({});
+
+  const [gender, setGender] = useState('');  
 
   const getFlavorText = (flavorEntries) => {
     let flavorText = flavorEntries.find((flavorEntry) => {
@@ -53,6 +56,15 @@ const PokemonModal = () => {
     return "";
   };
 
+  const getPokemonGender = () => {
+    let pokemonGenders = state.pokemonByGenders.filter((pokemonGender) => {
+      return pokemonGender.name === state.selectPokemonData.name
+    })
+
+    setGender(pokemonGenders.map((pokemonGender) => pokemonGender.gender).join(', '))
+
+  }
+
   // NOTE: this is getting pokemon evolution data for all the pokemons we have and not just the pokemon that is selected and viewed in the modal
   // i think it is fine to get one by one because right now it is getting it for all 1000 pokemons and their many evolutions, which can be more than like 10k calls
   // probably better to have this data only live in this component instead of state, because it doesn't need to be shared across the app
@@ -68,6 +80,8 @@ const PokemonModal = () => {
     fetchSpeciesData(state.selectPokemonData, setSpeciesDetails);
 
     fetchTypesData(state.selectPokemonData, setTypesDetails);
+
+    getPokemonGender()
   }, []);
 
   // useEffect(() => {
@@ -96,7 +110,6 @@ const PokemonModal = () => {
         <span className="close" onClick={onClosePokemonModal}>
           &times;
         </span>
-        {/* <div className= {` modal-container ${state.selectPokemonData.types[0].type.name} `}  > */}
         <div className=" modal-container ">
           <div className="parent modal-star-ball">
             {/* <p className="child modal-star" >star</p> */}
@@ -116,12 +129,12 @@ const PokemonModal = () => {
             alt={state.selectPokemonData.name}
           />
           <div className="parent modal-stats">
-            <p className="child modal-gender">Gender: </p>
+            <p className="child modal-gender">Gender: {gender}</p>
             <p className="child modal-height">
-              Height: {state.selectPokemonData.height}
+              Height: {state.selectPokemonData.height}0 cm
             </p>
             <p className="child modal-weight">
-              Weight: {state.selectPokemonData.weight}
+              Weight: {Math.floor(state.selectPokemonData.weight)/ 10} kg
             </p>
             <p className="child modal-category">
               Category:{" "}
@@ -131,11 +144,11 @@ const PokemonModal = () => {
             <p className="child modal-ability">
               Abilities:{" "}
               {state.selectPokemonData.abilities
-                .map((ability) => ability.ability.name)
+                .map((ability) => capitalizeFirstLetter(ability.ability.name))
                 .join(", ")}
             </p>
           </div>
-          <p className="parent modal-name">{state.selectPokemonData.name}</p>
+          <p className="parent modal-name">{capitalizeFirstLetter(state.selectPokemonData.name)}</p>
 
           <div className="parent modal-form">
             Forms:
@@ -166,13 +179,13 @@ const PokemonModal = () => {
             <p className="child modal-type">
               Types:{" "}
               {state.selectPokemonData.types
-                .map((type) => type.type.name)
+                .map((type) => capitalizeFirstLetter(type.type.name))
                 .join(", ")}
             </p>
             <p className="child modal-weakness">
               Weaknesses:{" "}
               {typesDetails?.damage_relations?.double_damage_from
-                .map((weakness) => weakness.name)
+                .map((weakness) => capitalizeFirstLetter(weakness.name))
                 .join(", ")}{" "}
             </p>
           </div>
@@ -180,10 +193,10 @@ const PokemonModal = () => {
             Locations:
             {state.locations.map((location, index) => (
               <li className="child" key={index}>
-                {location.location_area.name}
+                {capitalizeFirstLetter(location.location_area.name)}
                 <ul className="child">
                   {location.version_details.map((version, vIndex) => (
-                    <li key={vIndex}>{version.version.name}</li>
+                    <li key={vIndex}>{capitalizeFirstLetter(version.version.name)}</li>
                   ))}
                 </ul>
               </li>
