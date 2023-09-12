@@ -21,7 +21,7 @@ const LoginForm = ({
           width="200" height="200" alt="Pokeball" />
       </div>
       <div>
-        <p className="form-title">Pokedex Login</p>
+        <p className="form-title">Welcome Back</p>
       </div>
       <Form className="form-container" onSubmit={signIn}>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
