@@ -42,7 +42,6 @@ const PokemonModal = () => {
   );
 
   const isInCollection = !!foundPokemon;
- 
 
   const getGenusText = (genusEntries) => {
     let genusText = genusEntries.find((genusEntry) => {
@@ -111,15 +110,29 @@ const PokemonModal = () => {
           &times;
         </span>
         <div className=" modal-container ">
-          <div className="parent modal-star-ball">
-            {/* <p className="child modal-star" >star</p> */}
-            <div className="icons">
-              <ShinyButton isShiny={foundPokemon ? foundPokemon.caught_shiny : null} collection_id={foundPokemon ? foundPokemon.id : null } pokemon_id={state.selectPokemonData.id} className="child modal-star" />
-              <NormalButton isNormal={foundPokemon? foundPokemon.caught_normal : null} collection_id={foundPokemon ? foundPokemon.id : null } pokemon_id={state.selectPokemonData.id} className="child modal-ball" />
-            </div>
+          {/* <p className="child modal-star" >star</p> */}
 
-            {/* <p className="child modal-ball">poke</p> */}
-          </div>
+          {state.isLoggedIn === true && (
+            <div className="parent modal-star-ball">
+              <div className="icons">
+                <ShinyButton
+                  isShiny={foundPokemon ? foundPokemon.caught_shiny : null}
+                  collection_id={foundPokemon ? foundPokemon.id : null}
+                  pokemon_id={state.selectPokemonData.id}
+                  className="child modal-star"
+                />
+                <NormalButton
+                  isNormal={foundPokemon ? foundPokemon.caught_normal : null}
+                  collection_id={foundPokemon ? foundPokemon.id : null}
+                  pokemon_id={state.selectPokemonData.id}
+                  className="child modal-ball"
+                />
+              </div>
+            </div>
+          )}
+
+          {/* <p className="child modal-ball">poke</p> */}
+
           <p className="parent modal-number">
             No. {state.selectPokemonData.id}
           </p>
