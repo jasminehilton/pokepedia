@@ -5,6 +5,8 @@ import {
   usePokemonDataDispatchContext,
 } from "../providers/pokeProvider";
 // import TypeButtonList from "./TypeButtonList";
+import Form from "react-bootstrap/Form";
+import "../styles/Search.css";
 
 const Search = () => {
   const state = usePokemonDataContext();
@@ -32,19 +34,20 @@ const Search = () => {
     // console.log("Updated searchWords:", state.searchWords);
   }, [state.searchWords]);
 
-
   return (
     <div>
       <button className="bigYellowButton" onClick={searchButtonClick}>Search</button>
       {state.isSearchBarVisible && (
         <div>
-          <input
-            type="text"
-            placeholder="Search..."
-            value={searchInput}
-            onChange={handleInputChange}
-            // onKeyDown={handleSearch}
-          />
+          <Form.Group className="mb-3 search-bar" controlId="exampleForm.ControlInput2">
+            <Form.Control
+              type="text"
+              placeholder="Search..."
+              value={searchInput}
+              onChange={handleInputChange}
+              onKeyDown={handleSearch}
+            />
+          </Form.Group>
         </div>
       )}
     </div>

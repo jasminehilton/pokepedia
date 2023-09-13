@@ -1,0 +1,29 @@
+.normal-icon {
+  width:32px;
+  height:32px;
+  /* position: relative;
+  top: -40%;
+  left: 280%; */
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.shiny-icon {
+  width:41px;
+  height:39px;
+  position: relative;
+  top: -5%;
+  /* position: relative;
+  top: -40%;
+  left: 250%; */
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.icon-container {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  left: 33%;
+  top: -6%;
+}

@@ -1,5 +1,4 @@
 import "./App.css";
-import TypeButtonList from "./components/TypeButtonList";
 import { useEffect } from "react";
 import {
   usePokemonDataContext,
@@ -9,10 +8,9 @@ import {
 // import useCollections from './hooks/useCollections';
 import filterPokemon from "./helpers/filter";
 import getDisplayedPokemon from "./helpers/getDisplayedPokemon";
-import RegionList from "./components/RegionList";
 import "./styles/Navbar.css";
 import HomeRoute from "./routes/HomeRoute";
-import PokemonLogo from "./components/PokemonLogo";
+import fetchCollectionForUser from "./helpers/fetchCollection";
 import doSearch from "./helpers/doSearch";
 
 function App() {
@@ -20,18 +18,25 @@ function App() {
   const dispatch = usePokemonDataDispatchContext(); //imports dispatch
 
   useEffect(() => {
+    fetchCollectionForUser(dispatch, 1);
+  }, []);
+
+
+  useEffect(() => {
     filterPokemon(
       dispatch,
       state.filters.types,
       state.pokemonData,
-      state.pokemonByRegion
+      state.pokemonByRegion,
+      state.collectionPokemon,
+      state.myCollectionSelected
     );
     dispatch({ type: "SET_CURRENT_PAGE", payload: 1 });
 
     if (state.searchWords.length > 0) {
       doSearch(state, dispatch)
     }
-  }, [state.filters.types, state.pokemonByRegion, state.searchWords]);
+  }, [state.filters.types, state.pokemonByRegion, state.searchWords, state.myCollectionSelected]);
 
   useEffect(() => {
     getDisplayedPokemon(
@@ -48,6 +53,13 @@ function App() {
     state.filters.regions,
     state.isLoggedIn,
   ]);
+
+  useEffect(() => {
+    if (state.isNew === true) {
+      fetchCollectionForUser(dispatch, 1);
+      dispatch({ type: "SET_IS_NEW", payload: false });
+    }
+  }, [state.isNew]);
 
   return (
     <div className="App">

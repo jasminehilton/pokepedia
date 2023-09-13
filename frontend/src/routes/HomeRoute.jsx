@@ -13,6 +13,7 @@ import {
   usePokemonDataDispatchContext,
 } from "../providers/pokeProvider";
 import PokemonLogo from "../components/PokemonLogo";
+import { fetchPokemonGenderData } from "../helpers/fetchPokemonGenderData";
 
 const HomeRoute = () => {
   const state = usePokemonDataContext();
@@ -20,6 +21,7 @@ const HomeRoute = () => {
 
   useEffect(() => {
     fetchPokemonData(dispatch);
+    fetchPokemonGenderData(dispatch)
   }, []);
 
   return (
