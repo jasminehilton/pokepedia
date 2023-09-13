@@ -45,7 +45,6 @@ const Search = () => {
               placeholder="Search..."
               value={searchInput}
               onChange={handleInputChange}
-              onKeyDown={handleSearch}
             />
           </Form.Group>
         </div>
