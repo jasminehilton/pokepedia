@@ -92,7 +92,7 @@ const TypeButtonList = () => {
               myCollectionSelected(dispatch, state.myCollectionSelected)
             }
           >
-            Collection
+            Collection {state.collectionPokemon.length}
           </button>
         )}
       </div>
