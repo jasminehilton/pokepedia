@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { usePokemonDataContext, usePokemonDataDispatchContext } from "../providers/pokeProvider";
-import TypeButton from './TypeButton';
-import "../styles/Navbar.css"
-import RegistrationModal from '../routes/RegistrationModal';
-import { onAuthStateChanged } from '@firebase/auth';
-import { auth } from '../firebase';
-import myCollectionSelected from '../helpers/setMyCollectionSelected';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import {
+  usePokemonDataContext,
+  usePokemonDataDispatchContext,
+} from "../providers/pokeProvider";
+import TypeButton from "./TypeButton";
+import "../styles/Navbar.css";
+import RegistrationModal from "../routes/RegistrationModal";
+import { onAuthStateChanged } from "@firebase/auth";
+import { auth } from "../firebase";
+import myCollectionSelected from "../helpers/setMyCollectionSelected";
 
 const TypeButtonList = () => {
-
   const state = usePokemonDataContext(); //imports the state
   const dispatch = usePokemonDataDispatchContext(); //imports dispatch
   const [showRegistration, setShowRegistration] = useState(false);
@@ -21,16 +23,16 @@ const TypeButtonList = () => {
 
   useEffect(() => {
     axios
-      .get('https://pokeapi.co/api/v2/type')
+      .get("https://pokeapi.co/api/v2/type")
       .then((response) => {
         const typesDataArray = response.data.results
-        .map((type) => type.name)
-        .filter((type) => type !== "shadow" && type !== "unknown");
+          .map((type) => type.name)
+          .filter((type) => type !== "shadow" && type !== "unknown");
         dispatch({ type: "FETCH_TYPES", typesData: typesDataArray });
         // console.log(typesDataArray);
       })
       .catch((error) => {
-        console.error('Error fetching Pokemon types data:', error);
+        console.error("Error fetching Pokemon types data:", error);
       });
   }, []);
 
@@ -41,12 +43,11 @@ const TypeButtonList = () => {
   useEffect(() => {
     const listen = onAuthStateChanged(auth, (authUser) => {
       if (authUser) {
-        setAuthUser(authUser)
+        setAuthUser(authUser);
         dispatch({ type: "LOGIN_SUCCESS" });
       } else {
-        setAuthUser(null)
+        setAuthUser(null);
         dispatch({ type: "LOGOUT" });
-
       }
     });
     return () => listen();
@@ -60,28 +61,23 @@ const TypeButtonList = () => {
     } else {
       const selected = [...selectedTypes, typeName];
       dispatch({ type: "ADD_TYPE_FILTER", selectedTypes: selected });
-    };
+    }
   };
 
   return (
-    <div className='typesList'>
+    <div className="typesList">
       <button className="bigBlueButton">Types</button>
-      <div className='typesButtonsList'>
-      {state.typesData.map((type) => (
-        <TypeButton
-          key={type}
-          typeName={type}
-          onTypeSelect={() => onTypeSelect(type)}
-        />
-      ))}
+      <div className="typesButtonsList">
+        {state.typesData.map((type) => (
+          <TypeButton
+            key={type}
+            typeName={type}
+            onTypeSelect={() => onTypeSelect(type)}
+          />
+        ))}
       </div>
       <div className="rightBigButtons">
-        {authUser ? (
-          <div>
-            <p className='label'>Signed in as:</p>
-            <p className='email-label'>{authUser.email}</p>
-          </div>
-        ) : (
+        {!authUser && (
           <button
             className="bigGreenButton"
             onClick={() => onDisplayRegistration()}
@@ -89,16 +85,24 @@ const TypeButtonList = () => {
             Register
           </button>
         )}
-        <button className="bigYellowButton" onClick={() => myCollectionSelected(dispatch, state.myCollectionSelected)}>Collection</button>
+        {state.isLoggedIn === true && (
+          <button
+            className="bigYellowButton"
+            onClick={() =>
+              myCollectionSelected(dispatch, state.myCollectionSelected)
+            }
+          >
+            Collection
+          </button>
+        )}
       </div>
-      {
-        showRegistration &&
+      {showRegistration && (
         <RegistrationModal
           showRegistration={showRegistration}
           toggleModal={onDisplayRegistration}
         />
-      }
-    </div >
+      )}
+    </div>
   );
 };
 
