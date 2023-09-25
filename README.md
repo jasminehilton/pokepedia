@@ -5,6 +5,7 @@ Easily search through over 1000 Pokemon to add them to your personal collection.
 !["description goes here"](link to pic goes here)
 
 
+
 ## Dependencies
 - React
 - Node
