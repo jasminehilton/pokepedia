@@ -1,10 +1,36 @@
 # Pokepedia
 Easily search through over 1000 Pokemon to add them to your personal collection. Research and collect to your hearts content over the generations. 
 
-## Sneak Peeks
-!["description goes here"](link to pic goes here)
+## Sneak Peek
 
-
+While "logged out", collection options are inactive. Researching is still available.
+!["Alt text"](frontend/public/homepage-logged-out.png?)
+<br>
+<br>
+Navigate through multiple pages with the "Prev" and "Next" buttons.
+!["Alt text"](frontend/public/card-overview-logged-out.png)
+<br>
+<br>
+A look at the Pokemon details page with Bulbasaur featured.
+!["Alt text"](frontend/public/modal-overview-logged-out.png)
+<br>
+<br>
+A closer look at the evolution chain of Bulbasaur.
+!["Alt text"](frontend/public/modal-evol-logged-out.png)
+<br>
+<br>
+If you dont already have an account, registering a new account is also an option.
+!["Alt text"](frontend/public/login-modal.png)
+<br>
+<br>
+When "logged in", your collection options are active. Add to your collection easily by using the filtering buttons in the navigation bar up top.
+!["Alt text"](frontend/public/homepage-logged-in.png)
+<br>
+<br>
+Filtering is expanded to the search bar. Search by name, number, type or region to narrow your search.
+!["Alt text"](frontend/public/search-charmander.png)
+<br>
+<br>
 
 ## Dependencies
 - React
