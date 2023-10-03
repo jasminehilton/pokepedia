@@ -57,7 +57,6 @@ Filtering is expanded to the search bar. Search by name, number, type or region 
 
 ### Backend
   1. Navigate to the backend file using the `cd backend` command.
-  2. Install dependencies using the `npm install` command.
-  3. 
-  4. Reset your database with `npm run db:reset`.
-  5. Run your backend with `npm run dev`.
+  2. Install dependencies using the `npm install` command. 
+  3. Reset your database with `npm run db:reset`.
+  4. Run your backend with `npm run dev`.
