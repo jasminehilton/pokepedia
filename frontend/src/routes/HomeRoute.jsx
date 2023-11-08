@@ -28,12 +28,12 @@ const HomeRoute = () => {
     <div>
       {state.isLoading ? (
         <Spinner />
-      ) : state.error ? (
-        <p>Error: {state.error}</p>
-      ) : (
-        <div>
+        ) : state.error ? (
+          <p>Error: {state.error}</p>
+          ) : (
+            <div>
           <div className="logo-region-type-pagination">
-            {/* <PokemonLogo /> */}
+              <PokemonLogo />
             <div>
               <RegionList />
               <TypeButtonList />
